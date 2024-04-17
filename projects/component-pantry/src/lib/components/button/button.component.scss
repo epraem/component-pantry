@@ -1,0 +1,111 @@
+@import "../../styles/variables";
+
+.btn {
+    border: 0;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    padding: $base-padding-sm $base-padding-lg;
+    font-size: $base-font-size;
+    transition: 0.2s linear;
+
+    &--danger {
+        background-color: $color-danger;
+        @include adaptive-text-color($color-danger);
+
+        &:hover {
+            background-color: darken($color-danger, 10%);
+        }
+        &:active {
+            background-color: darken($color-danger, 25%);
+        }
+    }
+
+    &--info {
+        background-color: $color-info;
+        @include adaptive-text-color($color-info);
+
+        &:hover {
+            background-color: darken($color-info, 10%);
+        }
+        &:active {
+            background-color: darken($color-info, 25%);
+        }
+    }
+
+    &--primary {
+        background-color: $color-primary;
+        @include adaptive-text-color($color-primary);
+
+        &:hover {
+            background-color: darken($color-primary, 10%);
+        }
+        &:active {
+            background-color: darken($color-primary, 25%);
+        }
+    }
+
+    &--secondary {
+        background-color: $color-secondary;
+        @include adaptive-text-color($color-secondary);
+
+        &:hover {
+            background-color: darken($color-secondary, 10%);
+        }
+        &:active {
+            background-color: darken($color-secondary, 25%);
+        }
+    }
+
+    &--success {
+        background-color: $color-success;
+        @include adaptive-text-color($color-success);
+
+        &:hover {
+            background-color: darken($color-success, 10%);
+        }
+        &:active {
+            background-color: darken($color-success, 25%);
+        }
+    }
+
+    &--warning {
+        background-color: $color-warning;
+        @include adaptive-text-color($color-warning);
+
+        &:hover {
+            background-color: darken($color-warning, 10%);
+        }
+        &:active {
+            background-color: darken($color-warning, 25%);
+        }
+    }
+
+    // Disabled state styles
+    &:disabled {
+        background-color: $color-gray;
+        color: $color-light;
+        cursor: not-allowed;
+
+        &:hover,
+        &:active {
+            background-color: $color-gray;
+        }
+    }
+
+    // Size specific styles
+    &--sm {
+        padding: $padding-vertical-small $padding-horizontal-small;
+        font-size: $font-size-small;
+    }
+
+    &--normal {
+        padding: $padding-vertical-medium $padding-horizontal-medium;
+        font-size: $font-size-medium;
+    }
+
+    &--lg {
+        padding: $padding-vertical-large $padding-horizontal-large;
+        font-size: $font-size-large;
+    }
+}

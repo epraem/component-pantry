@@ -1,0 +1,592 @@
+{
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [],
+    "modules": [],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        shadowLevel: 1,\n        backgroundColor: '#fff',\n    },\n    render: (args) => ({\n        props: args,\n        template: `\n            <nctv-card [shadowLevel]=\"shadowLevel\" [backgroundColor]=\"backgroundColor\">\n                <nctv-text\n                [textType]=\"'larger'\"\n                [textContent]=\"'Hello World!'\">\n                </nctv-text>\n\n                <nctv-text\n                [textContent]=\"'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'\">\n                </nctv-text>\n            </nctv-card>\n        `,\n    }),\n}"
+            },
+            {
+                "name": "BoldColored",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/text.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        textContent: 'Wow such color, much thick!',\n        textType: 'large',\n        textColor: '#098a5a',\n        fontWeight: 'bold',\n    },\n}"
+            },
+            {
+                "name": "CustomBackground",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        shadowLevel: 5,\n        backgroundColor: '#a242e1',\n    },\n    render: (args) => ({\n        props: args,\n        template: `\n            <nctv-card [shadowLevel]=\"shadowLevel\" [backgroundColor]=\"backgroundColor\">\n                <nctv-text\n                [textColor]=\"'#fff'\"\n                [textType]=\"'larger'\"\n                [textContent]=\"'Hello World!'\">\n                </nctv-text>\n\n                <nctv-text\n                [textColor]=\"'#fff'\"\n                [textContent]=\"'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'\"\n                [textType]=\"'paragraph'\">\n                </nctv-text>\n            </nctv-card>\n        `,\n    }),\n}"
+            },
+            {
+                "name": "CustomFontSize",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/text.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        textContent: 'Such amaze, many font size!',\n        fontSize: 50,\n        textColor: '#342abd',\n    },\n}"
+            },
+            {
+                "name": "CustomPaddings",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        shadowLevel: 5,\n        backgroundColor: '#fff',\n    },\n    render: (args) => ({\n        props: args,\n        template: `\n            <nctv-card [shadowLevel]=\"shadowLevel\" [backgroundColor]=\"backgroundColor\" [sidePadding]=\"50\">\n                <nctv-text\n                [textType]=\"'larger'\"\n                [textContent]=\"'Hello World!'\">\n                </nctv-text>\n\n                <nctv-text\n                [textContent]=\"'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'\"\n                [textType]=\"'paragraph'\">\n                </nctv-text>\n            </nctv-card>\n        `,\n    }),\n}"
+            },
+            {
+                "name": "Danger",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        label: 'Delete',\n        type: 'danger',\n    },\n}"
+            },
+            {
+                "name": "Disabled",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        label: 'Not Allowed',\n        disabled: true,\n    },\n}"
+            },
+            {
+                "name": "Larger",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/text.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        textContent: 'Dis large, such heavy :(',\n        textType: 'larger',\n    },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ButtonComponent>",
+                "defaultValue": "{\n    title: 'Components/Button',\n    component: ButtonComponent,\n    tags: ['autodocs'],\n    argTypes: {\n        backgroundColor: {\n            control: 'color',\n            description:\n                'Used to force set the background color. Note that this does not influence hover and active states unless explicitly configured.',\n        },\n        disabled: {\n            control: 'boolean',\n            description: 'Disabled state. Accepts true or false value.',\n            table: {\n                defaultValue: {\n                    summary: false,\n                },\n            },\n        },\n        iconLeft: {\n            control: 'text',\n            description: 'The icon to display on the left side of the label. Expected to be a valid icon reference.',\n        },\n        iconRight: {\n            control: 'text',\n            description: 'The icon to display on the right side of the label. Expected to be a valid icon reference.',\n        },\n        label: {\n            control: 'text',\n            description:\n                'The text to display on the button. This label can be anything from a simple string to complex HTML.',\n            table: {\n                defaultValue: {\n                    summary: 'Click Me',\n                },\n            },\n        },\n        size: {\n            control: 'select',\n            description: `Defines the size of the button. Accepted values are 'xsm', 'sm', 'lg', or 'normal'.`,\n            options: BUTTON_SIZES,\n            table: {\n                defaultValue: { summary: 'normal' },\n            },\n        },\n        textColor: {\n            control: 'color',\n            description:\n                'Used to force set the background color. Note: This does not influence hover and active states unless explicitly configured.',\n        },\n        type: {\n            control: 'select',\n            description: `Defines the type of the button, which influences its styling. Valid types are 'primary' and 'secondary'.`,\n            options: BUTTON_TYPES,\n            table: {\n                defaultValue: { summary: 'primary' },\n            },\n        },\n    },\n    args: {},\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<CardComponent>",
+                "defaultValue": "{\n    title: 'Components/Card',\n    component: CardComponent,\n    decorators: [\n        moduleMetadata({\n            imports: [CommonModule, TextComponent],\n        }),\n    ],\n    tags: ['autodocs'],\n    parameters: {},\n    argTypes: {\n        shadowLevel: {\n            control: 'select',\n            description: 'Used to set shadow level, the higher the value the more prominent the shadow is.',\n            options: CARD_SHADOWS,\n        },\n        backgroundColor: {\n            control: 'color',\n            description: 'Sets the background color of the card.',\n        },\n        sidePadding: {\n            control: 'number',\n            description: 'Sets the side paddings of the card.',\n        },\n    },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/text.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<TextComponent>",
+                "defaultValue": "{\n    title: 'Components/Text',\n    component: TextComponent,\n    tags: ['autodocs'],\n    argTypes: {\n        fontSize: {\n            control: 'number',\n            description: `Specifies the font size of the text, overwrites the text type's font size (px). Accepts any valid CSS font-size value.`,\n        },\n        fontWeight: {\n            control: 'select',\n            description: `Specifies the font weight of the text, overwrites the text type's font weight.`,\n            options: FONT_WEIGHTS,\n            table: {\n                defaultValue: {\n                    summary: 'normal',\n                },\n            },\n        },\n        textColor: {\n            control: 'color',\n            description: 'Specifies the text color. Accepts any valid CSS color format.',\n        },\n        textContent: {\n            control: 'text',\n            description: 'The text content to be displayed. This is the actual text that appears in the component.',\n            table: {\n                defaultValue: {\n                    summary: 'This is a text',\n                },\n            },\n        },\n        textType: {\n            control: 'select',\n            description: 'Specifies the type of text with pre-set font-size and font-weight.',\n            options: TEXT_TYPES,\n            table: {\n                defaultValue: {\n                    summary: 'paragraph',\n                },\n            },\n        },\n    },\n    args: {},\n}"
+            },
+            {
+                "name": "Paragraph",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/text.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        textContent: 'This is a paragraph',\n        textType: 'paragraph',\n    },\n}"
+            },
+            {
+                "name": "preview",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/.storybook/preview.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Preview",
+                "defaultValue": "{\n    parameters: {\n        backgrounds: {\n            default: 'lightgray',\n            values: [\n                {\n                    name: 'lightgray',\n                    value: '#f0f0f0',\n                },\n                {\n                    name: 'twitter',\n                    value: '#00aced',\n                },\n                {\n                    name: 'facebook',\n                    value: '#3b5998',\n                },\n                {\n                    name: 'light',\n                    value: '#ffffff',\n                },\n                {\n                    name: 'dark',\n                    value: '#646c80',\n                },\n            ],\n        },\n        controls: {\n            matchers: {\n                color: /(background|color)$/i,\n                date: /Date$/i,\n            },\n        },\n    },\n}"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        type: 'primary',\n    },\n}"
+            },
+            {
+                "name": "ShadowLevel2",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        shadowLevel: 2,\n        backgroundColor: '#fff',\n    },\n    render: (args) => ({\n        props: args,\n        template: `\n            <nctv-card [shadowLevel]=\"shadowLevel\" [backgroundColor]=\"backgroundColor\">\n                <nctv-text\n                [textType]=\"'larger'\"\n                [textContent]=\"'Hello World!'\">\n                </nctv-text>\n\n                <nctv-text\n                [textContent]=\"'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'\">\n                </nctv-text>\n            </nctv-card>\n        `,\n    }),\n}"
+            },
+            {
+                "name": "Success",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        textColor: '#fff',\n        label: 'Purchase',\n        type: 'success',\n    },\n}"
+            }
+        ],
+        "functions": [],
+        "typealiases": [
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<ButtonComponent>",
+                "file": "projects/component-pantry/src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<CardComponent>",
+                "file": "projects/component-pantry/src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<TextComponent>",
+                "file": "projects/component-pantry/src/stories/text.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            }
+        ],
+        "enumerations": [],
+        "groupedVariables": {
+            "projects/component-pantry/src/stories/card.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        shadowLevel: 1,\n        backgroundColor: '#fff',\n    },\n    render: (args) => ({\n        props: args,\n        template: `\n            <nctv-card [shadowLevel]=\"shadowLevel\" [backgroundColor]=\"backgroundColor\">\n                <nctv-text\n                [textType]=\"'larger'\"\n                [textContent]=\"'Hello World!'\">\n                </nctv-text>\n\n                <nctv-text\n                [textContent]=\"'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'\">\n                </nctv-text>\n            </nctv-card>\n        `,\n    }),\n}"
+                },
+                {
+                    "name": "CustomBackground",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        shadowLevel: 5,\n        backgroundColor: '#a242e1',\n    },\n    render: (args) => ({\n        props: args,\n        template: `\n            <nctv-card [shadowLevel]=\"shadowLevel\" [backgroundColor]=\"backgroundColor\">\n                <nctv-text\n                [textColor]=\"'#fff'\"\n                [textType]=\"'larger'\"\n                [textContent]=\"'Hello World!'\">\n                </nctv-text>\n\n                <nctv-text\n                [textColor]=\"'#fff'\"\n                [textContent]=\"'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'\"\n                [textType]=\"'paragraph'\">\n                </nctv-text>\n            </nctv-card>\n        `,\n    }),\n}"
+                },
+                {
+                    "name": "CustomPaddings",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        shadowLevel: 5,\n        backgroundColor: '#fff',\n    },\n    render: (args) => ({\n        props: args,\n        template: `\n            <nctv-card [shadowLevel]=\"shadowLevel\" [backgroundColor]=\"backgroundColor\" [sidePadding]=\"50\">\n                <nctv-text\n                [textType]=\"'larger'\"\n                [textContent]=\"'Hello World!'\">\n                </nctv-text>\n\n                <nctv-text\n                [textContent]=\"'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'\"\n                [textType]=\"'paragraph'\">\n                </nctv-text>\n            </nctv-card>\n        `,\n    }),\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<CardComponent>",
+                    "defaultValue": "{\n    title: 'Components/Card',\n    component: CardComponent,\n    decorators: [\n        moduleMetadata({\n            imports: [CommonModule, TextComponent],\n        }),\n    ],\n    tags: ['autodocs'],\n    parameters: {},\n    argTypes: {\n        shadowLevel: {\n            control: 'select',\n            description: 'Used to set shadow level, the higher the value the more prominent the shadow is.',\n            options: CARD_SHADOWS,\n        },\n        backgroundColor: {\n            control: 'color',\n            description: 'Sets the background color of the card.',\n        },\n        sidePadding: {\n            control: 'number',\n            description: 'Sets the side paddings of the card.',\n        },\n    },\n}"
+                },
+                {
+                    "name": "ShadowLevel2",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        shadowLevel: 2,\n        backgroundColor: '#fff',\n    },\n    render: (args) => ({\n        props: args,\n        template: `\n            <nctv-card [shadowLevel]=\"shadowLevel\" [backgroundColor]=\"backgroundColor\">\n                <nctv-text\n                [textType]=\"'larger'\"\n                [textContent]=\"'Hello World!'\">\n                </nctv-text>\n\n                <nctv-text\n                [textContent]=\"'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'\">\n                </nctv-text>\n            </nctv-card>\n        `,\n    }),\n}"
+                }
+            ],
+            "projects/component-pantry/src/stories/text.stories.ts": [
+                {
+                    "name": "BoldColored",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/text.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        textContent: 'Wow such color, much thick!',\n        textType: 'large',\n        textColor: '#098a5a',\n        fontWeight: 'bold',\n    },\n}"
+                },
+                {
+                    "name": "CustomFontSize",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/text.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        textContent: 'Such amaze, many font size!',\n        fontSize: 50,\n        textColor: '#342abd',\n    },\n}"
+                },
+                {
+                    "name": "Larger",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/text.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        textContent: 'Dis large, such heavy :(',\n        textType: 'larger',\n    },\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/text.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<TextComponent>",
+                    "defaultValue": "{\n    title: 'Components/Text',\n    component: TextComponent,\n    tags: ['autodocs'],\n    argTypes: {\n        fontSize: {\n            control: 'number',\n            description: `Specifies the font size of the text, overwrites the text type's font size (px). Accepts any valid CSS font-size value.`,\n        },\n        fontWeight: {\n            control: 'select',\n            description: `Specifies the font weight of the text, overwrites the text type's font weight.`,\n            options: FONT_WEIGHTS,\n            table: {\n                defaultValue: {\n                    summary: 'normal',\n                },\n            },\n        },\n        textColor: {\n            control: 'color',\n            description: 'Specifies the text color. Accepts any valid CSS color format.',\n        },\n        textContent: {\n            control: 'text',\n            description: 'The text content to be displayed. This is the actual text that appears in the component.',\n            table: {\n                defaultValue: {\n                    summary: 'This is a text',\n                },\n            },\n        },\n        textType: {\n            control: 'select',\n            description: 'Specifies the type of text with pre-set font-size and font-weight.',\n            options: TEXT_TYPES,\n            table: {\n                defaultValue: {\n                    summary: 'paragraph',\n                },\n            },\n        },\n    },\n    args: {},\n}"
+                },
+                {
+                    "name": "Paragraph",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/text.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        textContent: 'This is a paragraph',\n        textType: 'paragraph',\n    },\n}"
+                }
+            ],
+            "projects/component-pantry/src/stories/button.stories.ts": [
+                {
+                    "name": "Danger",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        label: 'Delete',\n        type: 'danger',\n    },\n}"
+                },
+                {
+                    "name": "Disabled",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        label: 'Not Allowed',\n        disabled: true,\n    },\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ButtonComponent>",
+                    "defaultValue": "{\n    title: 'Components/Button',\n    component: ButtonComponent,\n    tags: ['autodocs'],\n    argTypes: {\n        backgroundColor: {\n            control: 'color',\n            description:\n                'Used to force set the background color. Note that this does not influence hover and active states unless explicitly configured.',\n        },\n        disabled: {\n            control: 'boolean',\n            description: 'Disabled state. Accepts true or false value.',\n            table: {\n                defaultValue: {\n                    summary: false,\n                },\n            },\n        },\n        iconLeft: {\n            control: 'text',\n            description: 'The icon to display on the left side of the label. Expected to be a valid icon reference.',\n        },\n        iconRight: {\n            control: 'text',\n            description: 'The icon to display on the right side of the label. Expected to be a valid icon reference.',\n        },\n        label: {\n            control: 'text',\n            description:\n                'The text to display on the button. This label can be anything from a simple string to complex HTML.',\n            table: {\n                defaultValue: {\n                    summary: 'Click Me',\n                },\n            },\n        },\n        size: {\n            control: 'select',\n            description: `Defines the size of the button. Accepted values are 'xsm', 'sm', 'lg', or 'normal'.`,\n            options: BUTTON_SIZES,\n            table: {\n                defaultValue: { summary: 'normal' },\n            },\n        },\n        textColor: {\n            control: 'color',\n            description:\n                'Used to force set the background color. Note: This does not influence hover and active states unless explicitly configured.',\n        },\n        type: {\n            control: 'select',\n            description: `Defines the type of the button, which influences its styling. Valid types are 'primary' and 'secondary'.`,\n            options: BUTTON_TYPES,\n            table: {\n                defaultValue: { summary: 'primary' },\n            },\n        },\n    },\n    args: {},\n}"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        type: 'primary',\n    },\n}"
+                },
+                {
+                    "name": "Success",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        textColor: '#fff',\n        label: 'Purchase',\n        type: 'success',\n    },\n}"
+                }
+            ],
+            "projects/component-pantry/.storybook/preview.ts": [
+                {
+                    "name": "preview",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/.storybook/preview.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Preview",
+                    "defaultValue": "{\n    parameters: {\n        backgrounds: {\n            default: 'lightgray',\n            values: [\n                {\n                    name: 'lightgray',\n                    value: '#f0f0f0',\n                },\n                {\n                    name: 'twitter',\n                    value: '#00aced',\n                },\n                {\n                    name: 'facebook',\n                    value: '#3b5998',\n                },\n                {\n                    name: 'light',\n                    value: '#ffffff',\n                },\n                {\n                    name: 'dark',\n                    value: '#646c80',\n                },\n            ],\n        },\n        controls: {\n            matchers: {\n                color: /(background|color)$/i,\n                date: /Date$/i,\n            },\n        },\n    },\n}"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {
+            "projects/component-pantry/src/stories/button.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ButtonComponent>",
+                    "file": "projects/component-pantry/src/stories/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/component-pantry/src/stories/card.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<CardComponent>",
+                    "file": "projects/component-pantry/src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/component-pantry/src/stories/text.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<TextComponent>",
+                    "file": "projects/component-pantry/src/stories/text.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ]
+        }
+    },
+    "routes": [],
+    "coverage": {
+        "count": 0,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "projects/component-pantry/.storybook/preview.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "preview",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Danger",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Disabled",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Success",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Basic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "CustomBackground",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "CustomPaddings",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ShadowLevel2",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/text.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "BoldColored",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/text.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "CustomFontSize",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/text.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Larger",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/text.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/text.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Paragraph",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}
