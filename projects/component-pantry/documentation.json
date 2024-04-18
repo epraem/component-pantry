@@ -88,7 +88,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n    args: {\n        textContent: 'Dis large, such heavy :(',\n        textType: 'larger',\n    },\n}"
+                "defaultValue": "{\n    args: {\n        textContent: 'Dis large, such heavy',\n        textType: 'larger',\n    },\n}"
             },
             {
                 "name": "meta",
@@ -128,7 +128,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n    args: {\n        textContent: 'This is a paragraph',\n        textType: 'paragraph',\n    },\n}"
+                "defaultValue": "{\n    args: {\n        textContent: 'Eww such plain, much bored',\n        textType: 'paragraph',\n    },\n}"
             },
             {
                 "name": "preview",
@@ -290,7 +290,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n    args: {\n        textContent: 'Dis large, such heavy :(',\n        textType: 'larger',\n    },\n}"
+                    "defaultValue": "{\n    args: {\n        textContent: 'Dis large, such heavy',\n        textType: 'larger',\n    },\n}"
                 },
                 {
                     "name": "meta",
@@ -310,7 +310,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n    args: {\n        textContent: 'This is a paragraph',\n        textType: 'paragraph',\n    },\n}"
+                    "defaultValue": "{\n    args: {\n        textContent: 'Eww such plain, much bored',\n        textType: 'paragraph',\n    },\n}"
                 }
             ],
             "projects/component-pantry/src/stories/button.stories.ts": [

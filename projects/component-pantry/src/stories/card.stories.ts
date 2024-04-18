@@ -2,13 +2,14 @@ import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { CardComponent, CARD_SHADOWS } from '../lib/components/card';
 import { TextComponent } from '../lib/components/text';
+import { ButtonComponent } from '../public-api';
 
 const meta: Meta<CardComponent> = {
     title: 'Components/Card',
     component: CardComponent,
     decorators: [
         moduleMetadata({
-            imports: [CommonModule, TextComponent],
+            imports: [CommonModule, ButtonComponent, TextComponent],
         }),
     ],
     tags: ['autodocs'],
@@ -42,36 +43,44 @@ export const Basic: Story = {
         props: args,
         template: `
             <nctv-card [shadowLevel]="shadowLevel" [backgroundColor]="backgroundColor">
-                <nctv-text
-                [textType]="'larger'"
-                [textContent]="'Hello World!'">
-                </nctv-text>
+                <div [style.margin-bottom.px]="'20'">
+                    <nctv-text
+                    [textType]="'larger'"
+                    [textContent]="'Hello World!'">
+                    </nctv-text>
+                </div>
 
-                <nctv-text
-                [textContent]="'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'">
-                </nctv-text>
+                <div>
+                    <nctv-text
+                    [textContent]="'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'">
+                    </nctv-text>
+                </div>
             </nctv-card>
         `,
     }),
 };
 
-export const ShadowLevel2: Story = {
+export const ShadowLevel3: Story = {
     args: {
-        shadowLevel: 2,
+        shadowLevel: 3,
         backgroundColor: '#fff',
     },
     render: (args) => ({
         props: args,
         template: `
             <nctv-card [shadowLevel]="shadowLevel" [backgroundColor]="backgroundColor">
-                <nctv-text
-                [textType]="'larger'"
-                [textContent]="'Hello World!'">
-                </nctv-text>
+                <div [style.margin-bottom.px]="'20'">
+                    <nctv-text
+                    [textType]="'larger'"
+                    [textContent]="'Hello World!'">
+                    </nctv-text>
+                </div>
 
-                <nctv-text
-                [textContent]="'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'">
-                </nctv-text>
+                <div>
+                    <nctv-text
+                    [textContent]="'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'">
+                    </nctv-text>
+                </div>
             </nctv-card>
         `,
     }),
@@ -80,23 +89,34 @@ export const ShadowLevel2: Story = {
 export const CustomBackground: Story = {
     args: {
         shadowLevel: 5,
-        backgroundColor: '#a242e1',
+        backgroundColor: '#224d32',
     },
     render: (args) => ({
         props: args,
         template: `
             <nctv-card [shadowLevel]="shadowLevel" [backgroundColor]="backgroundColor">
-                <nctv-text
-                [textColor]="'#fff'"
-                [textType]="'larger'"
-                [textContent]="'Hello World!'">
-                </nctv-text>
+                <div [style.margin-bottom.px]="'20'">
+                    <nctv-text
+                    [textColor]="'#fff'"
+                    [textType]="'larger'"
+                    [textContent]="'Hello World!'">
+                    </nctv-text>
+                </div>
 
-                <nctv-text
+                <div [style.margin-bottom.px]="'20'">
+                    <nctv-text
+                    [textColor]="'#fff'"
+                    [textContent]="'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'"
+                    [textType]="'paragraph'">
+                    </nctv-text>
+                </div>
+
+
+                <nctv-button
+                [label]="'Purchase'"
                 [textColor]="'#fff'"
-                [textContent]="'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'"
-                [textType]="'paragraph'">
-                </nctv-text>
+                [type]="'success'"
+                ></nctv-button>
             </nctv-card>
         `,
     }),
@@ -111,15 +131,19 @@ export const CustomPaddings: Story = {
         props: args,
         template: `
             <nctv-card [shadowLevel]="shadowLevel" [backgroundColor]="backgroundColor" [sidePadding]="50">
-                <nctv-text
-                [textType]="'larger'"
-                [textContent]="'Hello World!'">
-                </nctv-text>
+                <div [style.margin-bottom.px]="'20'">
+                    <nctv-text
+                    [textType]="'larger'"
+                    [textContent]="'Hello World!'">
+                    </nctv-text>
+                </div>
 
-                <nctv-text
-                [textContent]="'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'"
-                [textType]="'paragraph'">
-                </nctv-text>
+                <div>
+                    <nctv-text
+                    [textContent]="'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'"
+                    [textType]="'paragraph'">
+                    </nctv-text>
+                </div>
             </nctv-card>
         `,
     }),
