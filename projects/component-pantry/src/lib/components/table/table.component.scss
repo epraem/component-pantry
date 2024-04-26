@@ -1,10 +1,8 @@
 @import "../../styles/variables";
-
 .table {
     &__content {
         border-collapse: collapse;
         width: 100%;
-        table-layout: fixed;
         font-size: $xs;
         line-height: 24px;
     }
@@ -32,6 +30,7 @@
         border: 0.5px solid #e7e8ed;
         padding: $base-padding-sm;
         text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     &__header {
@@ -45,8 +44,6 @@
         height: auto;
         min-height: 44px;
         padding: 10px;
-        text-overflow: ellipsis;
-        text-wrap: nowrap;
         overflow: hidden;
     }
 
@@ -58,6 +55,23 @@
     .rotate-down {
         transition: 0.3s ease-in-out;
         transform: rotate(0deg) scale(1.3);
+    }
+}
+
+.column {
+    &--type-full {
+        table-layout: unset;
+    }
+    &--type-ellipsis {
+        table-layout: fixed;
+    }
+    &--type-wrap {
+        table-layout: fixed;
+
+        th,
+        td {
+            text-wrap: wrap;
+        }
     }
 }
 
