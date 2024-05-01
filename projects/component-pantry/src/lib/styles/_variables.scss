@@ -1,6 +1,6 @@
 // Theme Colors
 $color-danger: #e73535 !default;
-$color-gray: #c0c4cc !default;
+$color-gray: #e7e8ed !default;
 $color-info: #17a2b8 !default;
 $color-primary: #091635 !default;
 $color-secondary: #8dcb2c !default;
@@ -8,6 +8,20 @@ $color-success: #8dcb2c !default;
 $color-warning: #ffc107 !default;
 $color-dark: #000000 !default;
 $color-light: #ffffff !default;
+
+//Shades of Gray
+$color-gray-1: #343f59 !default;
+$color-gray-2: #646c80 !default;
+$color-gray-3: #838999 !default;
+$color-gray-4: #9ba0ac !default;
+$color-gray-5: #afb3bd !default;
+$color-gray-6: #c0c4cc !default;
+$color-gray-7: #d0d3d9 !default;
+$color-gray-8: #d7dadf !default;
+$color-gray-9: #e7e8ed !default;
+$color-gray-10: #eeeef1 !default;
+$color-gray-11: #f2f2f5 !default;
+$color-gray-12: #f8f8f9 !default;
 
 // Theme Shadows
 $shadow-1: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
@@ -27,6 +41,8 @@ $shadow-4:
 $shadow-5:
     0 19px 38px rgba(0, 0, 0, 0.3),
     0 15px 12px rgba(0, 0, 0, 0.22);
+
+$input-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.05);
 
 // Define base padding and font size
 $base-padding-sm: 10px !default;

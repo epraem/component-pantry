@@ -1,6 +1,6 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { COLUMN_TYPE, TableComponent, TableData } from '../lib/components/table';
+import { COLUMN_TYPE, TableComponent } from '../lib/components/table';
 import { CardComponent } from '../lib/components/card';
 
 const dummyData = {

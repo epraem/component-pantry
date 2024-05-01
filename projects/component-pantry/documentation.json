@@ -24,11 +24,21 @@
                 "name": "Basic",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n    args: {\r\n        label: '',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-input [label]=\"'My default label'\"></nctv-input>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+            },
+            {
+                "name": "Basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/component-pantry/src/stories/table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n    args: {\r\n        tableData: {\r\n            columns: [\r\n                { label: '#', sortable: true },\r\n                { label: 'Host Name', sortable: false },\r\n                { label: 'Dealer Name', sortable: false },\r\n                { label: 'Address', sortable: true },\r\n                { label: 'City', sortable: true },\r\n                { label: 'State', sortable: true },\r\n                { label: 'Postal Code', sortable: true },\r\n                { label: 'Timezone', sortable: true },\r\n                { label: 'Total License', sortable: true },\r\n            ],\r\n            rows: [\r\n                [\r\n                    {\r\n                        value: 1,\r\n                    },\r\n                    {\r\n                        value: 'Amazon Data Center',\r\n                    },\r\n                    {\r\n                        value: 'Sunrise Motors Inc.',\r\n                    },\r\n                    {\r\n                        value: '456 Elm Street Apt. 201',\r\n                    },\r\n                    {\r\n                        value: 'Seattle',\r\n                    },\r\n                    {\r\n                        value: 'Washington',\r\n                    },\r\n                    {\r\n                        value: '98101',\r\n                    },\r\n                    {\r\n                        value: 'Pacific',\r\n                    },\r\n                    {\r\n                        value: 15,\r\n                    },\r\n                ],\r\n                [\r\n                    {\r\n                        value: 2,\r\n                    },\r\n                    {\r\n                        value: 'Microsoft Headquarters',\r\n                    },\r\n                    {\r\n                        value: 'Sunset Electronics',\r\n                    },\r\n                    {\r\n                        value: '789 Oak Avenue',\r\n                    },\r\n                    {\r\n                        value: 'Redmond',\r\n                    },\r\n                    {\r\n                        value: 'Washington',\r\n                    },\r\n                    {\r\n                        value: '98052',\r\n                    },\r\n                    {\r\n                        value: 'Pacific',\r\n                    },\r\n                    {\r\n                        value: 20,\r\n                    },\r\n                ],\r\n                [\r\n                    {\r\n                        value: 3,\r\n                    },\r\n                    {\r\n                        value: 'Googleplex',\r\n                    },\r\n                    {\r\n                        value: 'Skyline Solutions',\r\n                    },\r\n                    {\r\n                        value: '123 Maple Street',\r\n                    },\r\n                    {\r\n                        value: 'Mountain View',\r\n                    },\r\n                    {\r\n                        value: 'California',\r\n                    },\r\n                    {\r\n                        value: '94043',\r\n                    },\r\n                    {\r\n                        value: 'Eastern',\r\n                    },\r\n                    {\r\n                        value: 30,\r\n                    },\r\n                ],\r\n                [\r\n                    {\r\n                        value: 4,\r\n                    },\r\n                    {\r\n                        value: 'Apple Park',\r\n                    },\r\n                    {\r\n                        value: 'Orchard Technologies',\r\n                    },\r\n                    {\r\n                        value: '567 Pine Road',\r\n                    },\r\n                    {\r\n                        value: 'Cupertino',\r\n                    },\r\n                    {\r\n                        value: 'California',\r\n                    },\r\n                    {\r\n                        value: '95014',\r\n                    },\r\n                    {\r\n                        value: 'Mountain',\r\n                    },\r\n                    {\r\n                        value: 25,\r\n                    },\r\n                ],\r\n                [\r\n                    {\r\n                        value: 5,\r\n                    },\r\n                    {\r\n                        value: 'Facebook Campus',\r\n                    },\r\n                    {\r\n                        value: 'Social Solutions',\r\n                    },\r\n                    {\r\n                        value: '101 Cedar Lane',\r\n                    },\r\n                    {\r\n                        value: 'Menlo Park',\r\n                    },\r\n                    {\r\n                        value: 'California',\r\n                    },\r\n                    {\r\n                        value: '94025',\r\n                    },\r\n                    {\r\n                        value: 'Pacific',\r\n                    },\r\n                    {\r\n                        value: 18,\r\n                    },\r\n                ],\r\n            ],\r\n        },\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n                <nctv-table [tableData]=\"tableData\" columnType=\"columnType\"></nctv-table>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                "defaultValue": "{\r\n    args: {\r\n        tableData: dummyData,\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n                <nctv-table [tableData]=\"tableData\" [columnType]=\"columnType\"></nctv-table>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
             },
             {
                 "name": "BoldColored",
@@ -91,6 +101,26 @@
                 "defaultValue": "{\r\n    args: {\r\n        label: 'Not Allowed',\r\n        disabled: true,\r\n    },\r\n}"
             },
             {
+                "name": "dummyData",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n    columns: [\r\n        { label: '#', sortable: false },\r\n        { label: 'Host Name', sortable: false },\r\n        { label: 'Dealer Name', sortable: false },\r\n        { label: 'Address', sortable: true },\r\n        { label: 'City', sortable: true },\r\n        { label: 'State', sortable: true },\r\n        { label: 'Postal Code', sortable: true },\r\n        { label: 'Timezone', sortable: true },\r\n        { label: 'Total License', sortable: true },\r\n    ],\r\n    rows: [\r\n        [\r\n            {\r\n                value: 1,\r\n            },\r\n            {\r\n                value: 'Amazon Data Center',\r\n            },\r\n            {\r\n                value: 'Sunrise Motors Inc.',\r\n            },\r\n            {\r\n                value: '456 Elm Street Apt. 201',\r\n            },\r\n            {\r\n                value: 'Seattle',\r\n            },\r\n            {\r\n                value: 'Washington',\r\n            },\r\n            {\r\n                value: '98101',\r\n            },\r\n            {\r\n                value: 'Pacific',\r\n            },\r\n            {\r\n                value: 15,\r\n            },\r\n        ],\r\n        [\r\n            {\r\n                value: 2,\r\n            },\r\n            {\r\n                value: 'Microsoft Headquarters',\r\n            },\r\n            {\r\n                value: 'Sunset Electronics',\r\n            },\r\n            {\r\n                value: '789 Oak Avenue',\r\n            },\r\n            {\r\n                value: 'Redmond',\r\n            },\r\n            {\r\n                value: 'Washington',\r\n            },\r\n            {\r\n                value: '98052',\r\n            },\r\n            {\r\n                value: 'Pacific',\r\n            },\r\n            {\r\n                value: 20,\r\n            },\r\n        ],\r\n        [\r\n            {\r\n                value: 3,\r\n            },\r\n            {\r\n                value: 'Googleplex',\r\n            },\r\n            {\r\n                value: 'Skyline Solutions',\r\n            },\r\n            {\r\n                value: '123 Maple Street',\r\n            },\r\n            {\r\n                value: 'Mountain View',\r\n            },\r\n            {\r\n                value: 'California',\r\n            },\r\n            {\r\n                value: '94043',\r\n            },\r\n            {\r\n                value: 'Eastern',\r\n            },\r\n            {\r\n                value: 30,\r\n            },\r\n        ],\r\n        [\r\n            {\r\n                value: 4,\r\n            },\r\n            {\r\n                value: 'Apple Park',\r\n            },\r\n            {\r\n                value: 'Orchard Technologies',\r\n            },\r\n            {\r\n                value: '567 Pine Road',\r\n            },\r\n            {\r\n                value: 'Cupertino',\r\n            },\r\n            {\r\n                value: 'California',\r\n            },\r\n            {\r\n                value: '95014',\r\n            },\r\n            {\r\n                value: 'Mountain',\r\n            },\r\n            {\r\n                value: 25,\r\n            },\r\n        ],\r\n        [\r\n            {\r\n                value: 5,\r\n            },\r\n            {\r\n                value: 'Facebook Campus',\r\n            },\r\n            {\r\n                value: 'Social Solutions',\r\n            },\r\n            {\r\n                value: '101 Cedar Lane',\r\n            },\r\n            {\r\n                value: 'Menlo Park',\r\n            },\r\n            {\r\n                value: 'California',\r\n            },\r\n            {\r\n                value: '94025',\r\n            },\r\n            {\r\n                value: 'Pacific',\r\n            },\r\n            {\r\n                value: 18,\r\n            },\r\n        ],\r\n    ],\r\n}"
+            },
+            {
+                "name": "Ellipsis",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n    args: {\r\n        tableData: dummyData,\r\n        columnType: 'ellipsis',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n                <nctv-table [tableData]=\"tableData\" [columnType]=\"columnType\"></nctv-table>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+            },
+            {
                 "name": "Larger",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -124,11 +154,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<InputComponent>",
+                "defaultValue": "{\r\n    title: 'Components/Input',\r\n    component: InputComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {},\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/component-pantry/src/stories/table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<TableComponent>",
-                "defaultValue": "{\r\n    title: 'Components/Table',\r\n    component: TableComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {\r\n        columnType: {\r\n            control: 'select',\r\n            description: 'Used to set table type.',\r\n            options: COLUMN_TYPE,\r\n        },\r\n        tableData: {\r\n            control: 'select',\r\n            description: 'Used to set shadow level, the higher the value the more prominent the shadow is.',\r\n        },\r\n    },\r\n}"
+                "defaultValue": "{\r\n    title: 'Components/Table',\r\n    component: TableComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {\r\n        columnType: {\r\n            control: 'select',\r\n            description: 'Used to set table type.',\r\n            options: COLUMN_TYPE,\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'Full',\r\n                },\r\n            },\r\n        },\r\n        tableData: {\r\n            control: 'select',\r\n            description: 'Used to set shadow level, the higher the value the more prominent the shadow is.',\r\n        },\r\n    },\r\n}"
             },
             {
                 "name": "meta",
@@ -189,6 +229,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n    args: {\r\n        textColor: '#fff',\r\n        label: 'Purchase',\r\n        type: 'success',\r\n    },\r\n}"
+            },
+            {
+                "name": "Wrap",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n    args: {\r\n        tableData: dummyData,\r\n        columnType: 'wrap',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n                <nctv-table [tableData]=\"tableData\" [columnType]=\"columnType\"></nctv-table>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
             }
         ],
         "functions": [],
@@ -210,6 +260,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<CardComponent>",
                 "file": "projects/component-pantry/src/stories/card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<InputComponent>",
+                "file": "projects/component-pantry/src/stories/input.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -292,6 +353,28 @@
                     "defaultValue": "{\r\n    args: {\r\n        shadowLevel: 3,\r\n        backgroundColor: '#fff',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\" [backgroundColor]=\"backgroundColor\">\r\n                <div [style.margin-bottom.px]=\"'20'\">\r\n                    <nctv-text\r\n                    [textType]=\"'larger'\"\r\n                    [textContent]=\"'Hello World!'\">\r\n                    </nctv-text>\r\n                </div>\r\n\r\n                <div>\r\n                    <nctv-text\r\n                    [textContent]=\"'Lorem ipsum keme keme keme 48 years chaka at bakit na ugmas mabaho nang kasi balaj sa na pranella jupang-pang shontis chapter jowabella at ang chaka at nang guash matod kasi nakakalurky na ang neuro na warla nang ugmas wasok nang shonget ang chapter , kemerloo ang shontis ng at ang intonses at nang wasok oblation sa nang 48 years shontis at bakit mahogany bongga.'\">\r\n                    </nctv-text>\r\n                </div>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
                 }
             ],
+            "projects/component-pantry/src/stories/input.stories.ts": [
+                {
+                    "name": "Basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n    args: {\r\n        label: '',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-input [label]=\"'My default label'\"></nctv-input>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<InputComponent>",
+                    "defaultValue": "{\r\n    title: 'Components/Input',\r\n    component: InputComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {},\r\n}"
+                }
+            ],
             "projects/component-pantry/src/stories/table.stories.ts": [
                 {
                     "name": "Basic",
@@ -301,7 +384,27 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n    args: {\r\n        tableData: {\r\n            columns: [\r\n                { label: '#', sortable: true },\r\n                { label: 'Host Name', sortable: false },\r\n                { label: 'Dealer Name', sortable: false },\r\n                { label: 'Address', sortable: true },\r\n                { label: 'City', sortable: true },\r\n                { label: 'State', sortable: true },\r\n                { label: 'Postal Code', sortable: true },\r\n                { label: 'Timezone', sortable: true },\r\n                { label: 'Total License', sortable: true },\r\n            ],\r\n            rows: [\r\n                [\r\n                    {\r\n                        value: 1,\r\n                    },\r\n                    {\r\n                        value: 'Amazon Data Center',\r\n                    },\r\n                    {\r\n                        value: 'Sunrise Motors Inc.',\r\n                    },\r\n                    {\r\n                        value: '456 Elm Street Apt. 201',\r\n                    },\r\n                    {\r\n                        value: 'Seattle',\r\n                    },\r\n                    {\r\n                        value: 'Washington',\r\n                    },\r\n                    {\r\n                        value: '98101',\r\n                    },\r\n                    {\r\n                        value: 'Pacific',\r\n                    },\r\n                    {\r\n                        value: 15,\r\n                    },\r\n                ],\r\n                [\r\n                    {\r\n                        value: 2,\r\n                    },\r\n                    {\r\n                        value: 'Microsoft Headquarters',\r\n                    },\r\n                    {\r\n                        value: 'Sunset Electronics',\r\n                    },\r\n                    {\r\n                        value: '789 Oak Avenue',\r\n                    },\r\n                    {\r\n                        value: 'Redmond',\r\n                    },\r\n                    {\r\n                        value: 'Washington',\r\n                    },\r\n                    {\r\n                        value: '98052',\r\n                    },\r\n                    {\r\n                        value: 'Pacific',\r\n                    },\r\n                    {\r\n                        value: 20,\r\n                    },\r\n                ],\r\n                [\r\n                    {\r\n                        value: 3,\r\n                    },\r\n                    {\r\n                        value: 'Googleplex',\r\n                    },\r\n                    {\r\n                        value: 'Skyline Solutions',\r\n                    },\r\n                    {\r\n                        value: '123 Maple Street',\r\n                    },\r\n                    {\r\n                        value: 'Mountain View',\r\n                    },\r\n                    {\r\n                        value: 'California',\r\n                    },\r\n                    {\r\n                        value: '94043',\r\n                    },\r\n                    {\r\n                        value: 'Eastern',\r\n                    },\r\n                    {\r\n                        value: 30,\r\n                    },\r\n                ],\r\n                [\r\n                    {\r\n                        value: 4,\r\n                    },\r\n                    {\r\n                        value: 'Apple Park',\r\n                    },\r\n                    {\r\n                        value: 'Orchard Technologies',\r\n                    },\r\n                    {\r\n                        value: '567 Pine Road',\r\n                    },\r\n                    {\r\n                        value: 'Cupertino',\r\n                    },\r\n                    {\r\n                        value: 'California',\r\n                    },\r\n                    {\r\n                        value: '95014',\r\n                    },\r\n                    {\r\n                        value: 'Mountain',\r\n                    },\r\n                    {\r\n                        value: 25,\r\n                    },\r\n                ],\r\n                [\r\n                    {\r\n                        value: 5,\r\n                    },\r\n                    {\r\n                        value: 'Facebook Campus',\r\n                    },\r\n                    {\r\n                        value: 'Social Solutions',\r\n                    },\r\n                    {\r\n                        value: '101 Cedar Lane',\r\n                    },\r\n                    {\r\n                        value: 'Menlo Park',\r\n                    },\r\n                    {\r\n                        value: 'California',\r\n                    },\r\n                    {\r\n                        value: '94025',\r\n                    },\r\n                    {\r\n                        value: 'Pacific',\r\n                    },\r\n                    {\r\n                        value: 18,\r\n                    },\r\n                ],\r\n            ],\r\n        },\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n                <nctv-table [tableData]=\"tableData\" columnType=\"columnType\"></nctv-table>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                    "defaultValue": "{\r\n    args: {\r\n        tableData: dummyData,\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n                <nctv-table [tableData]=\"tableData\" [columnType]=\"columnType\"></nctv-table>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                },
+                {
+                    "name": "dummyData",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n    columns: [\r\n        { label: '#', sortable: false },\r\n        { label: 'Host Name', sortable: false },\r\n        { label: 'Dealer Name', sortable: false },\r\n        { label: 'Address', sortable: true },\r\n        { label: 'City', sortable: true },\r\n        { label: 'State', sortable: true },\r\n        { label: 'Postal Code', sortable: true },\r\n        { label: 'Timezone', sortable: true },\r\n        { label: 'Total License', sortable: true },\r\n    ],\r\n    rows: [\r\n        [\r\n            {\r\n                value: 1,\r\n            },\r\n            {\r\n                value: 'Amazon Data Center',\r\n            },\r\n            {\r\n                value: 'Sunrise Motors Inc.',\r\n            },\r\n            {\r\n                value: '456 Elm Street Apt. 201',\r\n            },\r\n            {\r\n                value: 'Seattle',\r\n            },\r\n            {\r\n                value: 'Washington',\r\n            },\r\n            {\r\n                value: '98101',\r\n            },\r\n            {\r\n                value: 'Pacific',\r\n            },\r\n            {\r\n                value: 15,\r\n            },\r\n        ],\r\n        [\r\n            {\r\n                value: 2,\r\n            },\r\n            {\r\n                value: 'Microsoft Headquarters',\r\n            },\r\n            {\r\n                value: 'Sunset Electronics',\r\n            },\r\n            {\r\n                value: '789 Oak Avenue',\r\n            },\r\n            {\r\n                value: 'Redmond',\r\n            },\r\n            {\r\n                value: 'Washington',\r\n            },\r\n            {\r\n                value: '98052',\r\n            },\r\n            {\r\n                value: 'Pacific',\r\n            },\r\n            {\r\n                value: 20,\r\n            },\r\n        ],\r\n        [\r\n            {\r\n                value: 3,\r\n            },\r\n            {\r\n                value: 'Googleplex',\r\n            },\r\n            {\r\n                value: 'Skyline Solutions',\r\n            },\r\n            {\r\n                value: '123 Maple Street',\r\n            },\r\n            {\r\n                value: 'Mountain View',\r\n            },\r\n            {\r\n                value: 'California',\r\n            },\r\n            {\r\n                value: '94043',\r\n            },\r\n            {\r\n                value: 'Eastern',\r\n            },\r\n            {\r\n                value: 30,\r\n            },\r\n        ],\r\n        [\r\n            {\r\n                value: 4,\r\n            },\r\n            {\r\n                value: 'Apple Park',\r\n            },\r\n            {\r\n                value: 'Orchard Technologies',\r\n            },\r\n            {\r\n                value: '567 Pine Road',\r\n            },\r\n            {\r\n                value: 'Cupertino',\r\n            },\r\n            {\r\n                value: 'California',\r\n            },\r\n            {\r\n                value: '95014',\r\n            },\r\n            {\r\n                value: 'Mountain',\r\n            },\r\n            {\r\n                value: 25,\r\n            },\r\n        ],\r\n        [\r\n            {\r\n                value: 5,\r\n            },\r\n            {\r\n                value: 'Facebook Campus',\r\n            },\r\n            {\r\n                value: 'Social Solutions',\r\n            },\r\n            {\r\n                value: '101 Cedar Lane',\r\n            },\r\n            {\r\n                value: 'Menlo Park',\r\n            },\r\n            {\r\n                value: 'California',\r\n            },\r\n            {\r\n                value: '94025',\r\n            },\r\n            {\r\n                value: 'Pacific',\r\n            },\r\n            {\r\n                value: 18,\r\n            },\r\n        ],\r\n    ],\r\n}"
+                },
+                {
+                    "name": "Ellipsis",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n    args: {\r\n        tableData: dummyData,\r\n        columnType: 'ellipsis',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n                <nctv-table [tableData]=\"tableData\" [columnType]=\"columnType\"></nctv-table>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
                 },
                 {
                     "name": "meta",
@@ -311,7 +414,17 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<TableComponent>",
-                    "defaultValue": "{\r\n    title: 'Components/Table',\r\n    component: TableComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {\r\n        columnType: {\r\n            control: 'select',\r\n            description: 'Used to set table type.',\r\n            options: COLUMN_TYPE,\r\n        },\r\n        tableData: {\r\n            control: 'select',\r\n            description: 'Used to set shadow level, the higher the value the more prominent the shadow is.',\r\n        },\r\n    },\r\n}"
+                    "defaultValue": "{\r\n    title: 'Components/Table',\r\n    component: TableComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {\r\n        columnType: {\r\n            control: 'select',\r\n            description: 'Used to set table type.',\r\n            options: COLUMN_TYPE,\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'Full',\r\n                },\r\n            },\r\n        },\r\n        tableData: {\r\n            control: 'select',\r\n            description: 'Used to set shadow level, the higher the value the more prominent the shadow is.',\r\n        },\r\n    },\r\n}"
+                },
+                {
+                    "name": "Wrap",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n    args: {\r\n        tableData: dummyData,\r\n        columnType: 'wrap',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n                <nctv-table [tableData]=\"tableData\" [columnType]=\"columnType\"></nctv-table>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
                 }
             ],
             "projects/component-pantry/src/stories/text.stories.ts": [
@@ -454,6 +567,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<CardComponent>",
                     "file": "projects/component-pantry/src/stories/card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/component-pantry/src/stories/input.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<InputComponent>",
+                    "file": "projects/component-pantry/src/stories/input.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -604,6 +730,26 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/component-pantry/src/stories/input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Basic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/component-pantry/src/stories/table.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -618,7 +764,37 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "dummyData",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Ellipsis",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Wrap",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
