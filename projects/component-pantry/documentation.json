@@ -18,7 +18,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n    args: {\r\n        label: '',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-automcomplete [label]=\"'My default label'\"></nctv-autocomplete>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                "defaultValue": "{\r\n    args: {\r\n        label: '',\r\n        autocompleteData: dummyData,\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-autocomplete label=\"Autocomplete Field\" [autocompleteData]=\"autocompleteData\">\r\n               \r\n               </nctv-autocomplete>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
             },
             {
                 "name": "Basic",
@@ -114,6 +114,16 @@
                 "name": "dummyData",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/autocomplete.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\r\n    { id: 'abc123', name: 'Afghanistan', code: 'AF' },\r\n    { id: 'def456', name: 'Åland Islands', code: 'AX' },\r\n    { id: 'ghi789', name: 'Albania', code: 'AL' },\r\n    { id: 'jkl012', name: 'Algeria', code: 'DZ' },\r\n    { id: 'mno345', name: 'American Samoa', code: 'AS' },\r\n    { id: 'pqr678', name: 'AndorrA', code: 'AD' },\r\n    { id: 'stu901', name: 'Angola', code: 'AO' },\r\n]"
+            },
+            {
+                "name": "dummyData",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/component-pantry/src/stories/table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -148,7 +158,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<AutocompleteComponent>",
-                "defaultValue": "{\r\n    title: 'Components/Input',\r\n    component: AutocompleteComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {},\r\n}"
+                "defaultValue": "{\r\n    title: 'Components/Autocomplete',\r\n    component: AutocompleteComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {},\r\n}"
             },
             {
                 "name": "meta",
@@ -341,7 +351,17 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n    args: {\r\n        label: '',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-automcomplete [label]=\"'My default label'\"></nctv-autocomplete>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                    "defaultValue": "{\r\n    args: {\r\n        label: '',\r\n        autocompleteData: dummyData,\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-autocomplete label=\"Autocomplete Field\" [autocompleteData]=\"autocompleteData\">\r\n               \r\n               </nctv-autocomplete>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                },
+                {
+                    "name": "dummyData",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/autocomplete.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\r\n    { id: 'abc123', name: 'Afghanistan', code: 'AF' },\r\n    { id: 'def456', name: 'Åland Islands', code: 'AX' },\r\n    { id: 'ghi789', name: 'Albania', code: 'AL' },\r\n    { id: 'jkl012', name: 'Algeria', code: 'DZ' },\r\n    { id: 'mno345', name: 'American Samoa', code: 'AS' },\r\n    { id: 'pqr678', name: 'AndorrA', code: 'AD' },\r\n    { id: 'stu901', name: 'Angola', code: 'AO' },\r\n]"
                 },
                 {
                     "name": "meta",
@@ -351,7 +371,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<AutocompleteComponent>",
-                    "defaultValue": "{\r\n    title: 'Components/Input',\r\n    component: AutocompleteComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {},\r\n}"
+                    "defaultValue": "{\r\n    title: 'Components/Autocomplete',\r\n    component: AutocompleteComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {},\r\n}"
                 }
             ],
             "projects/component-pantry/src/stories/card.stories.ts": [
@@ -701,6 +721,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Basic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/autocomplete.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "dummyData",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
