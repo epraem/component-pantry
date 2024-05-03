@@ -125,7 +125,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
      * Dynamically generates class names based on inputSize.
      * @returns {Object} Object with dynamic class names.
      */
-    getClass() {
+    getClass(): object {
         const classes = {
             [`input--${this.inputSize}`]: this.inputSize,
         };

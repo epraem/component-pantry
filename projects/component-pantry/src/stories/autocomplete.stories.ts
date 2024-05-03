@@ -51,7 +51,7 @@ export const Basic: Story = {
         props: args,
         template: `
             <nctv-card [shadowLevel]="shadowLevel">
-                <nctv-autocomplete style="width: 100%;" [title]="title" [label]="label" [placeholder]="placeholder" [autocompleteData]="autocompleteData">
+                <nctv-autocomplete [inputSize]="inputSize" [title]="title" [label]="label" [placeholder]="placeholder" [autocompleteData]="autocompleteData">
                 </nctv-autocomplete>           
             </nctv-card>
         `,

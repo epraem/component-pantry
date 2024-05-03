@@ -1,6 +1,6 @@
 <div class="dropdown-wrapper">
     <label *ngIf="hasLabel">{{ label }}</label>
-    <div #dropdownWrapper class="dropdown">
+    <div #dropdownWrapper class="dropdown" [ngClass]="getClass()">
         <div #dropdownToggle class="dropdown--toggle">
             <div class="dropdown--header">
                 <span #dropdownHeader>{{ title }}</span>
@@ -37,12 +37,12 @@
                             </g>
                         </svg>
                         <input
-                            class="input"
-                            type="text"
+                            (input)="filterData(searchInput.value)"
+                            [ngClass]="getClass()"
                             [placeholder]="placeholder"
                             #searchInput
-                            [ngClass]="getClass()"
-                            (input)="filterData(searchInput.value)"
+                            class="input"
+                            type="text"
                         />
                     </div>
                     <ul class="dropdown--options">

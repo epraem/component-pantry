@@ -18,7 +18,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n    args: {\r\n        label: 'Autocomplete Field (Dynamic)',\r\n        title: 'Autocomplete Dropdown (Dynamic)',\r\n        placeholder: 'Autocomplete Field Placeholder (Dynamic)',\r\n        autocompleteData: dummyDataCountry,\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n                <nctv-autocomplete style=\"width: 100%;\" [title]=\"title\" [label]=\"label\" [placeholder]=\"placeholder\" [autocompleteData]=\"autocompleteData\">\r\n                </nctv-autocomplete>           \r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                "defaultValue": "{\r\n    args: {\r\n        inputSize: 'medium',\r\n        label: 'Autocomplete Field (Dynamic)',\r\n        title: 'Autocomplete Dropdown (Dynamic)',\r\n        placeholder: 'Autocomplete Field Placeholder (Dynamic)',\r\n        autocompleteData: dummyDataCountry,\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n                <nctv-autocomplete style=\"width: 100%;\" [title]=\"title\" [label]=\"label\" [placeholder]=\"placeholder\" [autocompleteData]=\"autocompleteData\">\r\n                </nctv-autocomplete>           \r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
             },
             {
                 "name": "Basic",
@@ -38,7 +38,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n    args: {\r\n        label: 'Input Label',\r\n        placeholder: 'Default Input Placeholder',\r\n        size: 'small',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-input [label]=\"label\" [size]=\"size\" [placeholder]=\"placeholder\"></nctv-input>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                "defaultValue": "{\r\n    args: {\r\n        label: 'Input Label',\r\n        placeholder: 'Default Input Placeholder',\r\n        inputSize: 'medium',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-input [label]=\"label\" [inputSize]=\"inputSize\" [placeholder]=\"placeholder\"></nctv-input>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
             },
             {
                 "name": "Basic",
@@ -158,7 +158,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<AutocompleteComponent>",
-                "defaultValue": "{\r\n    title: 'Components/Autocomplete',\r\n    component: AutocompleteComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {},\r\n}"
+                "defaultValue": "{\r\n    title: 'Components/Autocomplete',\r\n    component: AutocompleteComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {\r\n        inputSize: {\r\n            control: 'select',\r\n            description: 'Used to set input size.',\r\n            options: INPUT_SIZE,\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'medium',\r\n                },\r\n            },\r\n        },\r\n    },\r\n}"
             },
             {
                 "name": "meta",
@@ -188,7 +188,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<InputComponent>",
-                "defaultValue": "{\r\n    title: 'Components/Input',\r\n    component: InputComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {\r\n        size: {\r\n            control: {\r\n                type: 'select',\r\n                options: INPUT_SIZE,\r\n            },\r\n            description: 'Used to set input size.',\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'small',\r\n                },\r\n            },\r\n        },\r\n    },\r\n}"
+                "defaultValue": "{\r\n    title: 'Components/Input',\r\n    component: InputComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {\r\n        inputSize: {\r\n            control: 'select',\r\n            description: 'Used to set input size.',\r\n            options: INPUT_SIZE,\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'medium',\r\n                },\r\n            },\r\n        },\r\n    },\r\n}"
             },
             {
                 "name": "meta",
@@ -218,7 +218,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n    args: {\r\n        label: 'Autocomplete Field (Dynamic)',\r\n        title: 'Autocomplete Dropdown (Dynamic)',\r\n        placeholder: 'Autocomplete Field Placeholder (Dynamic)',\r\n        autocompleteData: dummyDataCountry,\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n              <div style=\"display: flex; gap: 20px;\">\r\n                <nctv-autocomplete size= style=\"width: 100%;\" [title]=\"title\" [label]=\"label\" [placeholder]=\"placeholder\" [autocompleteData]=\"autocompleteData\">\r\n                </nctv-autocomplete>\r\n\r\n                <nctv-autocomplete style=\"width: 100%;\" [title]=\"'Select animal (Static)'\" [label]=\"'Second autocomplete (Static)'\" [placeholder]=\"'Select animal (Static)'\" [autocompleteData]=\"[{id: '1', name: 'Lion', species: 'Panthera leo'}, {id: '2', name: 'Tiger', species: 'Panthera tigris'}, {id: '3', name: 'Elephant', species: 'Loxodonta'}, {id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis'}, {id: '5', name: 'Zebra', species: 'Equus zebra'}]\">\r\n                </nctv-autocomplete>\r\n              </div>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                "defaultValue": "{\r\n    args: {\r\n        inputSize: 'medium',\r\n        label: 'Autocomplete Field (Dynamic)',\r\n        title: 'Autocomplete Dropdown (Dynamic)',\r\n        placeholder: 'Autocomplete Field Placeholder (Dynamic)',\r\n\r\n        autocompleteData: dummyDataCountry,\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n              <div style=\"display: flex; gap: 20px;\">\r\n                <nctv-autocomplete [inputSize]=\"inputSize\" style=\"width: 100%;\" [title]=\"title\" [label]=\"label\" [placeholder]=\"placeholder\" [autocompleteData]=\"autocompleteData\">\r\n                </nctv-autocomplete>\r\n\r\n                <nctv-autocomplete [inputSize]=\"inputSize\" style=\"width: 100%;\" [title]=\"'Select animal (Static)'\" [label]=\"'Second autocomplete (Static)'\" [placeholder]=\"'Select animal (Static)'\" [autocompleteData]=\"[{id: '1', name: 'Lion', species: 'Panthera leo'}, {id: '2', name: 'Tiger', species: 'Panthera tigris'}, {id: '3', name: 'Elephant', species: 'Loxodonta'}, {id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis'}, {id: '5', name: 'Zebra', species: 'Equus zebra'}]\">\r\n                </nctv-autocomplete>\r\n              </div>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
             },
             {
                 "name": "Paragraph",
@@ -361,7 +361,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n    args: {\r\n        label: 'Autocomplete Field (Dynamic)',\r\n        title: 'Autocomplete Dropdown (Dynamic)',\r\n        placeholder: 'Autocomplete Field Placeholder (Dynamic)',\r\n        autocompleteData: dummyDataCountry,\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n                <nctv-autocomplete style=\"width: 100%;\" [title]=\"title\" [label]=\"label\" [placeholder]=\"placeholder\" [autocompleteData]=\"autocompleteData\">\r\n                </nctv-autocomplete>           \r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                    "defaultValue": "{\r\n    args: {\r\n        inputSize: 'medium',\r\n        label: 'Autocomplete Field (Dynamic)',\r\n        title: 'Autocomplete Dropdown (Dynamic)',\r\n        placeholder: 'Autocomplete Field Placeholder (Dynamic)',\r\n        autocompleteData: dummyDataCountry,\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n                <nctv-autocomplete style=\"width: 100%;\" [title]=\"title\" [label]=\"label\" [placeholder]=\"placeholder\" [autocompleteData]=\"autocompleteData\">\r\n                </nctv-autocomplete>           \r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
                 },
                 {
                     "name": "dummyDataCountry",
@@ -381,7 +381,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<AutocompleteComponent>",
-                    "defaultValue": "{\r\n    title: 'Components/Autocomplete',\r\n    component: AutocompleteComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {},\r\n}"
+                    "defaultValue": "{\r\n    title: 'Components/Autocomplete',\r\n    component: AutocompleteComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {\r\n        inputSize: {\r\n            control: 'select',\r\n            description: 'Used to set input size.',\r\n            options: INPUT_SIZE,\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'medium',\r\n                },\r\n            },\r\n        },\r\n    },\r\n}"
                 },
                 {
                     "name": "MultipleAutocomplete",
@@ -391,7 +391,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n    args: {\r\n        label: 'Autocomplete Field (Dynamic)',\r\n        title: 'Autocomplete Dropdown (Dynamic)',\r\n        placeholder: 'Autocomplete Field Placeholder (Dynamic)',\r\n        autocompleteData: dummyDataCountry,\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n              <div style=\"display: flex; gap: 20px;\">\r\n                <nctv-autocomplete size= style=\"width: 100%;\" [title]=\"title\" [label]=\"label\" [placeholder]=\"placeholder\" [autocompleteData]=\"autocompleteData\">\r\n                </nctv-autocomplete>\r\n\r\n                <nctv-autocomplete style=\"width: 100%;\" [title]=\"'Select animal (Static)'\" [label]=\"'Second autocomplete (Static)'\" [placeholder]=\"'Select animal (Static)'\" [autocompleteData]=\"[{id: '1', name: 'Lion', species: 'Panthera leo'}, {id: '2', name: 'Tiger', species: 'Panthera tigris'}, {id: '3', name: 'Elephant', species: 'Loxodonta'}, {id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis'}, {id: '5', name: 'Zebra', species: 'Equus zebra'}]\">\r\n                </nctv-autocomplete>\r\n              </div>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                    "defaultValue": "{\r\n    args: {\r\n        inputSize: 'medium',\r\n        label: 'Autocomplete Field (Dynamic)',\r\n        title: 'Autocomplete Dropdown (Dynamic)',\r\n        placeholder: 'Autocomplete Field Placeholder (Dynamic)',\r\n\r\n        autocompleteData: dummyDataCountry,\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n              <div style=\"display: flex; gap: 20px;\">\r\n                <nctv-autocomplete [inputSize]=\"inputSize\" style=\"width: 100%;\" [title]=\"title\" [label]=\"label\" [placeholder]=\"placeholder\" [autocompleteData]=\"autocompleteData\">\r\n                </nctv-autocomplete>\r\n\r\n                <nctv-autocomplete [inputSize]=\"inputSize\" style=\"width: 100%;\" [title]=\"'Select animal (Static)'\" [label]=\"'Second autocomplete (Static)'\" [placeholder]=\"'Select animal (Static)'\" [autocompleteData]=\"[{id: '1', name: 'Lion', species: 'Panthera leo'}, {id: '2', name: 'Tiger', species: 'Panthera tigris'}, {id: '3', name: 'Elephant', species: 'Loxodonta'}, {id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis'}, {id: '5', name: 'Zebra', species: 'Equus zebra'}]\">\r\n                </nctv-autocomplete>\r\n              </div>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
                 }
             ],
             "projects/component-pantry/src/stories/card.stories.ts": [
@@ -455,7 +455,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n    args: {\r\n        label: 'Input Label',\r\n        placeholder: 'Default Input Placeholder',\r\n        size: 'small',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-input [label]=\"label\" [size]=\"size\" [placeholder]=\"placeholder\"></nctv-input>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                    "defaultValue": "{\r\n    args: {\r\n        label: 'Input Label',\r\n        placeholder: 'Default Input Placeholder',\r\n        inputSize: 'medium',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-input [label]=\"label\" [inputSize]=\"inputSize\" [placeholder]=\"placeholder\"></nctv-input>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
                 },
                 {
                     "name": "meta",
@@ -465,7 +465,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<InputComponent>",
-                    "defaultValue": "{\r\n    title: 'Components/Input',\r\n    component: InputComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {\r\n        size: {\r\n            control: {\r\n                type: 'select',\r\n                options: INPUT_SIZE,\r\n            },\r\n            description: 'Used to set input size.',\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'small',\r\n                },\r\n            },\r\n        },\r\n    },\r\n}"
+                    "defaultValue": "{\r\n    title: 'Components/Input',\r\n    component: InputComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {\r\n        inputSize: {\r\n            control: 'select',\r\n            description: 'Used to set input size.',\r\n            options: INPUT_SIZE,\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'medium',\r\n                },\r\n            },\r\n        },\r\n    },\r\n}"
                 }
             ],
             "projects/component-pantry/src/stories/table.stories.ts": [

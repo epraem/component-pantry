@@ -42,7 +42,6 @@
     box-shadow: $shadow-1;
     display: flex;
     flex-direction: column;
-    font-size: $sm;
     justify-content: space-between;
     overflow: hidden;
     width: 100%;
@@ -137,6 +136,21 @@
             border-radius: 4px;
         }
     }
+
+    &--small {
+        font-size: $sm;
+        line-height: $line-height-sm;
+    }
+
+    &--medium {
+        font-size: $md;
+        line-height: $line-height-md;
+    }
+
+    &--large {
+        font-size: $lg;
+        line-height: $line-height-lg;
+    }
 }
 
 .dropdown.active .dropdown--search-input {
@@ -186,7 +200,6 @@
 
 .dropdown .dropdown--search-input input {
     width: 100%;
-    font-size: $sm;
     padding-right: $base-padding-sm;
     border: none;
     font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
