@@ -1,4 +1,4 @@
-<div class="input-container" [ngClass]="getClass()">
+<div class="input">
     <label [for]="for" *ngIf="hasLabel">{{ label }}</label>
-    <input class="input" type="text" [placeholder]="placeholder" />
+    <input [ngClass]="getClass()" type="text" [placeholder]="placeholder" />
 </div>

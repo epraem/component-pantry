@@ -1,6 +1,6 @@
 <div class="dropdown-wrapper">
     <label *ngIf="hasLabel">{{ label }}</label>
-    <div #dropdownWrapper style="width: 100%" class="dropdown">
+    <div #dropdownWrapper class="dropdown">
         <div #dropdownToggle class="dropdown--toggle">
             <div class="dropdown--header">
                 <span #dropdownHeader>{{ title }}</span>
@@ -41,6 +41,7 @@
                             type="text"
                             [placeholder]="placeholder"
                             #searchInput
+                            [ngClass]="getClass()"
                             (input)="filterData(searchInput.value)"
                         />
                     </div>

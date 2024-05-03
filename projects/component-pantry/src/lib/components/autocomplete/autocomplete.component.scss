@@ -3,9 +3,7 @@
 .input {
     font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     border: 1px solid $color-gray-9;
-    line-height: 28px;
     border-radius: 4px;
-    font-size: $sm;
     padding: $base-padding-sm;
     padding-right: $base-padding-lg;
     font-weight: normal;
@@ -19,6 +17,21 @@
         &::placeholder {
             color: $color-gray-3;
         }
+    }
+
+    &--small {
+        font-size: $sm;
+        line-height: $line-height-sm;
+    }
+
+    &--medium {
+        font-size: $md;
+        line-height: $line-height-md;
+    }
+
+    &--large {
+        font-size: $lg;
+        line-height: $line-height-lg;
     }
 }
 
@@ -55,7 +68,7 @@
 
     &--content {
         background: #fff;
-        padding-top: $sm;
+        padding-top: $base-padding-sm;
         border-radius: 4px;
         display: flex;
         flex-direction: column;
@@ -73,7 +86,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: $sm;
+        padding: $base-padding-sm;
         width: 100%;
         cursor: pointer;
     }
@@ -137,7 +150,7 @@
 }
 
 .dropdown .dropdown--search-container {
-    padding: $sm;
+    padding: $base-padding-sm;
     padding-top: 0;
 }
 
@@ -174,7 +187,7 @@
 .dropdown .dropdown--search-input input {
     width: 100%;
     font-size: $sm;
-    padding-right: $sm;
+    padding-right: $base-padding-sm;
     border: none;
     font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 

@@ -1,7 +1,7 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../lib/components/card';
-import { InputComponent } from '../lib/components/input';
+import { INPUT_SIZE, InputComponent } from '../lib/components/input';
 
 const meta: Meta<InputComponent> = {
     title: 'Components/Input',
@@ -13,7 +13,18 @@ const meta: Meta<InputComponent> = {
     ],
     tags: ['autodocs'],
     parameters: {},
-    argTypes: {},
+    argTypes: {
+        inputSize: {
+            control: 'select',
+            description: 'Used to set input size.',
+            options: INPUT_SIZE,
+            table: {
+                defaultValue: {
+                    summary: 'medium',
+                },
+            },
+        },
+    },
 };
 
 export default meta;
@@ -23,12 +34,13 @@ export const Basic: Story = {
     args: {
         label: 'Input Label',
         placeholder: 'Default Input Placeholder',
+        inputSize: 'medium',
     },
     render: (args) => ({
         props: args,
         template: `
             <nctv-card [shadowLevel]="shadowLevel">
-               <nctv-input [label]="label" [placeholder]="placeholder"></nctv-input>
+               <nctv-input [label]="label" [inputSize]="inputSize" [placeholder]="placeholder"></nctv-input>
             </nctv-card>
         `,
     }),

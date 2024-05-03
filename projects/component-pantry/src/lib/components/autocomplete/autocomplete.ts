@@ -1,2 +1,2 @@
-export type DataType = 'Country' | 'Animal' | 'User';
-export const DATA_TYPES: DataType[] = ['Country', 'Animal', 'User'];
+type InputSize = 'small' | 'medium' | 'large';
+export const INPUT_SIZE: InputSize[] = ['small', 'medium', 'large'];

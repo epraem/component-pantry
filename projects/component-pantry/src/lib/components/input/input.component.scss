@@ -1,32 +1,45 @@
 @import "../../styles/variables";
 
-.input-container {
+.input {
+    color: $color-gray-3;
     display: flex;
     flex-direction: column;
-    gap: $sm;
-    color: $color-gray-3;
+    gap: $xs;
     width: 100%;
-}
 
-.input {
-    font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    border: 1px solid $color-gray-9;
-    line-height: 28px;
-    border-radius: 4px;
-    font-size: $sm;
-    padding: $base-padding-sm;
-    padding-right: $base-padding-lg;
-    font-weight: normal;
-    color: $color-gray-3;
-    box-shadow: $shadow-1;
+    input {
+        border-radius: 4px;
+        border: 1px solid $color-gray-9;
+        box-shadow: $shadow-1;
+        color: $color-gray-3;
+        font-family: $nunito;
+        font-weight: normal;
+        padding-right: $base-padding-lg;
+        padding: $base-padding-sm;
 
-    &:focus,
-    &:active {
-        color: $color-secondary;
-        outline-style: none;
-        border: 1px solid $color-secondary;
-        &::placeholder {
-            color: $color-gray-3;
+        &:active,
+        &:focus {
+            border: 1px solid $color-secondary;
+            color: $color-secondary;
+            outline-style: none;
+            &::placeholder {
+                color: $color-gray-3;
+            }
         }
+    }
+
+    &--small {
+        font-size: $sm;
+        line-height: $line-height-sm;
+    }
+
+    &--medium {
+        font-size: $md;
+        line-height: $line-height-md;
+    }
+
+    &--large {
+        font-size: $lg;
+        line-height: $line-height-lg;
     }
 }
