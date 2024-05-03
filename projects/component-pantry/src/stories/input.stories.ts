@@ -21,13 +21,14 @@ type Story = StoryObj<InputComponent>;
 
 export const Basic: Story = {
     args: {
-        label: '',
+        label: 'Input Label',
+        placeholder: 'Default Input Placeholder',
     },
     render: (args) => ({
         props: args,
         template: `
             <nctv-card [shadowLevel]="shadowLevel">
-               <nctv-input [label]="'My default label'"></nctv-input>
+               <nctv-input [label]="label" [placeholder]="placeholder"></nctv-input>
             </nctv-card>
         `,
     }),

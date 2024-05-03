@@ -50,13 +50,12 @@
     &--options {
         list-style: none;
         padding: 0;
-        padding-top: $sm;
         margin: 0;
     }
 
     &--content {
         background: #fff;
-        padding-top: 10px;
+        padding-top: $sm;
         border-radius: 4px;
         display: flex;
         flex-direction: column;
@@ -74,7 +73,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: 10px;
+        padding: $sm;
         width: 100%;
         cursor: pointer;
     }
@@ -92,7 +91,7 @@
     &--content &--options {
         max-height: 250px;
         overflow-y: auto;
-        margin-top: 10px;
+        margin-top: $sm;
     }
 
     &--options::-webkit-scrollbar {
@@ -138,7 +137,7 @@
 }
 
 .dropdown .dropdown--search-container {
-    padding: 10px;
+    padding: $sm;
     padding-top: 0;
 }
 
@@ -147,6 +146,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    color: $color-gray-3;
     gap: $sm;
 }
 
@@ -174,7 +174,7 @@
 .dropdown .dropdown--search-input input {
     width: 100%;
     font-size: $sm;
-    padding-right: 10px;
+    padding-right: $sm;
     border: none;
     font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 

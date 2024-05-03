@@ -18,7 +18,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n    args: {\r\n        label: '',\r\n        autocompleteData: dummyData,\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-autocomplete label=\"Autocomplete Field\" [autocompleteData]=\"autocompleteData\">\r\n               \r\n               </nctv-autocomplete>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                "defaultValue": "{\r\n    args: {\r\n        label: 'Autocomplete Field',\r\n        title: 'Autocomplete Dropdown',\r\n        placeholder: 'Autocomplete Field Placeholder',\r\n        autocompleteData: dummyDataCountry,\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-autocomplete [title]=\"title\" [label]=\"label\" [placeholder]=\"placeholder\" [autocompleteData]=\"autocompleteData\">\r\n               </nctv-autocomplete>\r\n\r\n               <nctv-autocomplete [title]=\"title\" [label]=\"label\" [placeholder]=\"placeholder\" [autocompleteData]=\"[{id: '1', name: 'Lion', species: 'Panthera leo'}, {id: '2', name: 'Tiger', species: 'Panthera tigris'}, {id: '3', name: 'Elephant', species: 'Loxodonta'}, {id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis'}, {id: '5', name: 'Zebra', species: 'Equus zebra'}]\">\r\n               </nctv-autocomplete>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
             },
             {
                 "name": "Basic",
@@ -38,7 +38,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n    args: {\r\n        label: '',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-input [label]=\"'My default label'\"></nctv-input>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                "defaultValue": "{\r\n    args: {\r\n        label: 'Input Label',\r\n        placeholder: 'Default Input Placeholder',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-input [label]=\"label\" [placeholder]=\"placeholder\"></nctv-input>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
             },
             {
                 "name": "Basic",
@@ -114,21 +114,41 @@
                 "name": "dummyData",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/component-pantry/src/stories/autocomplete.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "[]",
-                "defaultValue": "[\r\n    { id: 'abc123', name: 'Afghanistan', code: 'AF' },\r\n    { id: 'def456', name: 'Åland Islands', code: 'AX' },\r\n    { id: 'ghi789', name: 'Albania', code: 'AL' },\r\n    { id: 'jkl012', name: 'Algeria', code: 'DZ' },\r\n    { id: 'mno345', name: 'American Samoa', code: 'AS' },\r\n    { id: 'pqr678', name: 'AndorrA', code: 'AD' },\r\n    { id: 'stu901', name: 'Angola', code: 'AO' },\r\n]"
-            },
-            {
-                "name": "dummyData",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/component-pantry/src/stories/table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n    columns: [\r\n        { label: '#', sortable: false },\r\n        { label: 'Host Name', sortable: false },\r\n        { label: 'Dealer Name', sortable: false },\r\n        { label: 'Address', sortable: true },\r\n        { label: 'City', sortable: true },\r\n        { label: 'State', sortable: true },\r\n        { label: 'Postal Code', sortable: true },\r\n        { label: 'Timezone', sortable: true },\r\n        { label: 'Total License', sortable: true },\r\n    ],\r\n    rows: [\r\n        [\r\n            {\r\n                value: 1,\r\n            },\r\n            {\r\n                value: 'Amazon Data Center',\r\n            },\r\n            {\r\n                value: 'Sunrise Motors Inc.',\r\n            },\r\n            {\r\n                value: '456 Elm Street Apt. 201',\r\n            },\r\n            {\r\n                value: 'Seattle',\r\n            },\r\n            {\r\n                value: 'Washington',\r\n            },\r\n            {\r\n                value: '98101',\r\n            },\r\n            {\r\n                value: 'Pacific',\r\n            },\r\n            {\r\n                value: 15,\r\n            },\r\n        ],\r\n        [\r\n            {\r\n                value: 2,\r\n            },\r\n            {\r\n                value: 'Microsoft Headquarters',\r\n            },\r\n            {\r\n                value: 'Sunset Electronics',\r\n            },\r\n            {\r\n                value: '789 Oak Avenue',\r\n            },\r\n            {\r\n                value: 'Redmond',\r\n            },\r\n            {\r\n                value: 'Washington',\r\n            },\r\n            {\r\n                value: '98052',\r\n            },\r\n            {\r\n                value: 'Pacific',\r\n            },\r\n            {\r\n                value: 20,\r\n            },\r\n        ],\r\n        [\r\n            {\r\n                value: 3,\r\n            },\r\n            {\r\n                value: 'Googleplex',\r\n            },\r\n            {\r\n                value: 'Skyline Solutions',\r\n            },\r\n            {\r\n                value: '123 Maple Street',\r\n            },\r\n            {\r\n                value: 'Mountain View',\r\n            },\r\n            {\r\n                value: 'California',\r\n            },\r\n            {\r\n                value: '94043',\r\n            },\r\n            {\r\n                value: 'Eastern',\r\n            },\r\n            {\r\n                value: 30,\r\n            },\r\n        ],\r\n        [\r\n            {\r\n                value: 4,\r\n            },\r\n            {\r\n                value: 'Apple Park',\r\n            },\r\n            {\r\n                value: 'Orchard Technologies',\r\n            },\r\n            {\r\n                value: '567 Pine Road',\r\n            },\r\n            {\r\n                value: 'Cupertino',\r\n            },\r\n            {\r\n                value: 'California',\r\n            },\r\n            {\r\n                value: '95014',\r\n            },\r\n            {\r\n                value: 'Mountain',\r\n            },\r\n            {\r\n                value: 25,\r\n            },\r\n        ],\r\n        [\r\n            {\r\n                value: 5,\r\n            },\r\n            {\r\n                value: 'Facebook Campus',\r\n            },\r\n            {\r\n                value: 'Social Solutions',\r\n            },\r\n            {\r\n                value: '101 Cedar Lane',\r\n            },\r\n            {\r\n                value: 'Menlo Park',\r\n            },\r\n            {\r\n                value: 'California',\r\n            },\r\n            {\r\n                value: '94025',\r\n            },\r\n            {\r\n                value: 'Pacific',\r\n            },\r\n            {\r\n                value: 18,\r\n            },\r\n        ],\r\n    ],\r\n}"
+            },
+            {
+                "name": "dummyDataAnimals",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/autocomplete.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\r\n    { id: '1', name: 'Lion', species: 'Panthera leo' },\r\n    { id: '2', name: 'Tiger', species: 'Panthera tigris' },\r\n    { id: '3', name: 'Elephant', species: 'Loxodonta' },\r\n    { id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis' },\r\n    { id: '5', name: 'Zebra', species: 'Equus zebra' },\r\n]"
+            },
+            {
+                "name": "dummyDataCountry",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/autocomplete.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\r\n    { id: 'abc123', name: 'Afghanistan', code: 'AF' },\r\n    { id: 'def456', name: 'Åland Islands', code: 'AX' },\r\n    { id: 'ghi789', name: 'Albania', code: 'AL' },\r\n    { id: 'jkl012', name: 'Algeria', code: 'DZ' },\r\n    { id: 'mno345', name: 'American Samoa', code: 'AS' },\r\n    { id: 'pqr678', name: 'AndorrA', code: 'AD' },\r\n]"
+            },
+            {
+                "name": "dummyDataUsers",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/autocomplete.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\r\n    { id: 1, name: 'John Doe', username: 'johndoe', email: 'john@example.com' },\r\n    { id: 2, name: 'Jane Smith', username: 'janesmith', email: 'jane@example.com' },\r\n    { id: 3, name: 'Alice Johnson', username: 'alicejohnson', email: 'alice@example.com' },\r\n    { id: 4, name: 'Bob Williams', username: 'bobwilliams', email: 'bob@example.com' },\r\n    { id: 5, name: 'Charlie Brown', username: 'charliebrown', email: 'charlie@example.com' },\r\n]"
             },
             {
                 "name": "Ellipsis",
@@ -351,17 +371,37 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n    args: {\r\n        label: '',\r\n        autocompleteData: dummyData,\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-autocomplete label=\"Autocomplete Field\" [autocompleteData]=\"autocompleteData\">\r\n               \r\n               </nctv-autocomplete>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                    "defaultValue": "{\r\n    args: {\r\n        label: 'Autocomplete Field',\r\n        title: 'Autocomplete Dropdown',\r\n        placeholder: 'Autocomplete Field Placeholder',\r\n        autocompleteData: dummyDataCountry,\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-autocomplete [title]=\"title\" [label]=\"label\" [placeholder]=\"placeholder\" [autocompleteData]=\"autocompleteData\">\r\n               </nctv-autocomplete>\r\n\r\n               <nctv-autocomplete [title]=\"title\" [label]=\"label\" [placeholder]=\"placeholder\" [autocompleteData]=\"[{id: '1', name: 'Lion', species: 'Panthera leo'}, {id: '2', name: 'Tiger', species: 'Panthera tigris'}, {id: '3', name: 'Elephant', species: 'Loxodonta'}, {id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis'}, {id: '5', name: 'Zebra', species: 'Equus zebra'}]\">\r\n               </nctv-autocomplete>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
                 },
                 {
-                    "name": "dummyData",
+                    "name": "dummyDataAnimals",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/component-pantry/src/stories/autocomplete.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "[]",
-                    "defaultValue": "[\r\n    { id: 'abc123', name: 'Afghanistan', code: 'AF' },\r\n    { id: 'def456', name: 'Åland Islands', code: 'AX' },\r\n    { id: 'ghi789', name: 'Albania', code: 'AL' },\r\n    { id: 'jkl012', name: 'Algeria', code: 'DZ' },\r\n    { id: 'mno345', name: 'American Samoa', code: 'AS' },\r\n    { id: 'pqr678', name: 'AndorrA', code: 'AD' },\r\n    { id: 'stu901', name: 'Angola', code: 'AO' },\r\n]"
+                    "defaultValue": "[\r\n    { id: '1', name: 'Lion', species: 'Panthera leo' },\r\n    { id: '2', name: 'Tiger', species: 'Panthera tigris' },\r\n    { id: '3', name: 'Elephant', species: 'Loxodonta' },\r\n    { id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis' },\r\n    { id: '5', name: 'Zebra', species: 'Equus zebra' },\r\n]"
+                },
+                {
+                    "name": "dummyDataCountry",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/autocomplete.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\r\n    { id: 'abc123', name: 'Afghanistan', code: 'AF' },\r\n    { id: 'def456', name: 'Åland Islands', code: 'AX' },\r\n    { id: 'ghi789', name: 'Albania', code: 'AL' },\r\n    { id: 'jkl012', name: 'Algeria', code: 'DZ' },\r\n    { id: 'mno345', name: 'American Samoa', code: 'AS' },\r\n    { id: 'pqr678', name: 'AndorrA', code: 'AD' },\r\n]"
+                },
+                {
+                    "name": "dummyDataUsers",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/autocomplete.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\r\n    { id: 1, name: 'John Doe', username: 'johndoe', email: 'john@example.com' },\r\n    { id: 2, name: 'Jane Smith', username: 'janesmith', email: 'jane@example.com' },\r\n    { id: 3, name: 'Alice Johnson', username: 'alicejohnson', email: 'alice@example.com' },\r\n    { id: 4, name: 'Bob Williams', username: 'bobwilliams', email: 'bob@example.com' },\r\n    { id: 5, name: 'Charlie Brown', username: 'charliebrown', email: 'charlie@example.com' },\r\n]"
                 },
                 {
                     "name": "meta",
@@ -435,7 +475,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n    args: {\r\n        label: '',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-input [label]=\"'My default label'\"></nctv-input>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                    "defaultValue": "{\r\n    args: {\r\n        label: 'Input Label',\r\n        placeholder: 'Default Input Placeholder',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card [shadowLevel]=\"shadowLevel\">\r\n               <nctv-input [label]=\"label\" [placeholder]=\"placeholder\"></nctv-input>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
                 },
                 {
                     "name": "meta",
@@ -730,7 +770,27 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "dummyData",
+                "name": "dummyDataAnimals",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/autocomplete.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "dummyDataCountry",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/autocomplete.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "dummyDataUsers",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

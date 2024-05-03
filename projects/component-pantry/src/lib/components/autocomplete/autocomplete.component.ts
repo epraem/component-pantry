@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 @Component({
     selector: 'nctv-autocomplete',
@@ -8,32 +8,43 @@ import { Component, Input, OnInit } from '@angular/core';
     templateUrl: './autocomplete.component.html',
     styleUrls: ['./autocomplete.component.scss'],
 })
-export class AutocompleteComponent implements OnInit {
+export class AutocompleteComponent implements OnInit, AfterViewInit {
     @Input() for: string = 'for';
     @Input() label: string = 'Default Label';
     @Input() placeholder: string = 'Default Placeholder';
     @Input() size: string = 'medium';
     @Input() title: string = 'Default Title';
-
-    @Input() autocompleteData: any = [];
+    @Input() autocompleteData: any[] = [];
     filteredData: any[] = [];
+    hasLabel: boolean = false;
     isActive: boolean = false;
 
-    wrapper: any;
-    selectBtn: any;
+    @ViewChild('dropdownWrapper', { static: true }) dropdownWrapper!: ElementRef<HTMLDivElement>;
+    @ViewChild('dropdownToggle', { static: true }) dropdownToggle!: ElementRef<HTMLDivElement>;
 
     ngOnInit() {
-        this.wrapper = document.querySelector('.dropdown');
-        this.selectBtn = this.wrapper?.querySelector('.dropdown--toggle');
-        this.attachEventListener();
         this.filteredData = this.autocompleteData;
+        if (this.label.length) {
+            this.hasLabel = true;
+        }
     }
 
-    attachEventListener() {
-        this.selectBtn?.addEventListener('click', () => {
+    ngAfterViewInit() {
+        this.dropdownToggle.nativeElement.addEventListener('click', () => {
             this.isActive = !this.isActive;
-            this.selectButton();
+            this.toggleDropdown();
         });
+    }
+
+    toggleDropdown() {
+        const dropdownElement = this.dropdownWrapper.nativeElement;
+        if (this.isActive) {
+            dropdownElement.classList.add('active');
+            dropdownElement.classList.remove('inactive');
+        } else {
+            dropdownElement.classList.remove('active');
+            dropdownElement.classList.add('inactive');
+        }
     }
 
     filterData(searchText: string) {
@@ -42,44 +53,13 @@ export class AutocompleteComponent implements OnInit {
         );
     }
 
-    highlightText(text: string, search: string): string {
-        const startIndex = text.toLowerCase().indexOf(search.toLowerCase());
-        if (startIndex === -1) {
-            return text;
-        }
-
-        const endIndex = startIndex + search.length;
-        const highlightedText =
-            text.substring(0, startIndex) +
-            '<mark>' +
-            text.substring(startIndex, endIndex) +
-            '</mark>' +
-            text.substring(endIndex);
-
-        return highlightedText;
-    }
-
-    selectButton() {
-        if (!this.isActive) {
-            this.wrapper?.classList.add('inactive');
-            this.wrapper?.classList.remove('active');
-        } else {
-            this.wrapper?.classList.remove('inactive');
-            this.wrapper?.classList.add('active');
-        }
-    }
-
-    updateName(name: any) {
-        console.log(name.innerText);
-    }
-
     optionSelect(option: { id: string; name: string }) {
-        const dropdownHeader = this.wrapper?.querySelector('.dropdown--header span');
+        const dropdownHeader = this.dropdownWrapper.nativeElement.querySelector('.dropdown--header span');
         if (dropdownHeader) {
-            dropdownHeader.textContent = option.name;
+            dropdownHeader.textContent = `${option.name} |  (ID : ${option.id} ~ for testing purposes only)`;
         }
         this.isActive = false;
-        this.selectButton();
+        this.toggleDropdown();
         console.log('Selected ID:', option.id);
     }
 
@@ -87,7 +67,6 @@ export class AutocompleteComponent implements OnInit {
         const classes = {
             [`input--${this.size}`]: this.size,
         };
-
         return classes;
     }
 }

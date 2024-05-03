@@ -1,7 +1,7 @@
 <div class="dropdown-wrapper">
-    <label for="for">{{ label }}</label>
-    <div style="width: 100%" class="dropdown">
-        <div class="dropdown--toggle">
+    <label *ngIf="hasLabel">{{ label }}</label>
+    <div #dropdownWrapper style="width: 100%" class="dropdown">
+        <div #dropdownToggle class="dropdown--toggle">
             <div class="dropdown--header">
                 <span #dropdownHeader>{{ title }}</span>
                 <svg
@@ -39,7 +39,7 @@
                         <input
                             class="input"
                             type="text"
-                            placeholder="Search"
+                            [placeholder]="placeholder"
                             #searchInput
                             (input)="filterData(searchInput.value)"
                         />
