@@ -45,14 +45,14 @@
     justify-content: space-between;
     overflow: hidden;
     width: 100%;
-    // position: absolute; //USE ONLY IF COMPLETED
+    position: relative;
 
     &--toggle {
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        overflow: hidden;
+        // overflow: hidden;
         color: $color-gray-3;
         background: #fff;
         z-index: 2;
@@ -88,6 +88,11 @@
         padding: $base-padding-sm;
         width: 100%;
         cursor: pointer;
+        transition: 0.3s ease-in-out;
+
+        &:hover{
+            background-color: $color-gray-9;
+        }
     }
 
     &--search-input {
@@ -137,6 +142,12 @@
         }
     }
 
+    &--title{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     &--small {
         font-size: $sm;
         line-height: $line-height-sm;
@@ -169,12 +180,11 @@
 }
 
 .dropdown-wrapper {
-    position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
     color: $color-gray-3;
-    gap: $sm;
+    gap: $xs;
 }
 
 .dropdown.active .dropdown--content {
@@ -187,7 +197,7 @@
     display: block;
     position: relative;
     animation: dropup 0.5s ease-in-out;
-    margin-top: -100%;
+    margin-top: -100vh;
 }
 
 .dropdown.active .dropdown--toggle .dropdown--icon {
@@ -220,13 +230,13 @@
         margin-top: 0;
     }
     to {
-        margin-top: -100%;
+        margin-top: -100vh;
     }
 }
 
 @keyframes dropdown {
     from {
-        margin-top: -100%;
+        margin-top: -100vh;
     }
     to {
         margin-top: 0;

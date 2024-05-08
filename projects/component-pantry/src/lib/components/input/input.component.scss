@@ -16,6 +16,9 @@
         font-weight: normal;
         padding-right: $base-padding-lg;
         padding: $base-padding-sm;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         &:active,
         &:focus {
@@ -26,6 +29,12 @@
                 color: $color-gray-3;
             }
         }
+    }
+
+    &--title{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     &--small {

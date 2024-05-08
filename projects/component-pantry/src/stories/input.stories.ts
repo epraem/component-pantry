@@ -32,9 +32,9 @@ type Story = StoryObj<InputComponent>;
 
 export const Basic: Story = {
     args: {
-        label: 'Input Label',
-        placeholder: 'Default Input Placeholder',
         inputSize: 'medium',
+        label: 'Input Label',
+        placeholder: 'Default Input Placeholder'
     },
     render: (args) => ({
         props: args,
