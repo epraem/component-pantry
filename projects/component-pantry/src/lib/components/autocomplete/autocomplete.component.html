@@ -1,57 +1,39 @@
-<div class="haha">
-    <div class="dropdown-wrapper">
-        <label *ngIf="hasLabel">{{ label }}</label>
-        <div #dropdownWrapper class="dropdown" [ngClass]="getClass()">
-            <div #dropdownToggle class="dropdown--toggle">
-                <div class="dropdown--header">
-                    <span class="dropdown--title" #dropdownHeader>{{ title }}</span>
-                    <svg
-                        class="dropdown--icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        enable-background="new 0 0 24 24"
-                        viewBox="0 0 24 24"
-                        id="angle-down"
-                        width="25px"
-                    >
-                        <path
-                            fill="#8DCB2C"
-                            d="M16.9,9.2c-0.4-0.4-1-0.4-1.4,0L12,12.7L8.5,9.2c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l4.2,4.2c0.2,0.2,0.4,0.3,0.7,0.3c0.3,0,0.5-0.1,0.7-0.3l4.2-4.2C17.3,10.2,17.3,9.6,16.9,9.2z"
-                        ></path>
-                    </svg>
-                </div>
-            </div>
-            <div class="dropdown--content-wrapper">
+<div class="autocomplete">
+    <label *ngIf="hasLabel">{{ label }}</label>
+    <div class="dropdown--wrapper">
+        <div class="dropdown--input">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20px">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path
+                        d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
+                        stroke="#8DCB2C"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    ></path>
+                </g>
+            </svg>
+            <input
+                (input)="filterData(searchInput.value)"
+                [ngClass]="getClass()"
+                [placeholder]="placeholder"
+                #searchInput
+                class="input"
+                type="text"
+                (focus)="isActive = true; toggleDropdown()"
+                (blur)="isActive = false; toggleDropdown()"
+            />
+        </div>
+        <div class="hello">
+            <div #dropdownWrapper class="dropdown inactive" [ngClass]="getClass()">
                 <div class="dropdown--content">
-                    <div class="dropdown--search-container">
-                        <div class="dropdown--search-input">
-                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20px">
-                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <path
-                                        d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
-                                        stroke="#8DCB2C"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    ></path>
-                                </g>
-                            </svg>
-                            <input
-                                (input)="filterData(searchInput.value)"
-                                [ngClass]="getClass()"
-                                [placeholder]="placeholder"
-                                #searchInput
-                                class="input"
-                                type="text"
-                            />
-                        </div>
-                        <ul class="dropdown--options">
-                            <li *ngFor="let option of filteredData" (click)="optionSelect(option)">
-                                {{ option.name }}
-                            </li>
-                        </ul>
-                    </div>
+                    <ul class="dropdown--options">
+                        <li *ngFor="let option of filteredData" (click)="optionSelect(option)">
+                            {{ option.name }}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
