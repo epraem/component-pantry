@@ -45,7 +45,6 @@ export const Basic: Story = {
     args: {
         inputSize: 'medium',
         label: 'Autocomplete Field (Dynamic)',
-        title: 'Autocomplete Dropdown (Dynamic)',
         placeholder: 'Autocomplete Field Placeholder (Dynamic)',
         autocompleteData: dummyDataCountry,
     },
@@ -53,7 +52,7 @@ export const Basic: Story = {
         props: args,
         template: `
             <nctv-card [shadowLevel]="shadowLevel">
-                <nctv-autocomplete [inputSize]="inputSize" [title]="title" [label]="label" [placeholder]="placeholder" [autocompleteData]="autocompleteData">
+                <nctv-autocomplete [inputSize]="inputSize" [label]="label" [placeholder]="placeholder" [autocompleteData]="autocompleteData">
                 </nctv-autocomplete>           
             </nctv-card>
         `,
@@ -64,7 +63,6 @@ export const DemoAutocomplete: Story = {
     args: {
         inputSize: 'medium',
         label: 'Autocomplete Field (Dynamic)',
-        title: 'Autocomplete Dropdown (Dynamic)',
         placeholder: 'Autocomplete Field Placeholder (Dynamic)',
 
         autocompleteData: dummyDataCountry,
@@ -74,10 +72,10 @@ export const DemoAutocomplete: Story = {
         template: `
             <nctv-card [shadowLevel]="shadowLevel">
               <div style="display: flex; gap: 20px;">
-                <nctv-autocomplete [inputSize]="inputSize" style="width: 100%;" [title]="title" [label]="label" [placeholder]="placeholder" [autocompleteData]="autocompleteData">
+                <nctv-autocomplete [inputSize]="inputSize" style="width: 100%;" [placeholder]="placeholder" [autocompleteData]="autocompleteData">
                 </nctv-autocomplete>
 
-                <nctv-autocomplete [inputSize]="inputSize" style="width: 100%;" [title]="'Select animal (Static)'" [label]="'Second autocomplete (Static)'" [placeholder]="'Select animal (Static)'" [autocompleteData]="[{id: '1', name: 'Lion', species: 'Panthera leo'}, {id: '2', name: 'Tiger', species: 'Panthera tigris'}, {id: '3', name: 'Elephant', species: 'Loxodonta'}, {id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis'}, {id: '5', name: 'Zebra', species: 'Equus zebra'}]">
+                <nctv-autocomplete [inputSize]="inputSize" style="width: 100%;" [label]="'Second autocomplete (Static)'" [placeholder]="'Select animal (Static)'" [autocompleteData]="[{id: '1', name: 'Lion', species: 'Panthera leo'}, {id: '2', name: 'Tiger', species: 'Panthera tigris'}, {id: '3', name: 'Elephant', species: 'Loxodonta'}, {id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis'}, {id: '5', name: 'Zebra', species: 'Equus zebra'}]">
                 </nctv-autocomplete>
               </div>
             </nctv-card>
@@ -89,7 +87,6 @@ export const MultipleAutocomplete: Story = {
     args: {
         inputSize: 'small',
         label: 'Autocomplete Field (Dynamic)',
-        title: 'Autocomplete Dropdown (Dynamic)',
         placeholder: 'Autocomplete Field Placeholder (Dynamic)',
 
         autocompleteData: dummyDataCountry,
@@ -99,7 +96,7 @@ export const MultipleAutocomplete: Story = {
         template: `
         <nctv-card [shadowLevel]="shadowLevel">
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                <nctv-autocomplete [inputSize]="inputSize" [title]="title" [label]="label" [placeholder]="placeholder" [autocompleteData]="autocompleteData">
+                <nctv-autocomplete [inputSize]="inputSize" [label]="label" [placeholder]="placeholder" [autocompleteData]="autocompleteData">
                 </nctv-autocomplete>
                 
                 <nctv-input [label]="label" [inputSize]="inputSize" [placeholder]="placeholder"></nctv-input>
@@ -108,17 +105,17 @@ export const MultipleAutocomplete: Story = {
                 
                 <nctv-input [label]="label" [inputSize]="inputSize" [placeholder]="placeholder"></nctv-input>
 
-                <nctv-autocomplete [inputSize]="inputSize" [title]="'Select animal (Static)'" [label]="'Second autocomplete (Static)'" [placeholder]="'Select animal (Static)'" [autocompleteData]="[{id: '1', name: 'Lion', species: 'Panthera leo'}, {id: '2', name: 'Tiger', species: 'Panthera tigris'}, {id: '3', name: 'Elephant', species: 'Loxodonta'}, {id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis'}, {id: '5', name: 'Zebra', species: 'Equus zebra'}]">
+                <nctv-autocomplete [inputSize]="inputSize" [label]="'Second autocomplete (Static)'" [placeholder]="'Select animal (Static)'" [autocompleteData]="[{id: '1', name: 'Lion', species: 'Panthera leo'}, {id: '2', name: 'Tiger', species: 'Panthera tigris'}, {id: '3', name: 'Elephant', species: 'Loxodonta'}, {id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis'}, {id: '5', name: 'Zebra', species: 'Equus zebra'}]">
                 </nctv-autocomplete>              
                 
                 <nctv-input [label]="'I am a label (Static)'" [inputSize]="inputSize" [placeholder]="'I am a placeholder (Static)'"></nctv-input>
                 
-                <nctv-autocomplete [inputSize]="inputSize" [title]="'Select animal (Static)'" [label]="'Second autocomplete (Static)'" [placeholder]="'Select animal (Static)'" [autocompleteData]="[{id: '1', name: 'Lion', species: 'Panthera leo'}, {id: '2', name: 'Tiger', species: 'Panthera tigris'}, {id: '3', name: 'Elephant', species: 'Loxodonta'}, {id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis'}, {id: '5', name: 'Zebra', species: 'Equus zebra'}]">
+                <nctv-autocomplete [inputSize]="inputSize" [label]="'Second autocomplete (Static)'" [placeholder]="'Select animal (Static)'" [autocompleteData]="[{id: '1', name: 'Lion', species: 'Panthera leo'}, {id: '2', name: 'Tiger', species: 'Panthera tigris'}, {id: '3', name: 'Elephant', species: 'Loxodonta'}, {id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis'}, {id: '5', name: 'Zebra', species: 'Equus zebra'}]">
                 </nctv-autocomplete>
 
                 <nctv-input [label]="'I am a label (Static)'" [inputSize]="inputSize" [placeholder]="'I am a placeholder (Static)'"></nctv-input>
                 
-                <nctv-autocomplete [inputSize]="inputSize" [title]="'Select animal (Static)'" [label]="'Second autocomplete (Static)'" [placeholder]="'Select animal (Static)'" [autocompleteData]="[{id: '1', name: 'Lion', species: 'Panthera leo'}, {id: '2', name: 'Tiger', species: 'Panthera tigris'}, {id: '3', name: 'Elephant', species: 'Loxodonta'}, {id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis'}, {id: '5', name: 'Zebra', species: 'Equus zebra'}]">
+                <nctv-autocomplete [inputSize]="inputSize" [label]="'Second autocomplete (Static)'" [placeholder]="'Select animal (Static)'" [autocompleteData]="[{id: '1', name: 'Lion', species: 'Panthera leo'}, {id: '2', name: 'Tiger', species: 'Panthera tigris'}, {id: '3', name: 'Elephant', species: 'Loxodonta'}, {id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis'}, {id: '5', name: 'Zebra', species: 'Equus zebra'}]">
                 </nctv-autocomplete>
             </div>
         </nctv-card>

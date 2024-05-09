@@ -15,7 +15,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     @Input() inputSize: string = 'medium';
     @Input() title: string = 'Default Title';
     @Input() autocompleteData: any[] = [];
-
+    selectedOption: any;
     filteredData: any[] = [];
     hasLabel: boolean = false;
     isActive: boolean = false;
@@ -28,18 +28,25 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
         this.hasLabel = !!this.label.trim().length;
     }
 
+    optionSelect(option: any) {
+        this.selectedOption = option;
+        console.log('Selected option:', this.selectedOption);
+        this.isActive = false;
+        this.toggleDropdown();
+    }
+
     ngAfterViewInit() {
         this.searchInput.nativeElement.addEventListener('focus', () => {
             this.isActive = true;
             this.toggleDropdown();
         });
+    }
 
-        this.searchInput.nativeElement.addEventListener('blur', () => {
-            setTimeout(() => {
-                this.isActive = false;
-                this.toggleDropdown();
-            }, 200);
-        });
+    handleBlur() {
+        setTimeout(() => {
+            this.isActive = false;
+            this.toggleDropdown();
+        }, 200);
     }
 
     toggleDropdown() {
@@ -49,18 +56,9 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     }
 
     filterData(searchText: string) {
-        this.filteredData = this.autocompleteData.filter(option =>
-            option.name.toLowerCase().includes(searchText.toLowerCase())
+        this.filteredData = this.autocompleteData.filter((option) =>
+            option.name.toLowerCase().includes(searchText.toLowerCase()),
         );
-    }
-
-    optionSelect(option: { id: string; name: string }) {
-        const dropdownHeader = this.dropdownWrapper.nativeElement.querySelector('.dropdown--header span');
-        if (dropdownHeader) {
-            dropdownHeader.textContent = `${option.name} |  (ID : ${option.id} ~ for testing purposes only)`;
-        }
-        this.isActive = false;
-        this.toggleDropdown();
     }
 
     getClass(): object {

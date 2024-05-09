@@ -1,4 +1,4 @@
-<div class="autocomplete">
+<div class="autocomplete" [ngClass]="getClass()">
     <label *ngIf="hasLabel">{{ label }}</label>
     <div class="dropdown--wrapper">
         <div class="dropdown--input">
@@ -23,15 +23,15 @@
                 class="input"
                 type="text"
                 (focus)="isActive = true; toggleDropdown()"
-                (blur)="isActive = false; toggleDropdown()"
+                (blur)="handleBlur()"
             />
         </div>
         <div class="hello">
-            <div #dropdownWrapper class="dropdown inactive" [ngClass]="getClass()">
+            <div #dropdownWrapper class="dropdown" [ngClass]="{ active: isActive, inactive: !isActive }">
                 <div class="dropdown--content">
                     <ul class="dropdown--options">
                         <li *ngFor="let option of filteredData" (click)="optionSelect(option)">
-                            {{ option.name }}
+                            {{ option.name }} <span>{{ option.id }}</span>
                         </li>
                     </ul>
                 </div>
