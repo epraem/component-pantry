@@ -1,41 +1,45 @@
 <div class="autocomplete" [ngClass]="getClass()">
     <label *ngIf="hasLabel">{{ label }}</label>
     <div class="dropdown--wrapper">
-        <div class="dropdown--input">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20px">
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                <g id="SVGRepo_iconCarrier">
-                    <path
-                        d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
-                        stroke="#8DCB2C"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    ></path>
-                </g>
-            </svg>
-            <input
-                (input)="filterData(searchInput.value)"
-                [ngClass]="getClass()"
-                [placeholder]="placeholder"
-                #searchInput
-                class="input"
-                type="text"
-                (focus)="isActive = true; toggleDropdown()"
-                (blur)="handleBlur()"
-            />
+      <div class="dropdown--input" [class.active]="isActive">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20px">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
+              stroke="#8DCB2C"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </g>
+        </svg>
+        <input
+          [ngClass]="getClass()"
+          [placeholder]="placeholder"
+          #searchInput
+          class="input"
+          type="text"
+          (focus)="isActive = true; toggleDropdown()"
+          (blur)="handleBlur()"
+        />
+      </div>
+      <div class="dropdown--list">
+        <div #dropdownWrapper class="dropdown" [ngClass]="{ active: isActive, inactive: !isActive }">
+          <div class="dropdown--content">
+            <ul class="dropdown--options">
+              <li *ngFor="let option of filteredData" (click)="optionSelect(option)">
+                {{ option.name }}
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="hello">
-            <div #dropdownWrapper class="dropdown" [ngClass]="{ active: isActive, inactive: !isActive }">
-                <div class="dropdown--content">
-                    <ul class="dropdown--options">
-                        <li *ngFor="let option of filteredData" (click)="optionSelect(option)">
-                            {{ option.name }} <span>{{ option.id }}</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+      </div>
+      <div class="output" *ngIf="selectedOption">
+        <h2>Selected Option</h2>
+        <h4>NAME : {{ selectedOption.name }}</h4>
+        <p>ID : {{ selectedOption.id }}</p>
+      </div>
     </div>
-</div>
+  </div>

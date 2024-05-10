@@ -1,7 +1,5 @@
 @import "../../styles/variables";
 
-
-
 .input-container {
     display: flex;
     align-items: center;
@@ -23,6 +21,11 @@
     padding-right: $base-padding-lg;
     padding: $base-padding-sm;
     border-radius: 4px;
+
+    &:focus,
+    &.active {
+        border: 1px solid $color-secondary; /* Change this to your desired color */
+    }
 }
 
 .input {
@@ -37,10 +40,10 @@
     &:focus,
     &:active {
         color: $color-secondary;
+    }
 
-        &::placeholder {
-            color: $color-gray-3;
-        }
+    &::placeholder {
+        color: $color-gray-3;
     }
 
     &--small {
@@ -177,5 +180,19 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+//To be removed (For testing only)
+.output {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: $base-padding-sm;
+
+    p,
+    h4,
+    h2 {
+        margin: 0;
     }
 }
