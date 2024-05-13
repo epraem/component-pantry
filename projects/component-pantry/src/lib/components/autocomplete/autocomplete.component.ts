@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { map, debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 import { fromEvent, Subject } from 'rxjs';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
@@ -47,6 +47,8 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     isActive: boolean = false;
     /** Subject for search */
     searchSubject = new Subject<string>();
+    /** Display the input */
+    showInput = true;
 
     constructor(private sanitizer: DomSanitizer) {}
 
@@ -57,13 +59,19 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
         this.filteredData = this.autocompleteData;
         this.hasLabel = !!this.label.trim().length;
 
-        this.searchSubject.pipe(debounceTime(300)).subscribe((searchText) => {
-            this.filteredData = this.autocompleteData.filter((option) =>
-                option.name.toLowerCase().includes(searchText.toLowerCase()),
-            );
-        });
+        this.searchSubject
+            .pipe(debounceTime(300))
+            .subscribe((searchText) => {
+                this.filterData(searchText);
+            });
 
         this.updateIconVisibility();
+    }
+
+    private filterData(searchText: string) {
+        this.filteredData = this.autocompleteData.filter((option) =>
+            option.name.toLowerCase().includes(searchText.toLowerCase()),
+        );
     }
 
     ngOnChanges() {
@@ -88,11 +96,17 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     /** Handle option selection */
     optionSelect(option: any) {
         this.selectedOption = option;
-        this.searchInput.nativeElement.value = option.name;
+        this.showInput = false; // Hide the input
         console.log('Selected option:', this.selectedOption);
         this.isActive = false;
         this.toggleDropdown();
         this.filteredData = this.autocompleteData;
+    }
+
+    /** Clear selected option and show input */
+    clearSelection() {
+        this.selectedOption = null;
+        this.showInput = true; // Show the input again
     }
 
     ngAfterViewInit() {
@@ -110,19 +124,26 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
             .subscribe((searchText) => {
                 this.handleSearch(searchText);
             });
+
+        fromEvent(document, 'click')
+            .pipe(
+                filter((event: any) => {
+                    const target = event.target;
+                    return (
+                        !this.dropdownWrapper.nativeElement.contains(target) &&
+                        !this.searchInput.nativeElement.contains(target)
+                    );
+                }),
+            )
+            .subscribe(() => {
+                this.isActive = false;
+                this.toggleDropdown();
+            });
     }
 
     /** Handle search */
     handleSearch(searchText: string) {
         this.searchSubject.next(searchText);
-    }
-
-    /** Handle blur event */
-    handleBlur() {
-        setTimeout(() => {
-            this.isActive = false;
-            this.toggleDropdown();
-        }, 200);
     }
 
     /** Toggle dropdown visibility */

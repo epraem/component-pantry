@@ -21,11 +21,50 @@
     padding-right: $base-padding-lg;
     padding: $base-padding-sm;
     border-radius: 4px;
+    transition: 0.3s ease-in-out;
 
     &:focus,
     &.active {
         border: 1px solid $color-secondary; /* Change this to your desired color */
+        stroke: $color-secondary;
     }
+
+    &-field {
+        display: flex;
+        align-items: center;
+        gap: $xs;
+    }
+
+    &-selected {
+        background-color: $color-green-7;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $base-padding-xs;
+        color: $color-gray-1;
+        border-radius: 4px;
+        cursor: default;
+        padding: 2px $base-padding-sm;
+        animation: selected 0.5s ease;
+
+        svg {
+            cursor: pointer;
+            transition: 0.2s ease-in-out;
+
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+
+        
+    }
+}
+
+.dropdown--input.option-selected {
+    justify-content: space-between;
+    padding: 8px $base-padding-sm;
+    border-color: $color-secondary;
+    stroke: $color-secondary;
 }
 
 .input {
@@ -165,6 +204,7 @@
     color: $color-gray-3;
     position: relative;
     gap: $base-padding-xs;
+    stroke: $color-gray-3;
 }
 
 .dropdown--wrapper {
@@ -188,6 +228,17 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes selected {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
