@@ -26,6 +26,26 @@ const meta: Meta<AutocompleteComponent> = {
                 },
             },
         },
+        leftIconSvg: {
+            control: {
+                type: 'text', // Use the 'text' control for SVG input
+                // Optional, but recommended for a better UX:
+                labels: {
+                    control: 'Left Icon SVG',
+                    description: 'Input the SVG code for the left icon.',
+                },
+            },
+        },
+        rightIconSvg: {
+            control: {
+                type: 'text',
+                // Optional labels for better UX:
+                labels: {
+                    control: 'Right Icon SVG',
+                    description: 'Input the SVG code for the right icon.',
+                },
+            },
+        },
     },
 };
 
@@ -47,13 +67,31 @@ export const Basic: Story = {
         label: 'Autocomplete Field (Dynamic)',
         placeholder: 'Autocomplete Field Placeholder (Dynamic)',
         autocompleteData: dummyDataCountry,
+        leftIconSvg: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20px">
+            <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="#8DCB2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>`,
+        rightIconSvg: `<svg width="15" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path 
+          clip-rule="evenodd" 
+          d="M9.53033 9.28033C9.23744 9.57322 8.76256 9.57322 8.46967 9.28033L0.96967 1.78033C0.676777 1.48744 0.676777 1.01256 0.96967 0.719671C1.26256 0.426777 1.73744 0.426777 2.03033 0.719671L9 7.68934L15.9697 0.71967C16.2626 0.426777 16.7374 0.426777 17.0303 0.71967C17.3232 1.01256 17.3232 1.48744 17.0303 1.78033L9.53033 9.28033Z" 
+          stroke="#8DCB2C"
+        >
+        </path>
+      </svg>`,
     },
     render: (args) => ({
         props: args,
         template: `
             <nctv-card [shadowLevel]="shadowLevel">
-                <nctv-autocomplete [inputSize]="inputSize" [label]="label" [placeholder]="placeholder" [autocompleteData]="autocompleteData">
-                </nctv-autocomplete>           
+                <nctv-autocomplete
+                    [inputSize]="inputSize"
+                    [label]="label"
+                    [placeholder]="placeholder"
+                    [autocompleteData]="autocompleteData"
+                    [leftIconSvg]="leftIconSvg"
+                    [rightIconSvg]="rightIconSvg"
+                >
+                </nctv-autocomplete>
             </nctv-card>
         `,
     }),
