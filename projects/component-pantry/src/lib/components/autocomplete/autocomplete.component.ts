@@ -1,10 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { map, debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
-import { fromEvent, Subject } from 'rxjs';
+import {
+    Component,
+    Input,
+    OnInit,
+    ViewChild,
+    ElementRef,
+    AfterViewInit,
+    ChangeDetectorRef,
+    HostListener,
+} from '@angular/core';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-/** Autocomplete Component */
 @Component({
     selector: 'nctv-autocomplete',
     standalone: true,
@@ -13,87 +21,167 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     styleUrls: ['./autocomplete.component.scss'],
 })
 export class AutocompleteComponent implements OnInit, AfterViewInit {
-    /** Input field ID */
+    /**
+     * ID for the associated input element. Used for accessibility purposes.
+     */
     @Input() for: string = 'for';
-    /** Input label */
+
+    /**
+     * Label text for the autocomplete component. Displayed above the input field.
+     */
     @Input() label: string = 'Default Label';
-    /** Input placeholder */
+
+    /**
+     * Placeholder text for the input field. Displayed when the input is empty.
+     */
     @Input() placeholder: string = 'Default Placeholder';
-    /** Input size */
+
+    /**
+     * Size of the input field. Accepted values are 'small', 'medium', 'large'.
+     */
     @Input() inputSize: string = 'medium';
-    /** Title */
+
+    /**
+     * Title text for the autocomplete component. Displayed as a tooltip or heading.
+     */
     @Input() title: string = 'Default Title';
-    /** Autocomplete data */
+
+    /**
+     * Data source for the autocomplete suggestions. Expected to be an array of objects.
+     */
     @Input() autocompleteData: any[] = [];
-    /** Left icon SVG */
+
+    /**
+     * SVG icon displayed to the left of the input field. Expected to be a valid SVG string.
+     */
     @Input() leftIconSvg: string | null = null;
-    /** Right icon SVG */
+
+    /**
+     * SVG icon displayed to the right of the input field. Expected to be a valid SVG string.
+     */
     @Input() rightIconSvg: string | null = null;
-    /** Flag to show left icon */
+
+    /**
+     * Flag indicating whether to show the left icon.
+     */
     @Input() showLeftIcon = true;
-    /** Flag to show right icon */
+
+    /**
+     * Flag indicating whether to show the right icon.
+     */
     @Input() showRightIcon = true;
-    /** Sanitized left icon SVG */
+
+    /**
+     * Sanitized version of the left icon SVG to prevent XSS attacks.
+     */
     sanitizedLeftIconSvg: SafeHtml | null = null;
-    /** Sanitized right icon SVG */
+
+    /**
+     * Sanitized version of the right icon SVG to prevent XSS attacks.
+     */
     sanitizedRightIconSvg: SafeHtml | null = null;
-    /** Selected option */
+
+    /**
+     * Currently selected option from the autocomplete suggestions.
+     */
     selectedOption: any;
-    /** Filtered data */
+
+    /**
+     * Filtered list of autocomplete suggestions based on the search input.
+     */
     filteredData: any[] = [];
-    /** Flag indicating if label is present */
+
+    /**
+     * Flag indicating whether the label should be displayed.
+     */
     hasLabel: boolean = false;
-    /** Flag indicating if autocomplete is active */
+
+    /**
+     * Flag indicating whether the dropdown is currently active (visible).
+     */
     isActive: boolean = false;
-    /** Subject for search */
+
+    /**
+     * Subject to handle debounce of search input changes.
+     */
     searchSubject = new Subject<string>();
-    /** Display the input */
+
+    /**
+     * Flag indicating whether to show the input field.
+     */
     showInput = true;
 
-    constructor(private sanitizer: DomSanitizer) {}
+    /**
+     * Subject to handle changes in the search input value.
+     */
+    searchInputChanges$ = new Subject<string>();
+
+    constructor(
+        private sanitizer: DomSanitizer,
+        private cdr: ChangeDetectorRef,
+    ) {}
+
+    /**
+     * HostListener for detecting clicks outside the component to close the dropdown.
+     * @param targetElement The element that was clicked.
+     */
+    @HostListener('document:click', ['$event.target'])
+    onClickOutside(targetElement: any) {
+        const clickedInside =
+            this.dropdownWrapper.nativeElement.contains(targetElement) ||
+            this.searchInput.nativeElement.contains(targetElement); // Check if click is inside input as well
+        if (!clickedInside && this.isActive) {
+            this.isActive = false;
+            this.toggleDropdown();
+        }
+    }
+
+    /**
+     * HostListener for detecting the escape key press to close the dropdown.
+     * @param event The keyboard event.
+     */
+    @HostListener('window:keydown.escape', ['$event'])
+    onEscapeKeydown(event: KeyboardEvent) {
+        if (this.isActive) {
+            this.isActive = false;
+            this.toggleDropdown(); // Close the dropdown on escape
+        }
+    }
 
     @ViewChild('dropdownWrapper', { static: true }) dropdownWrapper!: ElementRef<HTMLDivElement>;
-    @ViewChild('searchInput', { static: true }) searchInput!: ElementRef<HTMLInputElement>;
+    @ViewChild('searchInput', { static: false }) searchInput!: ElementRef<HTMLInputElement>;
 
+    /**
+     * Angular lifecycle hook that is called after Angular has initialized all data-bound properties.
+     */
     ngOnInit() {
         this.filteredData = this.autocompleteData;
         this.hasLabel = !!this.label.trim().length;
 
-        this.searchSubject
-            .pipe(debounceTime(300))
-            .subscribe((searchText) => {
-                this.filterData(searchText);
-            });
+        this.searchSubject.pipe(debounceTime(300)).subscribe((searchText) => {
+            this.filteredData = this.autocompleteData.filter((option) =>
+                option.name.toLowerCase().includes(searchText.toLowerCase()),
+            );
+        });
 
-        this.updateIconVisibility();
+        this.searchInputChanges$.pipe(debounceTime(300), distinctUntilChanged()).subscribe((searchText) => {
+            this.isActive = true;
+            this.handleSearch(searchText);
+        });
     }
 
-    private filterData(searchText: string) {
-        this.filteredData = this.autocompleteData.filter((option) =>
-            option.name.toLowerCase().includes(searchText.toLowerCase()),
-        );
+    /**
+     * Angular lifecycle hook that is called after Angular has fully initialized a component's view.
+     */
+    ngAfterViewInit() {
+        this.cdr.detectChanges();
+        this.attachInputEventListener();
     }
 
-    ngOnChanges() {
-        this.updateIconVisibility(); // Call to update visibility on changes
-        this.sanitizeSvgIcons();
-    }
-
-    private updateIconVisibility() {
-        this.showLeftIcon = !!this.leftIconSvg;
-        this.showRightIcon = !!this.rightIconSvg;
-    }
-
-    private sanitizeSvgIcons() {
-        if (this.leftIconSvg) {
-            this.sanitizedLeftIconSvg = this.sanitizer.bypassSecurityTrustHtml(this.leftIconSvg);
-        }
-        if (this.rightIconSvg) {
-            this.sanitizedRightIconSvg = this.sanitizer.bypassSecurityTrustHtml(this.rightIconSvg);
-        }
-    }
-
-    /** Handle option selection */
+    /**
+     * Handles the selection of an option from the autocomplete suggestions.
+     * @param option The selected option.
+     */
     optionSelect(option: any) {
         this.selectedOption = option;
         this.showInput = false; // Hide the input
@@ -103,57 +191,91 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
         this.filteredData = this.autocompleteData;
     }
 
-    /** Clear selected option and show input */
+    /**
+     * Clears the current selection and resets the input field.
+     */
     clearSelection() {
         this.selectedOption = null;
-        this.showInput = true; // Show the input again
-    }
+        this.showInput = true;
+        this.filteredData = this.autocompleteData;
 
-    ngAfterViewInit() {
-        this.searchInput.nativeElement.addEventListener('focus', () => {
-            this.isActive = true;
-            this.toggleDropdown();
+        // Clear input and trigger search AFTER the view is updated
+        setTimeout(() => {
+            this.attachInputEventListener();
+            if (this.searchInput && this.searchInput.nativeElement) {
+                this.searchInput.nativeElement.value = '';
+                this.searchInput.nativeElement.dispatchEvent(new Event('input'));
+            }
         });
-
-        fromEvent(this.searchInput.nativeElement, 'input')
-            .pipe(
-                map((event: any) => event.target.value),
-                debounceTime(300),
-                distinctUntilChanged(),
-            )
-            .subscribe((searchText) => {
-                this.handleSearch(searchText);
-            });
-
-        fromEvent(document, 'click')
-            .pipe(
-                filter((event: any) => {
-                    const target = event.target;
-                    return (
-                        !this.dropdownWrapper.nativeElement.contains(target) &&
-                        !this.searchInput.nativeElement.contains(target)
-                    );
-                }),
-            )
-            .subscribe(() => {
-                this.isActive = false;
-                this.toggleDropdown();
-            });
     }
 
-    /** Handle search */
+    /**
+     * Attaches an event listener to the input field for handling input events.
+     */
+    private attachInputEventListener() {
+        // Check if input element exists and is not already attached
+        if (
+            this.searchInput &&
+            this.searchInput.nativeElement &&
+            !this.searchInput.nativeElement.hasAttribute('listenerAttached')
+        ) {
+            this.searchInput.nativeElement.addEventListener('input', (event: any) => {
+                this.searchInputChanges$.next(event.target.value);
+            });
+            this.searchInput.nativeElement.setAttribute('listenerAttached', 'true'); // Mark listener as attached
+        }
+    }
+
+    /**
+     * Handles the search logic for filtering the autocomplete suggestions.
+     * @param searchText The text to search for.
+     */
     handleSearch(searchText: string) {
         this.searchSubject.next(searchText);
     }
 
-    /** Toggle dropdown visibility */
+    /**
+     * Toggles the visibility of the dropdown.
+     */
     toggleDropdown() {
         const dropdownElement = this.dropdownWrapper.nativeElement;
         dropdownElement.classList.toggle('active', this.isActive);
         dropdownElement.classList.toggle('inactive', !this.isActive);
     }
 
-    /** Get class based on input size */
+    /**
+     * Angular lifecycle hook that is called when any data-bound property of a directive changes.
+     */
+    ngOnChanges() {
+        this.updateIconVisibility(); // Call to update visibility on changes
+        this.sanitizeSvgIcons();
+    }
+
+    /**
+     * Updates the visibility of the left and right icons based on their SVG content.
+     */
+    private updateIconVisibility() {
+        this.showLeftIcon = !!this.leftIconSvg;
+        this.showRightIcon = !!this.rightIconSvg;
+    }
+
+    /**
+     * Sanitizes the SVG content for the left and right icons to prevent XSS attacks.
+     */
+    private sanitizeSvgIcons() {
+        if (this.leftIconSvg) {
+            this.sanitizedLeftIconSvg = this.sanitizer.bypassSecurityTrustHtml(this.leftIconSvg);
+        }
+        if (this.rightIconSvg) {
+            this.sanitizedRightIconSvg = this.sanitizer.bypassSecurityTrustHtml(this.rightIconSvg);
+        }
+    }
+
+    /**
+     * Generates class names based on the input size.
+     * Constructs an object suitable for ngClass based on `inputSize`.
+     * @returns {Object} Object with dynamic class names
+     */
     getClass(): object {
         return {
             [`input--${this.inputSize}`]: this.inputSize,
