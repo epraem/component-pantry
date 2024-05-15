@@ -55,8 +55,6 @@
                 transform: scale(1.2);
             }
         }
-
-        
     }
 }
 
@@ -211,6 +209,8 @@
     display: flex;
     width: 100%;
     flex-direction: column;
+    box-shadow: $shadow-1;
+    border-radius: 4px;
 }
 
 .icon {
@@ -247,7 +247,7 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
-    padding-top: $base-padding-sm;
+    padding: $base-padding-sm;
 
     p,
     h4,
