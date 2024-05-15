@@ -129,13 +129,29 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     onClickOutside(targetElement: any) {
         const clickedInside =
             this.dropdownWrapper.nativeElement.contains(targetElement) ||
-            this.searchInput.nativeElement.contains(targetElement); // Check if click is inside input as well
+            (this.searchInput && this.searchInput.nativeElement.contains(targetElement));
+
         if (!clickedInside && this.isActive) {
             this.isActive = false;
-            this.toggleDropdown();
+
+            // Reset the input and show it again only if there's no selected option.
+            if (!this.selectedOption) {
+                this.showInput = true;
+                this.attachInputEventListener(); // Ensure the event listener is re-attached.
+
+                // Clear the input value after the view is updated and trigger input event.
+                setTimeout(() => {
+                    if (this.searchInput && this.searchInput.nativeElement) {
+                        this.searchInput.nativeElement.value = '';
+                        this.searchInput.nativeElement.dispatchEvent(new Event('input'));
+                    }
+                });
+            } else {
+                // Dropdown is being closed with a selected option.
+                this.toggleDropdown();
+            }
         }
     }
-
     /**
      * HostListener for detecting the escape key press to close the dropdown.
      * @param event The keyboard event.
@@ -144,7 +160,19 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     onEscapeKeydown(event: KeyboardEvent) {
         if (this.isActive) {
             this.isActive = false;
-            this.toggleDropdown(); // Close the dropdown on escape
+            if (!this.selectedOption) {
+                this.showInput = true;
+                this.attachInputEventListener();
+
+                setTimeout(() => {
+                    if (this.searchInput && this.searchInput.nativeElement) {
+                        this.searchInput.nativeElement.value = '';
+                        this.searchInput.nativeElement.dispatchEvent(new Event('input'));
+                    }
+                });
+            } else {
+                this.toggleDropdown();
+            }
         }
     }
 
@@ -158,15 +186,25 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
         this.filteredData = this.autocompleteData;
         this.hasLabel = !!this.label.trim().length;
 
-        this.searchSubject.pipe(debounceTime(300)).subscribe((searchText) => {
-            this.filteredData = this.autocompleteData.filter((option) =>
-                option.name.toLowerCase().includes(searchText.toLowerCase()),
-            );
+        this.searchSubject.pipe(debounceTime(100)).subscribe({
+            next: (searchText) => {
+                this.filteredData = this.autocompleteData.filter((option) =>
+                    option.name.toLowerCase().includes(searchText.toLowerCase()),
+                );
+            },
+            error: (err) => {
+                console.error('Error occurred:', err); // Example error handling
+            },
+            complete: () => {
+                console.log('Observable completed.'); // Example completion handling
+            },
         });
 
-        this.searchInputChanges$.pipe(debounceTime(300), distinctUntilChanged()).subscribe((searchText) => {
-            this.isActive = true;
-            this.handleSearch(searchText);
+        this.searchInputChanges$.pipe(debounceTime(100), distinctUntilChanged()).subscribe({
+            next: (searchText) => {
+                this.isActive = true;
+                this.handleSearch(searchText);
+            },
         });
     }
 
