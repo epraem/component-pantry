@@ -1,0 +1,12 @@
+<section class="step-wizard">
+    <ul class="step-wizard-list">
+        <li
+            *ngFor="let step of steps; let i = index"
+            class="step-wizard-item"
+            [ngClass]="{ 'current-item': i === currentStep, 'completed-item': step.completed }"
+        >
+            <span class="progress-count">{{ i + 1 }}</span>
+            <span class="progress-label">{{ step.label }}</span>
+        </li>
+    </ul>
+</section>
