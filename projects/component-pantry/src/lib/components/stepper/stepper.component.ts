@@ -12,9 +12,9 @@ export class StepperComponent {
     constructor(private ngZone: NgZone) {}
     /**
      * Array of steps to be displayed in the stepper.
-     * Each step should be an object with 'label' and optionally 'completed'.
+     * Each step should be an object with 'label'.
      */
-    @Input() steps: { label: string; completed?: boolean }[] = [];
+    @Input() steps: { label: string; }[] = [];
     /**
      * Index of the current active step.
      */
@@ -39,8 +39,8 @@ export class StepperComponent {
     }
 
     onFinish() {
-      this.ngZone.run(() => {
-          this.finished.emit();
-      });
-  }
+        this.ngZone.run(() => {
+            this.finished.emit();
+        });
+    }
 }

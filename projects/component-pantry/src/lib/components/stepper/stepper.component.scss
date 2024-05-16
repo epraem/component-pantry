@@ -1,137 +1,120 @@
 @import "../../styles/variables";
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: "Poppins", sans-serif;
-}
-
-.step-wizard {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.step-wizard-list {
+.stepper {
     width: 100%;
-    background: #fff;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
-    color: #333;
-    list-style-type: none;
-    border-radius: 10px;
-    display: flex;
-    padding: 20px 10px;
-    position: relative;
-    z-index: 10;
+
+    &--wrapper {
+        display: flex;
+        padding: 20px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+    }
+
+    &--item {
+        display: flex;
+        height: 39px;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+
+        &:first-child {
+            display: flex;
+            justify-content: right;
+            width: fit-content;
+            flex-grow: 0;
+        }
+    }
+
+    &--line {
+        background-color: $color-gray-3;
+        height: 2px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+    }
+
+    &--progress.current-count,
+    &--progress.completed {
+        background-color: $color-secondary;
+        height: 2px;
+        width: 0;
+        animation: fillLine 0.3s ease-in-out forwards;
+    }
+
+    &--count {
+        width: 39px;
+        height: 39px;
+        flex-shrink: 0;
+        color: $color-primary;
+        background-color: $color-light;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin-right: 10px;
+        border: 1px solid $color-primary;
+    }
+
+    &--label {
+        text-wrap: nowrap;
+        font-size: $md;
+    }
 }
 
-.step-wizard-item {
-    padding: 0 20px;
-    flex-basis: 0;
-    flex-grow: 1;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    min-width: 170px;
-    position: relative;
-}
-
-.step-wizard-item + .step-wizard-item:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 19px;
-    background: $color-secondary;
-    width: 100%;
-    height: 2px;
-    transform: translateX(-50%);
-    z-index: -10;
-}
-
-.progress-count {
-    height: 40px;
-    width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    font-weight: 600;
-    margin: 0 auto;
-    position: relative;
-    z-index: 10;
-    color: transparent;
-}
-
-.progress-count:after {
-    content: "";
-    height: 40px;
-    width: 40px;
-    background: $color-secondary;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    z-index: -10;
-}
-
-.progress-count:before {
-    content: "";
-    height: 10px;
-    width: 20px;
-    border-left: 3px solid #fff; /* Start with a white border */
-    border-bottom: 3px solid #fff;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -60%) rotate(-45deg);
-    transform-origin: center center;
-    transition: border-color 0.3s ease-in-out; /* Add a transition */
-}
-
-.completed-item .progress-count:before {
-    border-color: #8DCB2C; /* Change border color for completed items */
-}
-
-.progress-label {
-    font-size: 14px;
-    font-weight: 600;
-    margin-top: 10px;
-}
-
-.current-item .progress-count:before,
-.current-item ~ .step-wizard-item .progress-count:before {
-    display: none;
-}
-
-.current-item ~ .step-wizard-item .progress-count:after {
-    height: 10px;
-    width: 10px;
-}
-
-.current-item ~ .step-wizard-item .progress-label {
-    opacity: 0.5;
-}
-
-.current-item .progress-count:after {
-    background: #fff;
-    border: 2px solid $color-secondary;
-}
-
-.current-item .progress-count {
+.stepper--count.current-count {
+    border: 1px solid $color-secondary;
+    background-color: $color-light;
     color: $color-secondary;
+    animation: fillCurrentCount 0.8s ease-in-out forwards;
 }
 
-.progress-bar {
-    height: 4px; // Adjust the height as needed
-    background-color: #8dcb2c; // Your desired progress bar color
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: width 0.3s ease-in-out; // Add a smooth transition
+.stepper--count.completed {
+    background-color: $color-secondary;
+    border: 1px solid $color-secondary;
+    color: $color-secondary;
+    animation: fillStep 0.3s ease-in-out forwards;
+}
+
+//Animation
+
+@keyframes fillCurrentCount {
+    0% {
+        border: 1px solid $color-primary;
+        color: $color-primary;
+    }
+    80% {
+        border: 1px solid $color-secondary;
+        color: $color-secondary;
+        box-shadow: 0px 0px 8px 3px $color-green-4;
+    }
+    100% {
+        border: 1px solid $color-secondary;
+        color: $color-secondary;
+    }
+}
+
+@keyframes fillLine {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes fillStep {
+    0% {
+        background-color: $color-light;
+        color: $color-secondary;
+    }
+    100% {
+        background-color: $color-secondary;
+        color: $color-light;
+    }
 }

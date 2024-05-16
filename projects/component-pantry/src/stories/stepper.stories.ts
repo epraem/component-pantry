@@ -22,7 +22,7 @@ type Story = StoryObj<StepperComponent>;
 
 export const Basic: Story = {
     args: {
-        steps: [{ label: 'Billing Info' }, { label: 'Payment Method' }, { label: 'Checkout' }, { label: 'Success' }],
+        steps: [{ label: 'Create Screen' }, { label: 'Choose Template' }, { label: 'Assign Playlist' }],
         currentStep: 0,
     },
     render: (args) => ({
@@ -31,7 +31,6 @@ export const Basic: Story = {
             onNext: () => {
                 if (args.currentStep < args.steps.length - 1) {
                     args.currentStep += 1;
-                    console.log('hello');
                 }
             },
             onBack: () => {
