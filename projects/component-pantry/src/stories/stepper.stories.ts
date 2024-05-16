@@ -41,17 +41,19 @@ export const Basic: Story = {
         },
         template: `
         <nctv-card>
+            <div style="display: flex; gap: 10px; flex-direction: column;">
             <nctv-stepper 
                 [steps]="steps" 
                 [(currentStep)]="currentStep"
                 (finished)="onFinish()">
             </nctv-stepper>
-            <div style="margin-top: 20px; display: flex;">
+            <div style="display: flex;">
                 <nctv-button *ngIf="currentStep > 0" label="Back" (click)="currentStep = currentStep - 1" backgroundColor="#091635" textColor="#fff" type="primary" size="normal" iconLeft="fa-arrow-left" style="margin-right: 10px;"> </nctv-button>
                 
                 <nctv-button *ngIf="currentStep === steps.length - 1" label="Finish" (click)="onFinish()" backgroundColor="#8DCB2C" textColor="#fff" type="primary" size="normal" iconRight="fa-check"> </nctv-button>
 
                 <nctv-button *ngIf="currentStep < steps.length - 1" label="Next" (click)="currentStep = currentStep + 1" backgroundColor="#8DCB2C" textColor="#fff" type="primary" size="normal" iconRight="fa-arrow-right"> </nctv-button>
+            </div>
             </div>
         </nctv-card>
         `,
