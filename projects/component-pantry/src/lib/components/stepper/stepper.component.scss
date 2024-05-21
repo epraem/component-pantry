@@ -37,15 +37,25 @@
         width: 100%;
         display: flex;
         align-items: center;
-        border-radius: 5px;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-bottom-left-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
     }
 
     &--progress.current-count,
     &--progress.completed {
         background-color: $color-secondary;
-        height: 2px;
         width: 0;
-        animation: fillLine 0.3s ease-in-out forwards;
+        animation: fillLine 0.5s ease-in-out forwards;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-bottom-left-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
     }
 
     &--count {
@@ -70,16 +80,29 @@
 
 .stepper--count.current-count {
     border: 1px solid $color-secondary;
-    background-color: $color-light;
-    color: $color-secondary;
-    animation: fillCurrentCount 0.8s ease-in-out forwards;
+    background-color: $color-secondary;
+    color: $color-light;
+    animation: fillCurrentCount 0.5s ease-in-out forwards;
 }
 
 .stepper--count.completed {
     background-color: $color-secondary;
     border: 1px solid $color-secondary;
     color: $color-secondary;
-    animation: fillStep 0.3s ease-in-out forwards;
+    position: relative;
+
+    &::before {
+        content: "";
+        height: 8px;
+        width: 18px;
+        border-left: 3px solid rgb(255, 255, 255);
+        border-bottom: 3px solid rgb(255, 255, 255);
+        transform: rotate(-40deg) scale(0);
+        position: absolute;
+        top: 12px;
+        left: 9px;
+        animation: showCheckMark 0.5s ease-in-out forwards;
+    }
 }
 
 //Animation
@@ -87,35 +110,46 @@
 @keyframes fillCurrentCount {
     0% {
         border: 1px solid $color-primary;
+        background-color: $color-light;
         color: $color-primary;
     }
     80% {
         border: 1px solid $color-secondary;
-        color: $color-secondary;
+        color: $color-light;
         box-shadow: 0px 0px 8px 3px $color-green-4;
     }
     100% {
         border: 1px solid $color-secondary;
-        color: $color-secondary;
+        color: $color-light;
     }
 }
 
 @keyframes fillLine {
-    0% {
+    30% {
         width: 0;
+        height: 2px;
+        box-shadow: 0px 0px 3px 1px $color-green-3;
+    }
+    50% {
+        height: 3px;
+        box-shadow: 0px 0px 5px 2px $color-green-4;
     }
     100% {
         width: 100%;
+        height: 3px;
+        box-shadow: 0px 0px 16px 1px $color-green-4;
+
     }
 }
 
-@keyframes fillStep {
+@keyframes showCheckMark {
     0% {
-        background-color: $color-light;
-        color: $color-secondary;
+        transform: rotate(-40deg) scale(0);
+    }
+    50% {
+        transform: rotate(-40deg) scale(1.2);
     }
     100% {
-        background-color: $color-secondary;
-        color: $color-light;
+        transform: rotate(-40deg) scale(1);
     }
 }
