@@ -14,11 +14,13 @@ export class StepperComponent {
      * Array of steps to be displayed in the stepper.
      * Each step should be an object with 'label'.
      */
-    @Input() steps: { label: string; }[] = [];
+    @Input() steps: { label: string }[] = [];
     /**
      * Index of the current active step.
      */
     @Input() currentStep: number = 0; // Ensure default is valid index
+
+    @Input() orientation: string = 'vertical';
 
     @Output() finished = new EventEmitter<void>();
 

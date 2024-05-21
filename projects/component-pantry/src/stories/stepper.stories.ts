@@ -14,7 +14,18 @@ const meta: Meta<StepperComponent> = {
     ],
     tags: ['autodocs'],
     parameters: {},
-    argTypes: {},
+    argTypes: {
+        orientation: {
+            control: 'select',
+            description: 'Used to select orientation.',
+            options: ['horizontal', 'vertical'],
+            table: {
+                defaultValue: {
+                    summary: 'medium',
+                },
+            },
+        },
+    },
 };
 
 export default meta;
@@ -22,8 +33,9 @@ type Story = StoryObj<StepperComponent>;
 
 export const Basic: Story = {
     args: {
+        orientation: 'horizontal',
         steps: [{ label: 'Create Screen' }, { label: 'Choose Template' }, { label: 'Assign Playlist' }],
-        currentStep: 0,
+        currentStep: 0
     },
     render: (args) => ({
         props: {
@@ -45,7 +57,8 @@ export const Basic: Story = {
             <nctv-stepper 
                 [steps]="steps" 
                 [(currentStep)]="currentStep"
-                (finished)="onFinish()">
+                (finished)="onFinish()"
+                [orientation]="orientation">
             </nctv-stepper>
             <div style="display: flex;">
                 <nctv-button *ngIf="currentStep > 0" label="Back" (click)="currentStep = currentStep - 1" backgroundColor="#091635" textColor="#fff" type="primary" size="normal" iconLeft="fa-arrow-left" style="margin-right: 10px;"> </nctv-button>
