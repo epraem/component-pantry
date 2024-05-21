@@ -3,10 +3,7 @@
         <li
             *ngFor="let step of steps; let i = index"
             class="stepper--item"
-            [ngClass]="{
-                'current-item': i === currentStep,
-                completed: i < currentStep
-            }"
+            [ngClass]="{ 'current-item': i === currentStep, completed: i < currentStep }"
         >
             <div class="stepper--line" *ngIf="i > 0">
                 <div
@@ -14,9 +11,27 @@
                     [ngClass]="{ 'current-count': i === currentStep, completed: i < currentStep }"
                 ></div>
             </div>
-            <p class="stepper--count" [ngClass]="{ 'current-count': i === currentStep, completed: i < currentStep }">
-                {{ i + 1 }}
-            </p>
+            <div class="stepper--count" [ngClass]="{ 'current-count': i === currentStep, completed: i < currentStep }">
+                <span *ngIf="i >= currentStep">{{ i + 1 }}</span>
+
+                <svg
+                    *ngIf="i < currentStep"
+                    width="18"
+                    height="13"
+                    viewBox="0 0 18 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="check-mark"
+                >
+                    <path
+                        d="M17 1L6 12L1 7"
+                        stroke="black"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                </svg>
+            </div>
             <p class="stepper--label">{{ step.label }}</p>
         </li>
     </ul>
