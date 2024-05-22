@@ -14,7 +14,7 @@ export class StepperComponent {
      * Array of steps to be displayed in the stepper.
      * Each step should be an object with 'label'.
      */
-    @Input() steps: { label: string, completed: boolean }[] = [];
+    @Input() steps: { label: string; completed: boolean }[] = [];
     /**
      * Index of the current active step.
      */

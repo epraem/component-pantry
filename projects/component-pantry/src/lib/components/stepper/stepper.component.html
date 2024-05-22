@@ -5,7 +5,6 @@
                 *ngFor="let step of steps; let i = index"
                 class="stepper--item"
                 [ngClass]="{ 'current-item': i === currentStep, completed: i < currentStep }"
-                (click)="goToStep(i)"
             >
                 <div class="stepper--line" *ngIf="i > 0">
                     <div
@@ -16,6 +15,7 @@
                 <div
                     class="stepper--count"
                     [ngClass]="{ 'current-count': i === currentStep, completed: i < currentStep }"
+                    (click)="goToStep(i)"
                 >
                     <span *ngIf="i >= currentStep">{{ i + 1 }}</span>
                     <svg
@@ -46,15 +46,15 @@
 
     <ng-template #verticalTemplate>
         <ul class="stepper--wrapper--vertical">
+            <h1 style="color: #fff; margin: 0 0 40px 0">Stepper Component</h1>
             <li
                 *ngFor="let step of steps; let i = index"
                 class="stepper--item--vertical"
                 [ngClass]="{ 'current-item': i === currentStep, completed: i < currentStep }"
-                (click)="goToStep(i)"
             >
                 <div class="stepper--title--vertical">
                     <span *ngIf="showSteps" class="stepper--title--vertical--label">Step {{ i + 1 }}</span>
-                    <p class="stepper--label--vertical" [ngClass]="{'no-step': !showSteps}">{{ step.label }}</p>
+                    <p class="stepper--label--vertical" [ngClass]="{ 'no-step': !showSteps }">{{ step.label }}</p>
                 </div>
                 <div class="stepper--line-count">
                     <div class="stepper--line--vertical" *ngIf="i > 0">
@@ -66,6 +66,7 @@
                     <div
                         class="stepper--count--vertical"
                         [ngClass]="{ 'current-count': i === currentStep, completed: i < currentStep }"
+                        (click)="goToStep(i)"
                     >
                         <span *ngIf="i >= currentStep">{{ i + 1 }}</span>
                         <svg

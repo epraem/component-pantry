@@ -6,7 +6,6 @@
 
     &--wrapper {
         align-items: center;
-        background: #fff;
         border-radius: 10px;
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
         display: flex;
@@ -28,7 +27,7 @@
             font-weight: 600;
         }
 
-        &--label{
+        &--label {
             margin: 0;
             width: fit-content;
         }
@@ -56,7 +55,7 @@
 
     &--wrapper--vertical {
         align-items: flex-end;
-        background: #fff;
+        background: #091735;
         border-radius: 10px;
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
         display: flex;
@@ -85,7 +84,7 @@
     &--item--vertical {
         align-items: end;
         display: flex;
-        gap: 10px;
+        gap: 20px;
     }
 
     &--line {
@@ -115,7 +114,7 @@
 
         &.current-count,
         &.completed {
-            animation: growVerticalLine 0.5s ease-in-out forwards;
+            animation: growVerticalLine 0.5s linear forwards;
             background-color: $color-secondary;
             height: 0;
             position: relative;
@@ -130,7 +129,7 @@
             -moz-border-radius-topleft: 5px;
             -webkit-border-bottom-left-radius: 5px;
             -webkit-border-top-left-radius: 5px;
-            animation: fillLine 0.5s ease-in-out forwards;
+            animation: fillLine 0.5s linear forwards;
             background-color: $color-secondary;
             border-bottom-left-radius: 5px;
             border-top-left-radius: 5px;
@@ -166,7 +165,7 @@
         }
 
         &.current-count {
-            animation: fillCurrentCount 0.5s ease-in-out forwards;
+            animation: fillCurrentCount 0.5s linear forwards;
             background-color: $color-secondary;
             border: 1px solid $color-secondary;
             color: $color-light;
@@ -191,9 +190,7 @@
         justify-content: center;
         width: 39px;
         cursor: pointer;
-        transition: 0.5s ease-in-out;
-
-      
+        transition: 0.5s linear;
 
         svg {
             box-sizing: border-box;
@@ -203,13 +200,13 @@
         }
 
         &.current-count {
-            animation: fillCurrentCount 0.5s ease-in-out;
+            animation: fillCurrentCount 0.5s linear;
             background-color: $color-secondary;
             border: 1px solid $color-secondary;
             color: $color-light;
-            transition: 0.3s ease-in-out;
+            transition: 0.3s linear;
 
-            &:hover{
+            &:hover {
                 background: $color-green-9;
             }
         }
@@ -218,9 +215,9 @@
             background-color: $color-secondary;
             border: 1px solid $color-secondary;
             color: $color-secondary;
-            transition: 0.3s ease-in-out;
+            transition: 0.3s linear;
 
-            &:hover{
+            &:hover {
                 background: $color-green-9;
             }
         }
@@ -232,6 +229,7 @@
 
         &--vertical {
             margin: 0;
+            color: #eee;
         }
     }
 }
@@ -288,12 +286,9 @@
         box-shadow: 0px 0px 3px 1px $color-green-3;
         height: 0;
     }
-    70% {
-        width: 3px;
-    }
     100% {
         background-color: $color-secondary;
-        box-shadow: 0px 0px 16px 1px $color-green-4;
+        box-shadow: 0px 0px 40px 0px $color-green-4;
         height: 100%;
         width: 3px;
     }
