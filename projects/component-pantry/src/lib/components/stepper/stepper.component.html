@@ -5,6 +5,7 @@
                 *ngFor="let step of steps; let i = index"
                 class="stepper--item"
                 [ngClass]="{ 'current-item': i === currentStep, completed: i < currentStep }"
+                (click)="goToStep(i)"
             >
                 <div class="stepper--line" *ngIf="i > 0">
                     <div
@@ -35,7 +36,10 @@
                         />
                     </svg>
                 </div>
-                <p class="stepper--label">{{ step.label }}</p>
+                <div class="stepper--title">
+                    <span *ngIf="showSteps" class="stepper--title--step">Step {{ i + 1 }}</span>
+                    <p class="stepper--title--label">{{ step.label }}</p>
+                </div>
             </li>
         </ul>
     </ng-container>
@@ -46,16 +50,16 @@
                 *ngFor="let step of steps; let i = index"
                 class="stepper--item--vertical"
                 [ngClass]="{ 'current-item': i === currentStep, completed: i < currentStep }"
+                (click)="goToStep(i)"
             >
-            
-            <div class="test">
-                <span class="stepper--step--label">Step {{ i + 1 }}</span>
-                <p class="stepper--label--vertical">{{ step.label }}</p>
-            </div>
+                <div class="stepper--title--vertical">
+                    <span *ngIf="showSteps" class="stepper--title--vertical--label">Step {{ i + 1 }}</span>
+                    <p class="stepper--label--vertical" [ngClass]="{'no-step': !showSteps}">{{ step.label }}</p>
+                </div>
                 <div class="stepper--line-count">
                     <div class="stepper--line--vertical" *ngIf="i > 0">
                         <div
-                            class="stepper--progress"
+                            class="stepper--progress--vertical"
                             [ngClass]="{ 'current-count': i === currentStep, completed: i < currentStep }"
                         ></div>
                     </div>

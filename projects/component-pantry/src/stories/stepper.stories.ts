@@ -25,6 +25,16 @@ const meta: Meta<StepperComponent> = {
                 },
             },
         },
+        showSteps: {
+            control: 'select',
+            description: 'Used to show the steps.',
+            options: [true, false],
+            table: {
+                defaultValue: {
+                    summary: false,
+                },
+            },
+        },
     },
 };
 
@@ -34,7 +44,8 @@ type Story = StoryObj<StepperComponent>;
 export const Basic: Story = {
     args: {
         orientation: 'horizontal',
-        steps: [{ label: 'Create Screen' }, { label: 'Choose Template' }, { label: 'Assign Playlist' }],
+        showSteps: true,
+        steps: [{ label: 'Create Screen', completed: false }, { label: 'Choose Template', completed: false }, { label: 'Assign Playlist', completed: false }],
         currentStep: 0
     },
     render: (args) => ({
@@ -55,7 +66,8 @@ export const Basic: Story = {
         <nctv-card>
             <div style="display: flex; gap: 10px; flex-direction: column;">
             <nctv-stepper 
-                [steps]="steps" 
+                [steps]="steps"
+                [showSteps]="showSteps"
                 [(currentStep)]="currentStep"
                 (finished)="onFinish()"
                 [orientation]="orientation">

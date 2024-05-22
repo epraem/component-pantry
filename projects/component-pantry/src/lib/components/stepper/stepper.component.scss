@@ -1,130 +1,175 @@
 @import "../../styles/variables";
 
 .stepper {
-    width: 100%;
     height: 100%;
+    width: 100%;
 
     &--wrapper {
-        display: flex;
-        padding: 20px;
-        justify-content: center;
         align-items: center;
-        gap: 10px;
-        margin: 0;
-        border-radius: 10px;
         background: #fff;
+        border-radius: 10px;
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin: 0;
+        padding: 20px;
+    }
+
+    &--title {
+        align-items: start;
+        display: flex;
+        flex-direction: column;
+        text-wrap: nowrap;
+
+        &--step {
+            color: $color-gray-3;
+            font-size: $sm;
+            font-weight: 600;
+        }
+
+        &--label{
+            margin: 0;
+            width: fit-content;
+        }
+
+        .no-step {
+            margin-top: -30px;
+        }
+    }
+
+    &--title--vertical {
+        align-items: end;
+        display: flex;
+        flex-direction: column;
+
+        &--label {
+            color: $color-gray-3;
+            font-size: $sm;
+            font-weight: 600;
+        }
+
+        .no-step {
+            margin-top: -30px;
+        }
     }
 
     &--wrapper--vertical {
+        align-items: flex-end;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+        height: 100%;
         margin: 0;
-        border-radius: 10px;
-        background: #fff;
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
         padding: 20px;
         width: fit-content;
-        height: 100%;
     }
 
     &--item {
+        align-items: center;
         display: flex;
+        flex-grow: 1;
         height: 39px;
         justify-content: center;
-        align-items: center;
-        flex-grow: 1;
 
         &:first-child {
             display: flex;
+            flex-grow: 0;
             justify-content: right;
             width: fit-content;
-            flex-grow: 0;
         }
     }
 
     &--item--vertical {
-        display: flex;
         align-items: end;
+        display: flex;
         gap: 10px;
     }
 
     &--line {
+        -moz-border-radius-bottomleft: 5px;
+        -moz-border-radius-topleft: 5px;
+        -webkit-border-bottom-left-radius: 5px;
+        -webkit-border-top-left-radius: 5px;
+        align-items: center;
         background-color: $color-gray-3;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+        display: flex;
         height: 2px;
         width: 100%;
-        display: flex;
-        align-items: center;
-        -webkit-border-top-left-radius: 5px;
-        -webkit-border-bottom-left-radius: 5px;
-        -moz-border-radius-topleft: 5px;
-        -moz-border-radius-bottomleft: 5px;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
     }
 
     &--line--vertical {
         background-color: $color-gray-3;
-        width: 2px;
-        height: 0; // Change the height to 0 initially
         display: flex;
-        align-items: center;
-        -webkit-border-top-left-radius: 5px;
-        -webkit-border-bottom-left-radius: 5px;
-        -moz-border-radius-topleft: 5px;
-        -moz-border-radius-bottomleft: 5px;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-        animation: growVerticalLine 0.5s ease-in-out forwards; // Add the new animation
+        height: 100px;
+        justify-content: center;
+        width: auto;
+    }
+
+    &--progress--vertical {
+        width: 2px;
+
+        &.current-count,
+        &.completed {
+            animation: growVerticalLine 0.5s ease-in-out forwards;
+            background-color: $color-secondary;
+            height: 0;
+            position: relative;
+            top: 0;
+        }
     }
 
     &--progress {
         &.current-count,
         &.completed {
-            background-color: $color-secondary;
-            width: 0;
-            animation: fillLine 0.5s ease-in-out forwards;
-            -webkit-border-top-left-radius: 5px;
-            -webkit-border-bottom-left-radius: 5px;
-            -moz-border-radius-topleft: 5px;
             -moz-border-radius-bottomleft: 5px;
-            border-top-left-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -webkit-border-bottom-left-radius: 5px;
+            -webkit-border-top-left-radius: 5px;
+            animation: fillLine 0.5s ease-in-out forwards;
+            background-color: $color-secondary;
             border-bottom-left-radius: 5px;
+            border-top-left-radius: 5px;
+            width: 0;
         }
     }
 
     &--line-count {
+        align-items: center;
         display: flex;
         flex-direction: column;
-        align-items: center;
     }
 
     &--count {
-        width: 39px;
-        height: 39px;
-        flex-shrink: 0;
-        color: $color-primary;
-        background-color: $color-light;
-        display: flex;
         align-items: center;
-        justify-content: center;
+        background-color: $color-light;
         border-radius: 50%;
-        margin-right: 10px;
         border: 1px solid $color-primary;
+        color: $color-primary;
+        display: flex;
+        flex-shrink: 0;
+        height: 39px;
+        justify-content: center;
+        margin-right: 10px;
+        width: 39px;
+        cursor: pointer;
 
         svg {
-            width: 100%;
-            height: 100%;
             box-sizing: border-box;
+            height: 100%;
             padding: 8px;
+            width: 100%;
         }
 
         &.current-count {
-            border: 1px solid $color-secondary;
-            background-color: $color-secondary;
-            color: $color-light;
             animation: fillCurrentCount 0.5s ease-in-out forwards;
+            background-color: $color-secondary;
+            border: 1px solid $color-secondary;
+            color: $color-light;
         }
 
         &.completed {
@@ -135,66 +180,81 @@
     }
 
     &--count--vertical {
-        width: 39px;
-        height: 39px;
-        flex-shrink: 0;
-        color: $color-primary;
-        background-color: $color-light;
-        display: flex;
         align-items: center;
-        justify-content: center;
+        background-color: $color-light;
         border-radius: 50%;
         border: 1px solid $color-primary;
+        color: $color-primary;
+        display: flex;
+        flex-shrink: 0;
+        height: 39px;
+        justify-content: center;
+        width: 39px;
+        cursor: pointer;
+        transition: 0.5s ease-in-out;
+
+      
 
         svg {
-            width: 100%;
-            height: 100%;
             box-sizing: border-box;
+            height: 100%;
             padding: 8px;
+            width: 100%;
         }
 
         &.current-count {
-            border: 1px solid $color-secondary;
+            animation: fillCurrentCount 0.5s ease-in-out;
             background-color: $color-secondary;
+            border: 1px solid $color-secondary;
             color: $color-light;
-            animation: fillCurrentCount 0.5s ease-in-out forwards;
+            transition: 0.3s ease-in-out;
+
+            &:hover{
+                background: $color-green-9;
+            }
         }
 
         &.completed {
             background-color: $color-secondary;
             border: 1px solid $color-secondary;
             color: $color-secondary;
+            transition: 0.3s ease-in-out;
+
+            &:hover{
+                background: $color-green-9;
+            }
         }
     }
 
     &--label {
-        text-wrap: nowrap;
         font-size: $md;
+        text-wrap: nowrap;
 
         &--vertical {
             margin: 0;
         }
     }
-    
-&--step--label{
-    font-size: $sm;
-    color: $color-gray-3;
-    font-weight: 600;
 }
+
+.check-mark path {
+    animation: fillDraw 0.7s linear forwards;
+    stroke: #fff;
+    transform-origin: 50% 50%;
+    transform: scale(0);
 }
 
 // Animations
 @keyframes fillCurrentCount {
     0% {
-        border: 1px solid $color-primary;
         background-color: $color-light;
+        border: 1px solid $color-primary;
         color: $color-primary;
     }
 
     80% {
         border: 1px solid $color-secondary;
-        color: $color-light;
         box-shadow: 0px 0px 8px 3px $color-green-4;
+        color: $color-light;
     }
 
     100% {
@@ -205,39 +265,38 @@
 
 @keyframes fillLine {
     30% {
-        width: 0;
-        height: 2px;
         box-shadow: 0px 0px 3px 1px $color-green-3;
+        height: 2px;
+        width: 0;
     }
 
     50% {
-        height: 3px;
         box-shadow: 0px 0px 5px 2px $color-green-4;
+        height: 3px;
     }
 
     100% {
-        width: 100%;
-        height: 3px;
         box-shadow: 0px 0px 16px 1px $color-green-4;
+        height: 3px;
+        width: 100%;
     }
 }
 
 @keyframes growVerticalLine {
     0% {
-        height: 0;
         background-color: $color-secondary;
+        box-shadow: 0px 0px 3px 1px $color-green-3;
+        height: 0;
+    }
+    70% {
+        width: 3px;
     }
     100% {
         background-color: $color-secondary;
-        height: 100px;
+        box-shadow: 0px 0px 16px 1px $color-green-4;
+        height: 100%;
+        width: 3px;
     }
-}
-
-.check-mark path {
-    stroke: #fff;
-    transform-origin: 50% 50%;
-    transform: scale(0);
-    animation: fillDraw 0.7s linear forwards;
 }
 
 @keyframes fillDraw {
@@ -253,10 +312,4 @@
     100% {
         transform: scale(0.9);
     }
-}
-
-.test{
-    display: flex;
-    flex-direction: column;
-    align-items: end;
 }
