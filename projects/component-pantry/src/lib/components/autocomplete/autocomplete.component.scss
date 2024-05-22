@@ -158,6 +158,13 @@
                 background: $color-gray-9;
             }
         }
+
+        .not-found {
+            cursor: not-allowed;
+            &:hover {
+                background: none;
+            }
+        }
     }
 
     &--title {
