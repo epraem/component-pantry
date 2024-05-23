@@ -12,7 +12,16 @@
         gap: 10px;
         justify-content: center;
         margin: 0;
-        padding: 20px;
+    }
+
+    &--wrapper--vertical {
+        align-items: flex-end;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        margin: 0;
+        width: fit-content;
+        height: 100%;
     }
 
     &--title {
@@ -23,6 +32,28 @@
 
         &--step {
             color: $color-gray-3;
+            font-size: $sm;
+            font-weight: 600;
+        }
+
+        &--label {
+            margin: 0;
+            width: fit-content;
+        }
+
+        .no-step {
+            margin-top: -30px;
+        }
+    }
+
+    &--incomplete--title {
+        align-items: start;
+        display: flex;
+        flex-direction: column;
+        text-wrap: nowrap;
+        color: $color-invalid;
+
+        &--step {
             font-size: $sm;
             font-weight: 600;
         }
@@ -53,17 +84,25 @@
         }
     }
 
-    &--wrapper--vertical {
-        align-items: flex-end;
-        background: #091735;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+    &--incomplete--title--vertical {
+        align-items: end;
         display: flex;
         flex-direction: column;
-        height: 100%;
-        margin: 0;
-        padding: 20px;
-        width: fit-content;
+
+        &--step {
+            color: $color-gray-3;
+            font-size: $sm;
+            font-weight: 600;
+        }
+
+        &--label {
+            color: $color-light;
+            margin: 0;
+        }
+
+        .no-step {
+            margin-top: -30px;
+        }
     }
 
     &--item {
@@ -74,6 +113,23 @@
         justify-content: center;
 
         &:first-child {
+            height: auto;
+            display: flex;
+            flex-grow: 0;
+            justify-content: right;
+            width: fit-content;
+        }
+    }
+
+    &--incomplete--item {
+        align-items: center;
+        display: flex;
+        flex-grow: 1;
+        height: 39px;
+        justify-content: center;
+
+        &:first-child {
+            height: auto;
             display: flex;
             flex-grow: 0;
             justify-content: right;
@@ -85,6 +141,22 @@
         align-items: end;
         display: flex;
         gap: 20px;
+        height: 100%;
+
+        &:first-child {
+            height: auto;
+        }
+    }
+
+    &--incomplete--item--vertical {
+        align-items: end;
+        display: flex;
+        gap: 20px;
+        height: 100%;
+
+        &:first-child {
+            height: auto;
+        }
     }
 
     &--line {
@@ -101,25 +173,34 @@
         width: 100%;
     }
 
+    &--incomplete--line {
+        -moz-border-radius-bottomleft: 5px;
+        -moz-border-radius-topleft: 5px;
+        -webkit-border-bottom-left-radius: 5px;
+        -webkit-border-top-left-radius: 5px;
+        align-items: center;
+        background-color: $color-gray-3;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+        display: flex;
+        height: 2px;
+        width: 100%;
+    }
+
     &--line--vertical {
         background-color: $color-gray-3;
         display: flex;
-        height: 100px;
+        height: 100%;
         justify-content: center;
         width: auto;
     }
 
-    &--progress--vertical {
-        width: 2px;
-
-        &.current-count,
-        &.completed {
-            animation: growVerticalLine 0.5s linear forwards;
-            background-color: $color-secondary;
-            height: 0;
-            position: relative;
-            top: 0;
-        }
+    &--incomplete--line--vertical {
+        background-color: $color-gray-3;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        width: auto;
     }
 
     &--progress {
@@ -137,10 +218,59 @@
         }
     }
 
+    &--incomplete--progress {
+        &.current-count,
+        &.completed {
+            -moz-border-radius-bottomleft: 5px;
+            -moz-border-radius-topleft: 5px;
+            -webkit-border-bottom-left-radius: 5px;
+            -webkit-border-top-left-radius: 5px;
+            animation: fillLineIncomplete 0.5s linear forwards;
+            background-color: $color-invalid;
+            border-bottom-left-radius: 5px;
+            border-top-left-radius: 5px;
+            width: 100%;
+        }
+    }
+
+    &--progress--vertical {
+        width: 2px;
+
+        &.current-count,
+        &.completed {
+            animation: growVerticalLine 0.5s linear forwards;
+            background-color: $color-secondary;
+            height: 0;
+            position: relative;
+            top: 0;
+        }
+    }
+
+    &--incomplete--progress--vertical {
+        width: 2px;
+
+        &.current-count,
+        &.completed {
+            animation: growVerticalLine 0.5s linear forwards;
+            background-color: $color-secondary;
+            height: 0;
+            position: relative;
+            top: 0;
+        }
+    }
+
     &--line-count {
         align-items: center;
         display: flex;
         flex-direction: column;
+        height: 100%;
+    }
+
+    &--incomplete--line-count {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
     }
 
     &--count {
@@ -178,7 +308,87 @@
         }
     }
 
+    &--incomplete--count {
+        align-items: center;
+        background-color: $color-light;
+        border-radius: 50%;
+        border: 1px solid $color-primary;
+        color: $color-primary;
+        display: flex;
+        flex-shrink: 0;
+        height: 39px;
+        justify-content: center;
+        margin-right: 10px;
+        width: 39px;
+        cursor: pointer;
+
+        svg {
+            box-sizing: border-box;
+            height: 100%;
+            padding: 8px;
+            width: 100%;
+        }
+
+        &.current-count {
+            animation: fillCurrentCount 0.5s linear forwards;
+            background-color: $color-secondary;
+            border: 1px solid $color-secondary;
+            color: $color-light;
+        }
+
+        &.completed {
+            background-color: $color-light;
+            border: 1px solid $color-invalid;
+            color: $color-invalid;
+        }
+    }
+
     &--count--vertical {
+        align-items: center;
+        background-color: $color-light;
+        border-radius: 50%;
+        border: 1px solid $color-primary;
+        color: $color-primary;
+        display: flex;
+        flex-shrink: 0;
+        height: 39px;
+        justify-content: center;
+        width: 39px;
+        cursor: pointer;
+        transition: 0.5s linear;
+
+        svg {
+            box-sizing: border-box;
+            height: 100%;
+            padding: 8px;
+            width: 100%;
+        }
+
+        &.current-count {
+            animation: fillCurrentCount 0.5s linear;
+            background-color: $color-secondary;
+            border: 1px solid $color-secondary;
+            color: $color-light;
+            transition: 0.3s linear;
+
+            &:hover {
+                background: $color-green-9;
+            }
+        }
+
+        &.completed {
+            background-color: $color-secondary;
+            border: 1px solid $color-secondary;
+            color: $color-secondary;
+            transition: 0.3s linear;
+
+            &:hover {
+                background: $color-green-9;
+            }
+        }
+    }
+
+    &--incomplete--count--vertical {
         align-items: center;
         background-color: $color-light;
         border-radius: 50%;
@@ -241,6 +451,12 @@
     transform: scale(0);
 }
 
+.invalid-mark path {
+    animation: fillDrawInvalid 0.7s linear forwards;
+    transform-origin: 50% 50%;
+    transform: scale(0);
+}
+
 // Animations
 @keyframes fillCurrentCount {
     0% {
@@ -280,6 +496,17 @@
     }
 }
 
+@keyframes fillLineIncomplete {
+    0% {
+        height: 3px;
+        width: 100%;
+    }
+    100% {
+        height: 3px;
+        width: 100%;
+    }
+}
+
 @keyframes growVerticalLine {
     0% {
         background-color: $color-secondary;
@@ -306,5 +533,20 @@
     }
     100% {
         transform: scale(0.9);
+    }
+}
+
+@keyframes fillDrawInvalid {
+    30% {
+        transform: scale(1);
+    }
+    60% {
+        transform: scale(0.6);
+    }
+    80% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(0.6);
     }
 }

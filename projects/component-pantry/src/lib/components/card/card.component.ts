@@ -30,13 +30,16 @@ export class CardComponent {
      */
     @Input() sidePadding!: number;
 
+
+    @Input() cardSize: string = 'auto';
+
     /**
      * Generates class names based on card shadow level, if values are provided.
      * Constructs an object suitable for ngClass based on `shadowLevel`.
      * Add if necessary
      * @returns {Object} Object with dynamic class names
      */
-    getClass() {
+    getClass(): object {
         const classes = {
             [`card--shadow-${this.shadowLevel}`]: this.shadowLevel,
         };

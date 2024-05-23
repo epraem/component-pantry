@@ -81,7 +81,7 @@ export const Basic: Story = {
     render: (args) => ({
         props: args,
         template: `
-            <nctv-card [shadowLevel]="shadowLevel">
+            <nctv-card [shadowLevel]="shadowLevel" [size]="auto">
                 <nctv-autocomplete
                     [inputSize]="inputSize"
                     [label]="label"
