@@ -76,6 +76,7 @@
             color: $color-gray-3;
             font-size: $sm;
             font-weight: 600;
+            text-wrap: nowrap;
         }
 
         .no-step {
@@ -106,6 +107,7 @@
         &--label {
             color: $color-light;
             margin: 0;
+            text-wrap: nowrap;
         }
 
         .no-step {
