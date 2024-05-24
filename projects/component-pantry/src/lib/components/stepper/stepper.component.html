@@ -97,7 +97,7 @@
     <ng-template #verticalTemplate>
         <ul class="stepper--wrapper--vertical">
             <ng-container *ngFor="let step of steps; let i = index">
-                <ng-container *ngIf="!step.completed && i < currentStep; else inComplete">
+                <ng-container *ngIf="step.completed && i < currentStep; else inComplete">
                     <li
                         class="stepper--item--vertical"
                         [ngClass]="{ 'current-item': i === currentStep, completed: i < currentStep }"
@@ -147,11 +147,28 @@
                         class="stepper--incomplete--item--vertical"
                         [ngClass]="{ 'current-item': i === currentStep, completed: i < currentStep }"
                     >
-                        <div class="stepper--incomplete--title--vertical">
-                            <span *ngIf="showSteps" class="stepper--incomplete--title--vertical--step">Step {{ i + 1 }}</span>
-                            <p class="stepper--incomplete--title--vertical--label" [ngClass]="{ 'no-step': !showSteps }">
+                        <div
+                            class="stepper--incomplete--title--vertical"
+                            [ngClass]="{ incomplete: !step.completed && i < currentStep }"
+                        >
+                            <span
+                                *ngIf="showSteps"
+                                class="stepper--incomplete--title--vertical--step"
+                                [ngClass]="{ incomplete: !step.completed && i < currentStep }"
+                                >Step {{ i + 1 }}</span
+                            >
+                            <p
+                                class="stepper--incomplete--title--vertical--label"
+                                [ngClass]="{ 'no-step': !showSteps }"
+                                [ngClass]="{ incomplete: !step.completed && i < currentStep }"
+                            >
                                 {{ step.label }}
                             </p>
+                            <span
+                                *ngIf="!step.completed && i < currentStep"
+                                class="stepper--incomplete--title--vertical--info"
+                                >Incomplete information</span
+                            >
                         </div>
                         <div class="stepper--incomplete--line-count">
                             <div class="stepper--incomplete--line--vertical" *ngIf="i > 0">
@@ -166,22 +183,34 @@
                                 (click)="goToStep(i)"
                             >
                                 <span *ngIf="i >= currentStep">{{ i + 1 }}</span>
+
                                 <svg
                                     *ngIf="i < currentStep"
-                                    width="18"
-                                    height="13"
-                                    viewBox="0 0 18 13"
+                                    width="11"
+                                    height="10"
+                                    viewBox="0 0 11 10"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="check-mark"
+                                    class="invalid-mark-vertical"
                                 >
-                                    <path
-                                        d="M17 1L6 12L1 7"
-                                        stroke="black"
-                                        stroke-width="3"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
+                                    <g clip-path="url(#clip0_766_1079)">
+                                        <path
+                                            d="M5.56185 3.63637V5.34091M1.33322 6.87546C0.93958 7.55728 1.43185 8.40909 2.21867 8.40909H8.90503C9.6914 8.40909 10.1837 7.55728 9.79049 6.87546L6.44776 1.08091C6.05412 0.399095 5.06958 0.399095 4.67594 1.08091L1.33322 6.87546ZM5.56185 6.70455H5.56503V6.70819H5.56185V6.70455Z"
+                                            stroke="white"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_766_1079">
+                                            <rect
+                                                width="10"
+                                                height="9.09091"
+                                                fill="white"
+                                                transform="translate(0.56189)"
+                                            />
+                                        </clipPath>
+                                    </defs>
                                 </svg>
                             </div>
                         </div>

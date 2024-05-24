@@ -24,6 +24,8 @@ export class StepperComponent {
 
     @Input() showSteps: boolean = true;
 
+    @Input() clickable: boolean = true;
+
     @Output() finished = new EventEmitter<void>();
 
     onNext() {
@@ -43,9 +45,11 @@ export class StepperComponent {
     }
 
     goToStep(index: number) {
-        this.ngZone.run(() => {
-            this.currentStep = index;
-        });
+        if (this.clickable) {
+            this.ngZone.run(() => {
+                this.currentStep = index;
+            });
+        }
     }
 
     onFinish() {
