@@ -254,10 +254,9 @@ export const StepperForms: Story = {
         showSteps: true,
         steps: [
             { label: 'Create Screen', completed: true },
-            { label: 'Choose Template', completed: false },
+            { label: 'Choose Template', completed: true },
             { label: 'Assign Playlist', completed: false },
-            { label: 'Assign Host', completed: true },
-            { label: 'Assign Dealer', completed: true },
+            { label: 'Assign Host', completed: false },
         ],
         currentStep: 0,
     },
@@ -311,8 +310,8 @@ export const StepperForms: Story = {
 
 
                     <div style="width: 100%; height: fit-content;">
-                        <nctv-card>
-                            <div style="display: flex; gap: 10px; flex-direction: column; height: auto; width: 100%;">
+                        <nctv-card [sidePadding]="0">
+                            <div style="display: flex; gap: 10px; flex-direction: column; height: auto; width: 100%; padding: 20px 60px; box-sizing: border-box;">
                                 <nctv-stepper
                                     [clickable]="clickable"
                                     [steps]="steps"
