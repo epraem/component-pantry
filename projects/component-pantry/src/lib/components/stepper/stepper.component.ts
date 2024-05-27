@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, NgZone, Output } from '@angular/core';
+import { Component, Input, input, output } from '@angular/core';
 
 @Component({
     selector: 'nctv-stepper',
@@ -9,52 +9,40 @@ import { Component, EventEmitter, Input, NgZone, Output } from '@angular/core';
     styleUrls: ['./stepper.component.scss'],
 })
 export class StepperComponent {
-    constructor(private ngZone: NgZone) {}
-    /**
-     * Array of steps to be displayed in the stepper.
-     * Each step should be an object with 'label'.
-     */
-    @Input() steps: { label: string; completed: boolean }[] = [];
-    /**
-     * Index of the current active step.
-     */
-    @Input() currentStep: number = 0; // Ensure default is valid index
+    steps = input<{label: string, completed: boolean}[]>([
+        { label: 'Step 1', completed: true },
+        { label: 'Step 2', completed: true },
+        { label: 'Step 3', completed: true },
+        { label: 'Step 4', completed: true },
+    ]);
 
-    @Input() orientation: string = 'vertical';
+    @Input() currentStep = 0;
+    orientation = input('vertical');
+    showSteps = input(false);
+    clickable = input(true);
 
-    @Input() showSteps: boolean = true;
-
-    @Input() clickable: boolean = true;
-
-    @Output() finished = new EventEmitter<void>();
+    changeStep = output<number>();
 
     onNext() {
-        this.ngZone.run(() => {
-            if (this.currentStep < this.steps.length - 1) {
-                this.currentStep += 1;
-            }
-        });
+        if (this.currentStep < this.steps().length - 1) {
+            this.changeStep.emit(this.currentStep + 1);
+        }
     }
 
     onBack() {
-        this.ngZone.run(() => {
-            if (this.currentStep > 0) {
-                this.currentStep -= 1;
-            }
-        });
+        if (this.currentStep > 0) {
+            this.changeStep.emit(this.currentStep - 1);
+        }
     }
 
     goToStep(index: number) {
-        if (this.clickable) {
-            this.ngZone.run(() => {
-                this.currentStep = index;
-            });
+        if (this.clickable()) {
+            this.changeStep.emit(index);
+            console.log(index, this.clickable(), this.changeStep.emit(index))
         }
     }
 
     onFinish() {
-        this.ngZone.run(() => {
-            this.finished.emit();
-        });
+        this.changeStep.emit(this.steps().length);
     }
 }

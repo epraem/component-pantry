@@ -1,8 +1,8 @@
 <section class="stepper">
-    <ng-container *ngIf="orientation === 'horizontal'; else verticalTemplate">
+    @if (orientation() === "horizontal") {
         <ul class="stepper--wrapper">
-            <ng-container *ngFor="let step of steps; let i = index">
-                <ng-container *ngIf="!step.completed && i < currentStep; else inComplete">
+            @for (step of steps(); track step; let i = $index) {
+                @if (!step.completed && i < currentStep) {
                     <li
                         class="stepper--incomplete--item"
                         [ngClass]="{ 'current-item': i === currentStep, completed: i < currentStep }"
@@ -48,8 +48,7 @@
                             <span class="stepper--incomplete--title--step">Incomplete information</span>
                         </div>
                     </li>
-                </ng-container>
-                <ng-template #inComplete>
+                } @else {
                     <li
                         class="stepper--item"
                         [ngClass]="{ 'current-item': i === currentStep, completed: i < currentStep }"
@@ -89,14 +88,12 @@
                             <p class="stepper--title--label">{{ step.label }}</p>
                         </div>
                     </li>
-                </ng-template>
-            </ng-container>
+                }
+            }
         </ul>
-    </ng-container>
-
-    <ng-template #verticalTemplate>
+    } @else {
         <ul class="stepper--wrapper--vertical">
-            <ng-container *ngFor="let step of steps; let i = index">
+            <ng-container *ngFor="let step of steps(); let i = index">
                 <ng-container *ngIf="step.completed && i < currentStep; else inComplete">
                     <li
                         class="stepper--item--vertical"
@@ -218,5 +215,5 @@
                 </ng-template>
             </ng-container>
         </ul>
-    </ng-template>
+    }
 </section>
