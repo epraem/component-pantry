@@ -1,0 +1,117 @@
+@import "../../styles/variables";
+.table {
+    &__content {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: $xs;
+        line-height: 24px;
+    }
+
+    .sort-icon {
+        width: 1.5em;
+        height: 1.5em;
+        vertical-align: middle;
+    }
+
+    .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    &__row {
+        background-color: $color-light;
+        border: 0.5px solid $color-gray-11;
+    }
+
+    &__header,
+    &__cell {
+        text-align: center;
+        border: 0.5px solid $color-gray-11;
+        padding: $base-padding-sm;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &__header {
+        background: $color-gray-12;
+        height: auto;
+        height: 87px;
+        cursor: default;
+    }
+
+    &__cell {
+        height: auto;
+        min-height: 44px;
+        padding: 10px;
+        overflow: hidden;
+    }
+
+    .rotate-up {
+        transition: 0.3s ease-in-out;
+        transform: rotate(180deg) scale(1.3);
+    }
+
+    .rotate-down {
+        transition: 0.3s ease-in-out;
+        transform: rotate(0deg) scale(1.3);
+    }
+}
+
+.column {
+    &--type-full {
+        table-layout: unset;
+    }
+    &--type-ellipsis {
+        table-layout: fixed;
+    }
+    &--type-wrap {
+        table-layout: fixed;
+
+        th,
+        td {
+            text-wrap: wrap;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    thead {
+        display: none;
+    }
+
+    .table {
+        &__row {
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        &__content {
+            border: none;
+        }
+
+        &__cell {
+            min-height: auto;
+            height: auto;
+            border: none;
+            border-bottom: 0.5px solid $color-gray-11;
+            display: block;
+            text-align: right;
+            padding: $base-padding-sm;
+        }
+
+        &__cell::before {
+            content: attr(data-label);
+            float: left;
+            font-weight: bold;
+        }
+
+        &__cell:first-child {
+            display: none;
+        }
+
+        &__cell:last-child {
+            border-bottom: 0;
+        }
+    }
+}

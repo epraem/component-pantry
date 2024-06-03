@@ -83,13 +83,13 @@
 
     // Disabled state styles
     &:disabled {
-        background-color: $color-gray;
+        background-color: $color-gray-6;
         color: $color-light;
         cursor: not-allowed;
 
         &:hover,
         &:active {
-            background-color: $color-gray;
+            background-color: $color-gray-6;
         }
     }
 
