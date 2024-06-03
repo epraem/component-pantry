@@ -129,6 +129,8 @@ export const Basic: Story = {
                     </div>
                 </nctv-card>
             </ng-template>
+
+            <a href="https://host-installation-demo.vercel.app/">***Stepper usage demo***</a>
         </ng-container>
 
       
