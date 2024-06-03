@@ -12,13 +12,19 @@ export class StepperComponent {
     constructor(private ngZone: NgZone) {}
     /**
      * Array of steps to be displayed in the stepper.
-     * Each step should be an object with 'label' and optionally 'completed'.
+     * Each step should be an object with 'label'.
      */
-    @Input() steps: { label: string; completed?: boolean }[] = [];
+    @Input() steps: { label: string; completed: boolean }[] = [];
     /**
      * Index of the current active step.
      */
     @Input() currentStep: number = 0; // Ensure default is valid index
+
+    @Input() orientation: string = 'vertical';
+
+    @Input() showSteps: boolean = true;
+
+    @Input() clickable: boolean = true;
 
     @Output() finished = new EventEmitter<void>();
 
@@ -38,9 +44,17 @@ export class StepperComponent {
         });
     }
 
+    goToStep(index: number) {
+        if (this.clickable) {
+            this.ngZone.run(() => {
+                this.currentStep = index;
+            });
+        }
+    }
+
     onFinish() {
-      this.ngZone.run(() => {
-          this.finished.emit();
-      });
-  }
+        this.ngZone.run(() => {
+            this.finished.emit();
+        });
+    }
 }

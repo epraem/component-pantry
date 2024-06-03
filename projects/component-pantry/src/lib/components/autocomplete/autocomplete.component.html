@@ -45,6 +45,7 @@
                         <li *ngFor="let option of filteredData" (click)="optionSelect(option)">
                             {{ option.name }}
                         </li>
+                        <li *ngIf="filteredData.length === 0" class="not-found">Not Found</li>
                     </ul>
                 </div>
             </div>

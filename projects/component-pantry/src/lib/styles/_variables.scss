@@ -1,5 +1,6 @@
 // Theme Colors
 $color-danger: #e73535 !default;
+$color-invalid: #FF0000 !default;
 $color-gray: #e7e8ed !default;
 $color-info: #17a2b8 !default;
 $color-primary: #091635 !default;
@@ -129,4 +130,8 @@ $font-size-extra-large: $base-font-size * $size-modifier-extra-large;
 
     // Apply white text if background is dark, black if it's light
     color: if(color-is-light($background-color), $color-dark, $color-light);
+}
+
+div{
+    box-sizing: border-box;
 }

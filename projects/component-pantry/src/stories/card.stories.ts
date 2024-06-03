@@ -1,6 +1,6 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { CardComponent, CARD_SHADOWS } from '../lib/components/card';
+import { CardComponent, CARD_SHADOWS, CARD_SIZE } from '../lib/components/card';
 import { TextComponent } from '../lib/components/text';
 import { ButtonComponent } from '../public-api';
 
@@ -24,9 +24,10 @@ const meta: Meta<CardComponent> = {
             control: 'color',
             description: 'Sets the background color of the card.',
         },
-        sidePadding: {
-            control: 'number',
-            description: 'Sets the side paddings of the card.',
+        cardSize: {
+            control: 'select',
+            description: 'Sets the side size of the card.',
+            options: CARD_SIZE,
         },
     },
 };
