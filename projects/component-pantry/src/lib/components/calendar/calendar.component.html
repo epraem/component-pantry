@@ -100,9 +100,10 @@
                                             today: todayTimestamp === day.timestamp,
                                             active: selectedDate === day.timestamp
                                         }"
-                                        (click)="onSelectDay(day)"
                                     >
-                                        <span> {{ day.date }}</span>
+                                        <div (click)="onSelectDay(day)">
+                                            <span> {{ day.date }}</span>
+                                        </div>
 
                                         <div class="addNote" (click)="onAddNote()">
                                             <svg
