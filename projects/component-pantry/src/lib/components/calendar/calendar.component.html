@@ -5,9 +5,9 @@
         <div class="calendar--label">
             <span>Set Date</span>
             <div class="labels">
-                <span>Day</span>
-                <span>Month</span>
-                <span>Year</span>
+                <span [ngClass]="{ activeUnderline: onShowDay }" (click)="onClickDay()">Day</span>
+                <span [ngClass]="{ activeUnderline: onShowMonth }" (click)="onClickMonth()">Month</span>
+                <span [ngClass]="{ activeUnderline: onShowYear }" (click)="onClickYear()">Year</span>
             </div>
         </div>
 
@@ -27,9 +27,8 @@
                     >Day / Month / Year</label
                 >
             </div>
-
             <div class="tooltip" *ngIf="isDateInvalid">
-                <span class="tooltip--text">Choose a valid date</span>
+                <span class="tooltip--text">Choose a valid date!</span>
             </div>
 
             <div class="calendar--input-icon" [innerHTML]="sanitizedlabelInputIcon"></div>
@@ -52,8 +51,8 @@
                 </div>
             </ng-container>
 
-            <div class="datepicker--header-name" (click)="onClickHeaderdate()">
-                <ng-container *ngIf="!showYears; else yearsHeader">
+            <div class="datepicker--header-name">
+                <ng-container *ngIf="!onShowYear; else yearsHeader">
                     <span>{{ headerDate }}</span>
                 </ng-container>
 
@@ -78,7 +77,7 @@
         </div>
 
         <div class="datepicker--body">
-            <ng-container *ngIf="!showMonthAndYear; else isOpenMonthAndYear">
+            <ng-container *ngIf="onShowDay">
                 <ng-container>
                     <div class="datepicker--body-days">
                         @for (day of days; track day.name) {
@@ -100,9 +99,10 @@
                                             today: todayTimestamp === day.timestamp,
                                             active: selectedDate === day.timestamp
                                         }"
-                                        (click)="onSelectDay(day)"
                                     >
-                                        <span> {{ day.date }}</span>
+                                        <div class="inner" (click)="onSelectDay(day)">
+                                            <span> {{ day.date }}</span>
+                                        </div>
 
                                         <div class="addNote" (click)="onAddNote()">
                                             <svg
@@ -142,47 +142,45 @@
                 </div>
             </ng-container>
 
-            <ng-template #isOpenMonthAndYear>
-                <div class="datepicker--dates">
-                    <ng-container *ngIf="!showYears; else showYearCalendar">
-                        <div class="months">
-                            <ng-container *ngFor="let month of months">
-                                <div class="datepicker--dates-wrapper">
-                                    <div
-                                        class="datepicker--dates-month month"
-                                        [ngClass]="{
-                                            todayMonth: currentMonth.name === month.name,
-                                            activeMonth: selectedMonth === month.sequence
-                                        }"
-                                        (click)="onSelectMonth(month)"
-                                    >
-                                        <span>{{ month.name }}</span>
-                                    </div>
+            <div class="datepicker--dates">
+                <ng-container *ngIf="onShowMonth">
+                    <div class="months">
+                        <ng-container *ngFor="let month of months">
+                            <div class="datepicker--dates-wrapper">
+                                <div
+                                    class="datepicker--dates-month month"
+                                    [ngClass]="{
+                                        todayMonth: currentMonth.name === month.name,
+                                        activeMonth: selectedMonth === month.sequence
+                                    }"
+                                    (click)="onSelectMonth(month)"
+                                >
+                                    <span>{{ month.name }}</span>
                                 </div>
-                            </ng-container>
-                        </div>
-                    </ng-container>
+                            </div>
+                        </ng-container>
+                    </div>
+                </ng-container>
 
-                    <ng-template #showYearCalendar>
-                        <div class="years">
-                            <ng-container *ngFor="let year of years">
-                                <div class="datepicker--dates-wrapper">
-                                    <div
-                                        class="datepicker--dates-year year"
-                                        [ngClass]="{
-                                            todayMonth: currentYear === year,
-                                            activeMonth: selectedYear === year
-                                        }"
-                                        (click)="onSelectYear(year)"
-                                    >
-                                        <span>{{ year }}</span>
-                                    </div>
+                <ng-container *ngIf="onShowYear">
+                    <div class="years">
+                        <ng-container *ngFor="let year of years">
+                            <div class="datepicker--dates-wrapper">
+                                <div
+                                    class="datepicker--dates-year year"
+                                    [ngClass]="{
+                                        todayMonth: currentYear === year,
+                                        activeMonth: selectedYear === year
+                                    }"
+                                    (click)="onSelectYear(year)"
+                                >
+                                    <span>{{ year }}</span>
                                 </div>
-                            </ng-container>
-                        </div>
-                    </ng-template>
-                </div>
-            </ng-template>
+                            </div>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </div>
         </div>
     </div>
 </div>

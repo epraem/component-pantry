@@ -19,6 +19,7 @@ export class CalendarComponent implements OnInit {
 
     currentMonth!: any;
     currentYear!: number;
+    currentDay!: number;
     date = new Date();
     daysOfTheMonth: Month_Details[] = [];
     hasLabel = false;
@@ -41,6 +42,10 @@ export class CalendarComponent implements OnInit {
     yearStart!: number;
     isInputActive = false;
     isDateInvalid = false;
+
+    onShowDay = false;
+    onShowMonth = false;
+    onShowYear = false;
 
     //Days in a week
     days: Days[] = [
@@ -98,10 +103,12 @@ export class CalendarComponent implements OnInit {
 
         const currentMonth = this.date.getMonth();
         this.currentYear = this.date.getFullYear();
+        this.currentDay = this.date.getDate();
         this.getMonthByTimestamp(currentMonth);
         this.sanitizeSvgIcons();
         this.setDateHeader({ year: this.currentYear, month: currentMonth });
         this.hasLabel = this.label !== 'Default Label';
+        this.onClickDay();
     }
 
     /**
@@ -204,13 +211,53 @@ export class CalendarComponent implements OnInit {
     }
 
     /**
+     * Handles the click event for showing days.
+     * Sets `onShowDay` to true, and hides month and year views.
+     */
+    public onClickDay() {
+        this.onShowDay = true;
+        this.onShowMonth = false;
+        this.onShowYear = false;
+    }
+
+    /**
+     * Handles the click event for showing months.
+     * Sets `onShowMonth` to true, hides day and year views, and disables arrows.
+     */
+    public onClickMonth() {
+        this.onShowMonth = true;
+        this.onShowDay = false;
+        this.onShowYear = false;
+        this.showArrows = false;
+    }
+
+    /**
+     * Handles the click event for showing years.
+     * Sets `onShowYear` to true, hides day and month views, enables year view and arrows.
+     * Generates a range of years based on the current header year, starting from 8 years before the header year to 21 years after.
+     */
+    public onClickYear() {
+        this.onShowYear = true;
+        this.onShowMonth = false;
+        this.onShowDay = false;
+        this.showYears = true;
+        this.showArrows = true;
+
+        // Generate Years by Current Header
+        let showYears = this.headerYear;
+        showYears -= 8;
+        this.generateYears({ start: showYears, end: showYears + 29 });
+    }
+
+    /**
      * Selects a day from the month view and updates the selected date.
      * @param day - The details of the selected day.
      */
     public onSelectDay(day: Month_Details): void {
         this.selectedDate = day.timestamp;
         this.selectedDay = day.date;
-
+        this.onShowMonth = false;
+        this.onShowYear = false;
         this.convertTimestamp(day.timestamp);
     }
 
@@ -220,13 +267,15 @@ export class CalendarComponent implements OnInit {
      */
     public onSelectMonth(month: Months): void {
         this.showYears = true;
-        this.showArrows = true;
         this.selectedMonth = month.sequence;
+        this.onShowDay = true;
+        this.onShowMonth = false;
 
-        // Generate Years by Current Header
-        let showYears = this.headerYear;
-        showYears -= 8;
-        this.generateYears({ start: showYears, end: showYears + 29 });
+        if (!this.selectedYear || !this.selectedDay) {
+            this.setInitialDateHeaderAndTimestamp(this.currentYear, this.selectedMonth);
+        }
+
+        this.updateTimestampAndHeader(this.selectedDay, this.currentYear, this.selectedMonth);
     }
 
     /**
@@ -235,10 +284,53 @@ export class CalendarComponent implements OnInit {
      */
     public onSelectYear(year: number): void {
         this.showMonthAndYear = false;
-        this.showArrows = true;
         this.showYears = false;
         this.selectedYear = year;
-        this.setDateHeader({ year: year, month: this.selectedMonth });
+        this.onShowDay = true;
+        this.onShowYear = false;
+
+        if (!this.selectedDay || !this.selectedMonth) {
+            this.setInitialDateHeaderAndTimestamp(this.selectedYear, this.currentMonth);
+        }
+
+        this.updateTimestampAndHeader(this.selectedDay, this.selectedYear, this.selectedMonth);
+    }
+
+    /**
+     * Sets initial date header and timestamp.
+     * @param year - The year value.
+     * @param month - The month value.
+     */
+
+    private setInitialDateHeaderAndTimestamp(year: number, month: number): void {
+        this.setDateHeader({ year, month });
+        this.convertToTimeStamp({ year, month, day: 1 });
+    }
+
+    /**
+     * Updates timestamp and header.
+     * @param day - The day value.
+     * @param year - The year value.
+     * @param month - The month value.
+     */
+
+    private updateTimestampAndHeader(day: number, year: number, month: number): void {
+        this.convertToTimeStamp({ year, month, day });
+        this.setDateHeader({ year, month });
+    }
+
+    /**
+     * Converts a date object to a timestamp and processes it.
+     *
+     * @param {Object} data - The date data to convert.
+     * @param {number} data.year - The year of the date.
+     * @param {number} data.month - The month of the date (0-11, where 0 is January and 11 is December).
+     * @param {number} data.day - The day of the month.
+     */
+    private convertToTimeStamp(data: { year: number; month: number; day: number }) {
+        const inputDate = new Date(data.year, data.month, data.day);
+        const inputTimestamp = inputDate.getTime();
+        this.convertTimestamp(inputTimestamp);
     }
 
     /**
@@ -341,6 +433,7 @@ export class CalendarComponent implements OnInit {
         this.selectedYear = year;
         this.selectedMonth = month;
         this.selectedDay = day;
+        this.selectedDate = timestamp;
 
         this.dateInputValue.emit(timestamp);
 
