@@ -1,4 +1,4 @@
-@import "../../styles/variables";
+@import "../../styles/main";
 
 .input {
     color: $color-gray-3;
@@ -31,7 +31,7 @@
         }
     }
 
-    &--title{
+    &--title {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
