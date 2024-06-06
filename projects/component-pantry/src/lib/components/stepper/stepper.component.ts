@@ -9,51 +9,82 @@ import { Component, EventEmitter, Input, NgZone, Output } from '@angular/core';
     styleUrls: ['./stepper.component.scss'],
 })
 export class StepperComponent {
-    constructor(private ngZone: NgZone) {}
+    constructor(private _ngZone: NgZone) {}
+
     /**
-     * Array of steps to be displayed in the stepper.
-     * Each step should be an object with 'label'.
+     * Determines if the steps are clickable, allowing users to navigate directly to a specific step.
      */
-    @Input() steps: { label: string; completed: boolean }[] = [];
+    @Input() clickable: boolean = true;
+
     /**
      * Index of the current active step.
      */
-    @Input() currentStep: number = 0; // Ensure default is valid index
+    @Input() currentStep: number = 0; // Ensure default is a valid index
 
+    /**
+     * Orientation of the stepper. Can be 'vertical' or 'horizontal'.
+     */
     @Input() orientation: string = 'vertical';
 
+    /**
+     * Flag indicating whether to display the steps in the stepper.
+     */
     @Input() showSteps: boolean = true;
 
-    @Input() clickable: boolean = true;
+    /**
+     * Array of steps to be displayed in the stepper.
+     * Each step should be an object with 'label' and 'completed' properties.
+     */
+    @Input() steps: { label: string; completed: boolean }[] = [];
 
+    /**
+     * Event emitter triggered when the stepper has finished all steps.
+     */
     @Output() finished = new EventEmitter<void>();
 
-    onNext() {
-        this.ngZone.run(() => {
+    /**
+     * Moves to the next step in the stepper.
+     * @returns void
+     */
+    public onNext(): void {
+        this._ngZone.run(() => {
             if (this.currentStep < this.steps.length - 1) {
                 this.currentStep += 1;
             }
         });
     }
 
-    onBack() {
-        this.ngZone.run(() => {
+    /**
+     * Moves to the previous step in the stepper.
+     * @returns void
+     */
+    public onBack(): void {
+        this._ngZone.run(() => {
             if (this.currentStep > 0) {
                 this.currentStep -= 1;
             }
         });
     }
 
-    goToStep(index: number) {
+    /**
+     * Navigates directly to the specified step index.
+     * @param index Index of the step to navigate to.
+     * @returns void
+     */
+    public goToStep(index: number): void {
         if (this.clickable) {
-            this.ngZone.run(() => {
+            this._ngZone.run(() => {
                 this.currentStep = index;
             });
         }
     }
 
-    onFinish() {
-        this.ngZone.run(() => {
+    /**
+     * Emits the finished event, indicating that all steps are completed.
+     * @returns void
+     */
+    public onFinish(): void {
+        this._ngZone.run(() => {
             this.finished.emit();
         });
     }

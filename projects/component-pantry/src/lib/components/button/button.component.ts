@@ -57,7 +57,7 @@ export class ButtonComponent {
      * Constructs an object suitable for ngClass based on `type` and `size`.
      * @returns {Object} Object with dynamic class names
      */
-    getClass() {
+    public getClass() {
         const classes = {
             [`btn--${this.type}`]: this.type,
             [`btn--${this.size}`]: this.size,

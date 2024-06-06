@@ -30,7 +30,6 @@ export class CardComponent {
      */
     @Input() sidePadding!: number;
 
-
     @Input() cardSize: string = 'auto';
 
     /**
@@ -39,7 +38,7 @@ export class CardComponent {
      * Add if necessary
      * @returns {Object} Object with dynamic class names
      */
-    getClass(): object {
+    public getClass(): object {
         const classes = {
             [`card--shadow-${this.shadowLevel}`]: this.shadowLevel,
         };

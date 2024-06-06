@@ -41,7 +41,7 @@ export class TableComponent {
      * Sorts the table rows based on the provided column index.
      * @param columnIndex The index of the column to be sorted.
      */
-    sortColumn(columnIndex: number) {
+    public sortColumn(columnIndex: number): void {
         if (this.tableData.columns[columnIndex].sortable) {
             this.columnIndex = columnIndex;
 
@@ -65,7 +65,7 @@ export class TableComponent {
      * Constructs an object suitable for ngClass based on `columnType`.
      * @returns {Object} Object with dynamic class names
      */
-    getClass() {
+    public getClass(): object {
         const classes = {
             [`column--type-${this.columnType}`]: this.columnType,
         };

@@ -5,9 +5,9 @@
         <div class="calendar--label">
             <span>Set Date</span>
             <div class="labels">
-                <span [ngClass]="{ activeUnderline: onShowDay }" (click)="onClickDay()">Day</span>
-                <span [ngClass]="{ activeUnderline: onShowMonth }" (click)="onClickMonth()">Month</span>
-                <span [ngClass]="{ activeUnderline: onShowYear }" (click)="onClickYear()">Year</span>
+                <span [ngClass]="{ activeUnderline: onShowDay }" (click)="onDayClick()">Day</span>
+                <span [ngClass]="{ activeUnderline: onShowMonth }" (click)="onMonthClick()">Month</span>
+                <span [ngClass]="{ activeUnderline: onShowYear }" (click)="onYearClick()">Year</span>
             </div>
         </div>
 
