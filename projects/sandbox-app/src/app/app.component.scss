@@ -1,0 +1,10 @@
+.sandbox-app {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+
+    &__content-wrapper {
+        width: 992px;
+    }
+}

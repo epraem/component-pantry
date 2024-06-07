@@ -31,7 +31,7 @@ const meta: Meta<StepperComponent> = {
             options: SHOW_STEPS,
             table: {
                 defaultValue: {
-                    summary: false,
+                    summary: '',
                 },
             },
         },
@@ -41,7 +41,7 @@ const meta: Meta<StepperComponent> = {
             options: SHOW_STEPS,
             table: {
                 defaultValue: {
-                    summary: false,
+                    summary: '',
                 },
             },
         },
@@ -109,7 +109,7 @@ export const Basic: Story = {
                                 [orientation]="orientation">
                             </nctv-stepper>
                         </div>
-                        
+
                     </div>
                 </nctv-card>
             </div>
@@ -132,8 +132,6 @@ export const Basic: Story = {
 
             <a href="https://host-installation-demo.vercel.app/">***Stepper usage demo***</a>
         </ng-container>
-
-      
         `,
     }),
 };
@@ -166,14 +164,14 @@ export const Horizontal: Story = {
         template: `
         <nctv-card>
             <div style="display: flex; gap: 10px; flex-direction: column;">
-            <nctv-stepper 
+            <nctv-stepper
                 [steps]="steps"
                 [showSteps]="showSteps"
                 [(currentStep)]="currentStep"
                 (finished)="onFinish()"
                 [orientation]="orientation">
             </nctv-stepper>
-          
+
             </div>
         </nctv-card>
         `,
@@ -241,7 +239,7 @@ export const Vertical: Story = {
                         [orientation]="orientation">
                     </nctv-stepper>
                 </div>
-                
+
             </div>
         </nctv-card>
     </div>

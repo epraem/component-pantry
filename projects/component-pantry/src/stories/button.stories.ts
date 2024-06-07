@@ -16,7 +16,7 @@ const meta: Meta<ButtonComponent> = {
             description: 'Disabled state. Accepts true or false value.',
             table: {
                 defaultValue: {
-                    summary: false,
+                    summary: '',
                 },
             },
         },
