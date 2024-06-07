@@ -34,7 +34,7 @@ export const Basic: Story = {
     args: {
         inputSize: 'medium',
         label: 'Input Label',
-        placeholder: 'Default Input Placeholder'
+        placeholder: 'Default Input Placeholder',
     },
     render: (args) => ({
         props: args,

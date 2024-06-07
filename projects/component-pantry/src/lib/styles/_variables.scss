@@ -1,6 +1,6 @@
 // Theme Colors
 $color-danger: #e73535 !default;
-$color-invalid: #FF0000 !default;
+$color-invalid: #ff0000 !default;
 $color-gray: #e7e8ed !default;
 $color-info: #17a2b8 !default;
 $color-primary: #091635 !default;
@@ -25,18 +25,18 @@ $color-gray-11: #f2f2f5 !default;
 $color-gray-12: #f8f8f9 !default;
 
 //Shades of Green
-$color-green-1: #FCFFF6 !default;
-$color-green-2: #FBFFF2 !default;
-$color-green-3: #F6FBEA !default;
-$color-green-4: #E1F2C1 !default;
-$color-green-5: #CAE695 !default;
-$color-green-6: #B0DA66 !default;
-$color-green-7: #96CE35 !default;
-$color-green-8: #7DBA0E !default;
-$color-green-9: #6CA20E !default;
-$color-green-10: #5B860E !default;
-$color-green-11: #45650D !default;
-$color-green-12: #26360A !default;
+$color-green-1: #fcfff6 !default;
+$color-green-2: #fbfff2 !default;
+$color-green-3: #f6fbea !default;
+$color-green-4: #e1f2c1 !default;
+$color-green-5: #cae695 !default;
+$color-green-6: #b0da66 !default;
+$color-green-7: #96ce35 !default;
+$color-green-8: #7dba0e !default;
+$color-green-9: #6ca20e !default;
+$color-green-10: #5b860e !default;
+$color-green-11: #45650d !default;
+$color-green-12: #26360a !default;
 
 // Theme Shadows
 $shadow-1: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
@@ -84,9 +84,6 @@ $line-height-sm: 24px !default;
 $line-height-md: 28px !default;
 $line-height-lg: 32px !default;
 
-// Font Family
-$nunito: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-
 // Modifier for padding and font size for different sizes
 $size-modifier-small: 0.75 !default;
 $size-modifier-medium: 1 !default;
@@ -118,7 +115,7 @@ $font-size-extra-large: $base-font-size * $size-modifier-extra-large;
     $blue: blue($color);
 
     // Calculate the luminance of the color
-    $luminance: (0.299 * $red + 0.587 * $green + 0.114 * $blue) / 255;
+    $luminance: calc((0.299 * $red + 0.587 * $green + 0.114 * $blue) / 255);
 
     // Return true if the color is light, false if dark
     @return $luminance > 0.5;
@@ -130,8 +127,4 @@ $font-size-extra-large: $base-font-size * $size-modifier-extra-large;
 
     // Apply white text if background is dark, black if it's light
     color: if(color-is-light($background-color), $color-dark, $color-light);
-}
-
-div{
-    box-sizing: border-box;
 }

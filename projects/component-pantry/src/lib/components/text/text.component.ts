@@ -46,7 +46,7 @@ export class TextComponent {
      * Add more if necessary
      * @returns {Object} Object with dynamic class names
      */
-    getClass() {
+    public getClass(): object {
         const classes = {
             [`formatted-text--${this.textType}`]: this.textType,
             [`formatted-text--${this.fontWeight}`]: this.fontWeight,

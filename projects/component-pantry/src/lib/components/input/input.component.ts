@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
     templateUrl: './input.component.html',
     styleUrls: ['./input.component.scss'],
 })
-export class InputComponent implements OnInit {
+export class InputComponent {
     /**
      * Identifier for the input element.
      */
@@ -30,11 +30,6 @@ export class InputComponent implements OnInit {
     @Input() inputSize: string = 'medium';
 
     /**
-     * Indicates whether the input has a label.
-     */
-    hasLabel: boolean = false;
-
-    /**
      * Indicates whether the input is currently active (focused).
      */
     isActive: boolean = false;
@@ -49,18 +44,11 @@ export class InputComponent implements OnInit {
      */
     selectBtn: any;
 
-    ngOnInit() {
-        // Check if a label is provided, set hasLabel accordingly
-        if (this.label.length) {
-            this.hasLabel = true;
-        }
-    }
-
     /**
      * Dynamically generates class names based on inputSize.
      * @returns {Object} Object with dynamic class names.
      */
-    getClass(): object {
+    public getClass(): object {
         const classes = {
             [`input--${this.inputSize}`]: this.inputSize, // Apply class based on inputSize
         };
