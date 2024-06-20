@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, NgZone, Output } from '@angular/core';
+import { Component, input, effect, signal, output } from '@angular/core';
 
 @Component({
     selector: 'nctv-stepper',
@@ -9,49 +9,66 @@ import { Component, EventEmitter, Input, NgZone, Output } from '@angular/core';
     styleUrls: ['./stepper.component.scss'],
 })
 export class StepperComponent {
-    constructor(private _ngZone: NgZone) {}
-
     /**
      * Determines if the steps are clickable, allowing users to navigate directly to a specific step.
      */
-    @Input() clickable: boolean = true;
+    clickable = input<boolean>(true);
 
     /**
      * Index of the current active step.
      */
-    @Input() currentStep: number = 0; // Ensure default is a valid index
+    currentStep = input<number>(0); // Ensure default is a valid index
+    public internalCurrentStep = signal(this.currentStep());
 
     /**
      * Orientation of the stepper. Can be 'vertical' or 'horizontal'.
      */
-    @Input() orientation: string = 'vertical';
+    orientation = input<string>('vertical');
 
     /**
      * Flag indicating whether to display the steps in the stepper.
      */
-    @Input() showSteps: boolean = true;
+    showSteps = input<boolean>(true);
 
     /**
      * Array of steps to be displayed in the stepper.
      * Each step should be an object with 'label' and 'completed' properties.
      */
-    @Input() steps: { label: string; completed: boolean }[] = [];
+    steps = input<{ label: string; completed: boolean }[]>([]);
 
     /**
      * Event emitter triggered when the stepper has finished all steps.
      */
-    @Output() finished = new EventEmitter<void>();
+    finished = output<void>();
+
+    constructor() {
+        effect(
+            () => {
+                this.internalCurrentStep.set(this.currentStep());
+            },
+            { allowSignalWrites: true },
+        );
+
+        effect(
+            () => {
+                if (this.internalCurrentStep() >= this.steps().length) {
+                    this.internalCurrentStep.set(this.steps().length - 1);
+                } else if (this.internalCurrentStep() < 0) {
+                    this.internalCurrentStep.set(0);
+                }
+            },
+            { allowSignalWrites: true },
+        );
+    }
 
     /**
      * Moves to the next step in the stepper.
      * @returns void
      */
     public onNext(): void {
-        this._ngZone.run(() => {
-            if (this.currentStep < this.steps.length - 1) {
-                this.currentStep += 1;
-            }
-        });
+        if (this.internalCurrentStep() < this.steps().length - 1) {
+            this.internalCurrentStep.set(this.internalCurrentStep() + 1);
+        }
     }
 
     /**
@@ -59,11 +76,9 @@ export class StepperComponent {
      * @returns void
      */
     public onBack(): void {
-        this._ngZone.run(() => {
-            if (this.currentStep > 0) {
-                this.currentStep -= 1;
-            }
-        });
+        if (this.internalCurrentStep() > 0) {
+            this.internalCurrentStep.set(this.internalCurrentStep() - 1);
+        }
     }
 
     /**
@@ -72,10 +87,8 @@ export class StepperComponent {
      * @returns void
      */
     public goToStep(index: number): void {
-        if (this.clickable) {
-            this._ngZone.run(() => {
-                this.currentStep = index;
-            });
+        if (this.clickable() && index >= 0 && index < this.steps().length) {
+            this.internalCurrentStep.set(index);
         }
     }
 
@@ -84,8 +97,6 @@ export class StepperComponent {
      * @returns void
      */
     public onFinish(): void {
-        this._ngZone.run(() => {
-            this.finished.emit();
-        });
+        this.finished.emit();
     }
 }

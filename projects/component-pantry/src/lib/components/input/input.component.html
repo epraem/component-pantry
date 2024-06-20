@@ -1,4 +1,6 @@
 <div class="input" [ngClass]="getClass()">
-    <label [for]="for" *ngIf="label">{{ label }}</label>
-    <input [ngClass]="getClass()" type="text" [placeholder]="placeholder" />
+    @if (label()) {
+        <label [for]="for()">{{ label() }}</label>
+    }
+    <input [ngClass]="getClass()" type="text" [placeholder]="placeholder()" />
 </div>

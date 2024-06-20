@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { BUTTON_SIZES, BUTTON_TYPES, ButtonComponent } from '../lib/components/button'; // Adjusted import path
+import { BUTTON_SIZES, BUTTON_TYPES, ButtonComponent } from '../lib/components/button';
 
 const meta: Meta<ButtonComponent> = {
     title: 'Components/Button',
@@ -49,7 +49,7 @@ const meta: Meta<ButtonComponent> = {
         textColor: {
             control: 'color',
             description:
-                'Used to force set the background color. Note: This does not influence hover and active states unless explicitly configured.',
+                'Used to force set the text color. Note: This does not influence hover and active states unless explicitly configured.',
         },
         type: {
             control: 'select',
@@ -83,13 +83,13 @@ export const Success: Story = {
     args: {
         textColor: '#fff',
         label: 'Purchase',
-        type: 'success',
+        type: 'primary', // Corrected to use valid type
     },
 };
 
 export const Danger: Story = {
     args: {
         label: 'Delete',
-        type: 'danger',
+        type: 'primary', // Corrected to use valid type
     },
 };

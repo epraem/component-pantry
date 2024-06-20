@@ -14,6 +14,33 @@ const meta: Meta<InputComponent> = {
     tags: ['autodocs'],
     parameters: {},
     argTypes: {
+        for: {
+            control: 'text',
+            description: 'Identifier for the input element.',
+            table: {
+                defaultValue: {
+                    summary: 'for',
+                },
+            },
+        },
+        label: {
+            control: 'text',
+            description: 'Text label for the input.',
+            table: {
+                defaultValue: {
+                    summary: 'Default Label',
+                },
+            },
+        },
+        placeholder: {
+            control: 'text',
+            description: 'Placeholder text for the input.',
+            table: {
+                defaultValue: {
+                    summary: 'Default Placeholder',
+                },
+            },
+        },
         inputSize: {
             control: 'select',
             description: 'Used to set input size.',
@@ -32,15 +59,21 @@ type Story = StoryObj<InputComponent>;
 
 export const Basic: Story = {
     args: {
-        inputSize: 'medium',
+        for: 'for',
         label: 'Input Label',
         placeholder: 'Default Input Placeholder',
+        inputSize: 'medium',
     },
     render: (args) => ({
         props: args,
         template: `
-            <nctv-card [shadowLevel]="shadowLevel">
-               <nctv-input [label]="label" [inputSize]="inputSize" [placeholder]="placeholder"></nctv-input>
+            <nctv-card>
+               <nctv-input
+                   [for]="for"
+                   [label]="label"
+                   [inputSize]="inputSize"
+                   [placeholder]="placeholder">
+               </nctv-input>
             </nctv-card>
         `,
     }),

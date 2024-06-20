@@ -81,7 +81,7 @@ export const Basic: Story = {
     render: (args) => ({
         props: args,
         template: `
-            <nctv-card [shadowLevel]="shadowLevel" [size]="auto">
+            <nctv-card [shadowLevel]="shadowLevel" [cardSize]="'100%'">
                 <nctv-autocomplete
                     [inputSize]="inputSize"
                     [label]="label"
@@ -101,7 +101,6 @@ export const DemoAutocomplete: Story = {
         inputSize: 'medium',
         label: 'Autocomplete Field (Dynamic)',
         placeholder: 'Autocomplete Field Placeholder (Dynamic)',
-
         autocompleteData: dummyDataCountry,
     },
     render: (args) => ({
@@ -125,7 +124,6 @@ export const MultipleAutocomplete: Story = {
         inputSize: 'small',
         label: 'Autocomplete Field (Dynamic)',
         placeholder: 'Autocomplete Field Placeholder (Dynamic)',
-
         autocompleteData: dummyDataCountry,
     },
     render: (args) => ({
@@ -141,11 +139,6 @@ export const MultipleAutocomplete: Story = {
                 <nctv-input [label]="'I am a label (Static)'" [inputSize]="inputSize" [placeholder]="'I am a placeholder (Static)'"></nctv-input>
 
                 <nctv-input [label]="label" [inputSize]="inputSize" [placeholder]="placeholder"></nctv-input>
-
-                <nctv-autocomplete [inputSize]="inputSize" [label]="'Second autocomplete (Static)'" [placeholder]="'Select animal (Static)'" [autocompleteData]="[{id: '1', name: 'Lion', species: 'Panthera leo'}, {id: '2', name: 'Tiger', species: 'Panthera tigris'}, {id: '3', name: 'Elephant', species: 'Loxodonta'}, {id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis'}, {id: '5', name: 'Zebra', species: 'Equus zebra'}]">
-                </nctv-autocomplete>
-
-                <nctv-input [label]="'I am a label (Static)'" [inputSize]="inputSize" [placeholder]="'I am a placeholder (Static)'"></nctv-input>
 
                 <nctv-autocomplete [inputSize]="inputSize" [label]="'Second autocomplete (Static)'" [placeholder]="'Select animal (Static)'" [autocompleteData]="[{id: '1', name: 'Lion', species: 'Panthera leo'}, {id: '2', name: 'Tiger', species: 'Panthera tigris'}, {id: '3', name: 'Elephant', species: 'Loxodonta'}, {id: '4', name: 'Giraffe', species: 'Giraffa camelopardalis'}, {id: '5', name: 'Zebra', species: 'Equus zebra'}]">
                 </nctv-autocomplete>
