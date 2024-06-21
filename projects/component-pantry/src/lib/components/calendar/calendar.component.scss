@@ -1,6 +1,8 @@
 @import "../../styles/main";
 
 .calendar {
+    overflow: hidden;
+
     &--input {
         margin-block: 10px;
 
@@ -42,12 +44,15 @@
         }
 
         .tooltip {
-            background: red;
+            background: rgb(216, 80, 80);
             width: fit-content;
-            padding: 3px 8px;
+            padding: 8px;
             border-radius: 50px;
             animation: popup 2s;
-            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: $sm;
             left: 50px;
 
             &--text {
@@ -122,6 +127,7 @@
                 text-align: center;
                 padding-top: 50px;
                 padding-bottom: 30px;
+                animation: moveleft 0.5s;
 
                 span {
                     font-weight: 700;
@@ -133,6 +139,7 @@
         &--dates {
             &-days {
                 display: grid;
+                animation: moveleft 0.5s;
                 grid-template-columns: repeat(7, 1fr);
                 grid-template-rows: repeat(6, 100px);
                 row-gap: 5px;
@@ -164,12 +171,10 @@
                 height: 50px;
                 display: block;
                 align-content: center;
-                transition: 0.6s background;
+                transition: 0.2s ease-in-out;
                 position: relative;
 
                 .inner {
-                    width: 50px;
-                    height: 50px;
                     border-radius: 50%;
                     align-content: center;
                 }
@@ -213,21 +218,17 @@
                 }
             }
 
-            .today {
-                border: 2px solid $color-success;
-                border-radius: 50px;
-                display: block;
-                align-content: center;
-            }
-
             .active {
-                background: $color-success;
+                background-color: $color-success;
                 border-radius: 50px;
                 display: block;
                 align-content: center;
+                color: #fff;
+                font-weight: 700;
+                transition: 0.5s ease-in-out;
 
                 &:hover {
-                    background: $color-success;
+                    background: darken($color-success, 10%) !important;
                 }
             }
 
@@ -258,6 +259,7 @@
             grid-template-rows: repeat(4, 100px);
             text-align: center;
             align-items: center;
+            animation: moveRight 0.5s forwards;
         }
 
         .years {
@@ -265,6 +267,7 @@
             grid-template-columns: repeat(5, 1fr);
             grid-template-rows: repeat(6, 100px);
             text-align: center;
+            animation: moveDown 0.5s forwards;
             align-items: center;
         }
 
@@ -288,6 +291,13 @@
     }
 }
 
+.today {
+    border: 2px solid $color-success;
+    border-radius: 50px;
+    display: block;
+    align-content: center;
+}
+
 @keyframes popup {
     0% {
         opacity: 0;
@@ -301,5 +311,47 @@
     }
     100% {
         opacity: 0;
+    }
+}
+
+@keyframes moveleft {
+    0% {
+        transform: translateX(-50%);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes moveRight {
+    0% {
+        transform: translateX(50%);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes moveDown {
+    0% {
+        transform: translateY(-10%);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
     }
 }
