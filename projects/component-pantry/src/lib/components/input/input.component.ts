@@ -13,22 +13,27 @@ export class InputComponent {
     /**
      * Identifier for the input element.
      */
-    for = input<string>('for');
+    for = input<string>('');
 
     /**
      * Text label for the input.
      */
-    label = input<string>('Default Label');
+    label = input<string>('');
 
     /**
      * Placeholder text for the input.
      */
-    placeholder = input<string>('Default Placeholder');
+    placeholder = input<string>('');
 
     /**
      * Size of the input element (e.g., small, medium, large).
      */
     inputSize = input<string>('medium');
+
+    /**
+     * Input type (e.g., text, password, email).
+     */
+    inputType = input<string>('text'); // Add input type signal here
 
     /**
      * Indicates whether the input is currently active (focused).

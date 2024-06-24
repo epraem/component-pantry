@@ -48,7 +48,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n    args: {\r\n        for: 'for',\r\n        label: 'Input Label',\r\n        placeholder: 'Default Input Placeholder',\r\n        inputSize: 'medium',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card>\r\n               <nctv-input\r\n                   [for]=\"for\"\r\n                   [label]=\"label\"\r\n                   [inputSize]=\"inputSize\"\r\n                   [placeholder]=\"placeholder\">\r\n               </nctv-input>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                "defaultValue": "{\r\n    args: {\r\n        for: 'for',\r\n        label: 'Input Label',\r\n        placeholder: 'Default Input Placeholder',\r\n        inputSize: 'medium',\r\n        inputType: 'text', // Add inputType here\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n      <nctv-card>\r\n        <nctv-input\r\n          [for]=\"for\"\r\n          [label]=\"label\"\r\n          [inputSize]=\"inputSize\"\r\n          [placeholder]=\"placeholder\"\r\n          [inputType]=\"inputType\"> <!-- Add inputType binding here -->\r\n        </nctv-input>\r\n      </nctv-card>\r\n    `,\r\n    }),\r\n}"
             },
             {
                 "name": "Basic",
@@ -238,7 +238,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<InputComponent>",
-                "defaultValue": "{\r\n    title: 'Components/Input',\r\n    component: InputComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {\r\n        for: {\r\n            control: 'text',\r\n            description: 'Identifier for the input element.',\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'for',\r\n                },\r\n            },\r\n        },\r\n        label: {\r\n            control: 'text',\r\n            description: 'Text label for the input.',\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'Default Label',\r\n                },\r\n            },\r\n        },\r\n        placeholder: {\r\n            control: 'text',\r\n            description: 'Placeholder text for the input.',\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'Default Placeholder',\r\n                },\r\n            },\r\n        },\r\n        inputSize: {\r\n            control: 'select',\r\n            description: 'Used to set input size.',\r\n            options: INPUT_SIZE,\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'medium',\r\n                },\r\n            },\r\n        },\r\n    },\r\n}"
+                "defaultValue": "{\r\n    title: 'Components/Input',\r\n    component: InputComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {\r\n        for: {\r\n            control: 'text',\r\n            description: 'Identifier for the input element.',\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'for',\r\n                },\r\n            },\r\n        },\r\n        label: {\r\n            control: 'text',\r\n            description: 'Text label for the input.',\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'Default Label',\r\n                },\r\n            },\r\n        },\r\n        placeholder: {\r\n            control: 'text',\r\n            description: 'Placeholder text for the input.',\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'Default Placeholder',\r\n                },\r\n            },\r\n        },\r\n        inputSize: {\r\n            control: 'select',\r\n            description: 'Used to set input size.',\r\n            options: INPUT_SIZE,\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'medium',\r\n                },\r\n            },\r\n        },\r\n        inputType: {\r\n            control: 'text',\r\n            description: 'Type of the input element.',\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'text',\r\n                },\r\n            },\r\n        },\r\n    },\r\n}"
             },
             {
                 "name": "meta",
@@ -289,6 +289,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n    args: {\r\n        textContent: 'Eww such plain, much bored',\r\n        textType: 'paragraph',\r\n    },\r\n}"
+            },
+            {
+                "name": "Password",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/component-pantry/src/stories/input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n    args: {\r\n        for: 'password',\r\n        label: 'Password Label',\r\n        placeholder: 'Enter your password',\r\n        inputSize: 'medium',\r\n        inputType: 'password', // Set inputType to password\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n      <nctv-card>\r\n        <nctv-input\r\n          [for]=\"for\"\r\n          [label]=\"label\"\r\n          [inputSize]=\"inputSize\"\r\n          [placeholder]=\"placeholder\"\r\n          [inputType]=\"inputType\"> <!-- Add inputType binding here -->\r\n        </nctv-input>\r\n      </nctv-card>\r\n    `,\r\n    }),\r\n}"
             },
             {
                 "name": "preview",
@@ -579,7 +589,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n    args: {\r\n        for: 'for',\r\n        label: 'Input Label',\r\n        placeholder: 'Default Input Placeholder',\r\n        inputSize: 'medium',\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <nctv-card>\r\n               <nctv-input\r\n                   [for]=\"for\"\r\n                   [label]=\"label\"\r\n                   [inputSize]=\"inputSize\"\r\n                   [placeholder]=\"placeholder\">\r\n               </nctv-input>\r\n            </nctv-card>\r\n        `,\r\n    }),\r\n}"
+                    "defaultValue": "{\r\n    args: {\r\n        for: 'for',\r\n        label: 'Input Label',\r\n        placeholder: 'Default Input Placeholder',\r\n        inputSize: 'medium',\r\n        inputType: 'text', // Add inputType here\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n      <nctv-card>\r\n        <nctv-input\r\n          [for]=\"for\"\r\n          [label]=\"label\"\r\n          [inputSize]=\"inputSize\"\r\n          [placeholder]=\"placeholder\"\r\n          [inputType]=\"inputType\"> <!-- Add inputType binding here -->\r\n        </nctv-input>\r\n      </nctv-card>\r\n    `,\r\n    }),\r\n}"
                 },
                 {
                     "name": "meta",
@@ -589,7 +599,17 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<InputComponent>",
-                    "defaultValue": "{\r\n    title: 'Components/Input',\r\n    component: InputComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {\r\n        for: {\r\n            control: 'text',\r\n            description: 'Identifier for the input element.',\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'for',\r\n                },\r\n            },\r\n        },\r\n        label: {\r\n            control: 'text',\r\n            description: 'Text label for the input.',\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'Default Label',\r\n                },\r\n            },\r\n        },\r\n        placeholder: {\r\n            control: 'text',\r\n            description: 'Placeholder text for the input.',\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'Default Placeholder',\r\n                },\r\n            },\r\n        },\r\n        inputSize: {\r\n            control: 'select',\r\n            description: 'Used to set input size.',\r\n            options: INPUT_SIZE,\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'medium',\r\n                },\r\n            },\r\n        },\r\n    },\r\n}"
+                    "defaultValue": "{\r\n    title: 'Components/Input',\r\n    component: InputComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [CommonModule, CardComponent],\r\n        }),\r\n    ],\r\n    tags: ['autodocs'],\r\n    parameters: {},\r\n    argTypes: {\r\n        for: {\r\n            control: 'text',\r\n            description: 'Identifier for the input element.',\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'for',\r\n                },\r\n            },\r\n        },\r\n        label: {\r\n            control: 'text',\r\n            description: 'Text label for the input.',\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'Default Label',\r\n                },\r\n            },\r\n        },\r\n        placeholder: {\r\n            control: 'text',\r\n            description: 'Placeholder text for the input.',\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'Default Placeholder',\r\n                },\r\n            },\r\n        },\r\n        inputSize: {\r\n            control: 'select',\r\n            description: 'Used to set input size.',\r\n            options: INPUT_SIZE,\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'medium',\r\n                },\r\n            },\r\n        },\r\n        inputType: {\r\n            control: 'text',\r\n            description: 'Type of the input element.',\r\n            table: {\r\n                defaultValue: {\r\n                    summary: 'text',\r\n                },\r\n            },\r\n        },\r\n    },\r\n}"
+                },
+                {
+                    "name": "Password",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/component-pantry/src/stories/input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n    args: {\r\n        for: 'password',\r\n        label: 'Password Label',\r\n        placeholder: 'Enter your password',\r\n        inputSize: 'medium',\r\n        inputType: 'password', // Set inputType to password\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n      <nctv-card>\r\n        <nctv-input\r\n          [for]=\"for\"\r\n          [label]=\"label\"\r\n          [inputSize]=\"inputSize\"\r\n          [placeholder]=\"placeholder\"\r\n          [inputType]=\"inputType\"> <!-- Add inputType binding here -->\r\n        </nctv-input>\r\n      </nctv-card>\r\n    `,\r\n    }),\r\n}"
                 }
             ],
             "projects/component-pantry/src/stories/stepper.stories.ts": [
@@ -1113,6 +1133,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/component-pantry/src/stories/input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Password",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
