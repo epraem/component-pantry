@@ -28,7 +28,7 @@ export class CardComponent {
      * The default value is 25 pixels.
      * It determines the spacing between the card's content and its edges.
      */
-    sidePadding = input<number>(25);
+    sidePadding = input<number>(1);
 
     cardSize = input<string>('auto');
 

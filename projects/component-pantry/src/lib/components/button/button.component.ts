@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ButtonSizes, ButtonTypes } from './button';
+import { ButtonSizes, ButtonTypes, ButtonActionTypes } from './button';
 import { CommonModule } from '@angular/common';
 import { input } from '@angular/core';
 
@@ -38,7 +38,7 @@ export class ButtonComponent {
     label = input<string>('Click Me');
 
     /**
-     * Defines the size of the button. Accepted values are 'xsm', 'sm', 'lg', or 'normal'.
+     * Defines the size of the button. Accepted values are 'sm', 'normal', 'lg'.
      */
     size = input<ButtonSizes>('normal');
 
@@ -49,18 +49,23 @@ export class ButtonComponent {
     textColor = input<string>('');
 
     /**
-     * Defines the type of the button, which influences its styling. Valid types are 'primary' and 'secondary'.
+     * Defines the type of the button, which influences its styling. Valid types are 'danger', 'primary', 'secondary', 'success', 'warning'.
      */
-    type = input<ButtonTypes>('primary');
+    buttonStyle = input<ButtonTypes>('primary');
 
     /**
-     * Generates class names based on button type and size, if values are provided.
-     * Constructs an object suitable for ngClass based on `type` and `size`.
+     * Defines the type of the button element. Valid types are 'button', 'submit', 'reset'.
+     */
+    buttonActionType = input<ButtonActionTypes>('button');
+
+    /**
+     * Generates class names based on button style and size, if values are provided.
+     * Constructs an object suitable for ngClass based on `buttonStyle` and `size`.
      * @returns {Object} Object with dynamic class names
      */
     public getClass() {
         return {
-            [`btn--${this.type()}`]: this.type(),
+            [`btn--${this.buttonStyle()}`]: this.buttonStyle(),
             [`btn--${this.size()}`]: this.size(),
         };
     }

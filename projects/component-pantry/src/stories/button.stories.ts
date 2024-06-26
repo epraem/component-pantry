@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { BUTTON_SIZES, BUTTON_TYPES, ButtonComponent } from '../lib/components/button';
+import { BUTTON_SIZES, BUTTON_TYPES, ButtonComponent, BUTTON_ACTION_TYPES } from '../lib/components/button';
 
 const meta: Meta<ButtonComponent> = {
     title: 'Components/Button',
@@ -40,7 +40,7 @@ const meta: Meta<ButtonComponent> = {
         },
         size: {
             control: 'select',
-            description: `Defines the size of the button. Accepted values are 'xsm', 'sm', 'lg', or 'normal'.`,
+            description: `Defines the size of the button. Accepted values are 'sm', 'normal', or 'lg'.`,
             options: BUTTON_SIZES,
             table: {
                 defaultValue: { summary: 'normal' },
@@ -51,12 +51,20 @@ const meta: Meta<ButtonComponent> = {
             description:
                 'Used to force set the text color. Note: This does not influence hover and active states unless explicitly configured.',
         },
-        type: {
+        buttonStyle: {
             control: 'select',
-            description: `Defines the type of the button, which influences its styling. Valid types are 'primary' and 'secondary'.`,
+            description: `Defines the style of the button, which influences its styling. Valid types are 'danger', 'primary', 'secondary', 'success', 'warning'.`,
             options: BUTTON_TYPES,
             table: {
                 defaultValue: { summary: 'primary' },
+            },
+        },
+        buttonActionType: {
+            control: 'select',
+            description: `Defines the type of the button element. Valid types are 'button', 'submit', 'reset'.`,
+            options: BUTTON_ACTION_TYPES,
+            table: {
+                defaultValue: { summary: 'button' },
             },
         },
     },
@@ -68,7 +76,7 @@ type Story = StoryObj<ButtonComponent>;
 
 export const Primary: Story = {
     args: {
-        type: 'primary',
+        buttonStyle: 'primary',
     },
 };
 
@@ -83,13 +91,13 @@ export const Success: Story = {
     args: {
         textColor: '#fff',
         label: 'Purchase',
-        type: 'primary', // Corrected to use valid type
+        buttonStyle: 'success',
     },
 };
 
 export const Danger: Story = {
     args: {
         label: 'Delete',
-        type: 'primary', // Corrected to use valid type
+        buttonStyle: 'danger',
     },
 };

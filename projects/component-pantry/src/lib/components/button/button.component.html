@@ -4,6 +4,7 @@
     [style.color]="textColor()"
     [ngClass]="getClass()"
     [disabled]="disabled()"
+    [attr.type]="buttonActionType()"
 >
     @if (iconLeft()) {
         <i class="icon-left {{ iconLeft() }}"></i>

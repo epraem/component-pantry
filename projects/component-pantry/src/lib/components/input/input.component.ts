@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { input } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
     selector: 'nctv-input',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, ReactiveFormsModule],
     templateUrl: './input.component.html',
     styleUrls: ['./input.component.scss'],
 })
@@ -39,6 +40,8 @@ export class InputComponent {
      * Indicates whether the input is currently active (focused).
      */
     isActive: boolean = false;
+
+    control = input<FormControl>(new FormControl());
 
     /**
      * Dynamically generates class names based on inputSize.
