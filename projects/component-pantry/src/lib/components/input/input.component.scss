@@ -28,6 +28,13 @@
                 color: $color-gray-3;
             }
         }
+
+        &.invalid {
+            border-color: rgb(255, 55, 55);
+            &::placeholder {
+                color: rgb(255, 55, 55);
+            }
+        }
     }
 
     &--title {
@@ -50,4 +57,8 @@
         font-size: $lg;
         line-height: $line-height-lg;
     }
+}
+
+.invalid__label {
+    color: rgb(255, 55, 55);
 }

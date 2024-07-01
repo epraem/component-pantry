@@ -2,5 +2,14 @@
     @if (label()) {
         <label [for]="for()">{{ label() }}</label>
     }
-    <input [ngClass]="getClass()" [type]="inputType()" [placeholder]="placeholder()" [formControl]="control()" />
+    <input
+        [ngClass]="getClass()"
+        [type]="inputType()"
+        [placeholder]="placeholder()"
+        [formControl]="control()"
+        [class.invalid]="isInvalid()"
+    />
+    @if (isInvalid() && showInvalidLabel()) {
+        <span class="invalid__label">{{ invalidLabel() }}</span>
+    }
 </div>

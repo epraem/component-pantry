@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, InputSignal, OnInit } from '@angular/core';
 import { input } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
     selector: 'nctv-input',
@@ -10,7 +10,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     templateUrl: './input.component.html',
     styleUrls: ['./input.component.scss'],
 })
-export class InputComponent {
+export class InputComponent implements OnInit {
     /**
      * Identifier for the input element.
      */
@@ -34,14 +34,41 @@ export class InputComponent {
     /**
      * Input type (e.g., text, password, email).
      */
-    inputType = input<string>('text'); // Add input type signal here
+    inputType = input<string>('text');
 
     /**
-     * Indicates whether the input is currently active (focused).
+     * Indicates whether the input is required.
      */
-    isActive: boolean = false;
+    required = input<boolean>(false);
 
-    control = input<FormControl>(new FormControl());
+    /**
+     * Form control for managing the input value and its validation.
+     * @type {InputSignal<FormControl>}
+     */
+    control: InputSignal<FormControl> = input<FormControl>(new FormControl(''));
+
+    /**
+     * Label to display when the input is invalid.
+     */
+    invalidLabel = input<string>('This field is required*');
+
+    /**
+     * Indicates whether the invalid label should be shown.
+     */
+    showInvalidLabel = input<boolean>(true);
+
+    ngOnInit(): void {
+        this.updateValidators();
+    }
+
+    private updateValidators(): void {
+        if (this.required()) {
+            this.control().setValidators([Validators.required]);
+        } else {
+            this.control().clearValidators();
+        }
+        this.control().updateValueAndValidity();
+    }
 
     /**
      * Dynamically generates class names based on inputSize.
@@ -51,5 +78,13 @@ export class InputComponent {
         return {
             [`input--${this.inputSize()}`]: this.inputSize(),
         };
+    }
+
+    /**
+     * Checks if the input is invalid.
+     * @returns {boolean} True if the input is invalid, otherwise false.
+     */
+    public isInvalid(): boolean {
+        return this.control().invalid && this.control().touched;
     }
 }
