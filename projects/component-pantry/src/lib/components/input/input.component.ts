@@ -50,12 +50,7 @@ export class InputComponent implements OnInit {
     /**
      * Label to display when the input is invalid.
      */
-    invalidLabel = input<string>('This field is required*');
-
-    /**
-     * Indicates whether the invalid label should be shown.
-     */
-    showInvalidLabel = input<boolean>(true);
+    invalidLabel = input<string>('');
 
     ngOnInit(): void {
         this.updateValidators();
@@ -86,5 +81,9 @@ export class InputComponent implements OnInit {
      */
     public isInvalid(): boolean {
         return this.control().invalid && this.control().touched;
+    }
+
+    public shouldShowInvalidLabel(): boolean {
+        return this.isInvalid() && this.invalidLabel().length > 0;
     }
 }

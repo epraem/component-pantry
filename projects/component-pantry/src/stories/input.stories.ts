@@ -70,15 +70,6 @@ const meta: Meta<InputComponent> = {
                 },
             },
         },
-        showInvalidLabel: {
-            control: 'boolean',
-            description: 'Indicates whether the invalid label should be shown.',
-            table: {
-                defaultValue: {
-                    summary: 'true',
-                },
-            },
-        },
         invalidLabel: {
             control: 'text',
             description: 'Label to display when the input is invalid.',
@@ -102,7 +93,6 @@ export const Basic: Story = {
         inputSize: 'medium',
         inputType: 'email',
         required: false,
-        showInvalidLabel: true,
         invalidLabel: 'This field is required*',
     },
     render: (args) => ({
@@ -133,7 +123,6 @@ export const Password: Story = {
         inputType: 'password',
         required: true,
         invalidLabel: 'This field is required*',
-        showInvalidLabel: true,
     },
     render: (args) => ({
         props: args,
@@ -163,7 +152,6 @@ export const Validation: Story = {
         inputType: 'text',
         required: true,
         invalidLabel: 'This field is required*',
-        showInvalidLabel: true,
     },
     render: (args) => ({
         props: {

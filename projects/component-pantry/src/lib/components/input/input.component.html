@@ -9,7 +9,7 @@
         [formControl]="control()"
         [class.invalid]="isInvalid()"
     />
-    @if (isInvalid() && showInvalidLabel()) {
+    @if (shouldShowInvalidLabel()) {
         <span class="invalid__label">{{ invalidLabel() }}</span>
     }
 </div>
