@@ -1,11 +1,16 @@
 <button
     class="btn"
-    [style.background-color]="backgroundColor"
-    [style.color]="textColor"
+    [style.background-color]="backgroundColor()"
+    [style.color]="textColor()"
     [ngClass]="getClass()"
-    [disabled]="disabled"
+    [disabled]="disabled()"
+    [attr.type]="buttonActionType()"
 >
-    <i *ngIf="iconLeft" class="icon-left {{ iconLeft }}"></i>
-    <span>{{ label }}</span>
-    <i *ngIf="iconRight" class="icon-right {{ iconRight }}"></i>
+    @if (iconLeft()) {
+        <i class="icon-left {{ iconLeft() }}"></i>
+    }
+    <span>{{ label() }}</span>
+    @if (iconRight()) {
+        <i class="icon-right {{ iconRight() }}"></i>
+    }
 </button>

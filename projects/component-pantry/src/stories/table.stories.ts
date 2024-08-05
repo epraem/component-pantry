@@ -17,149 +17,59 @@ const dummyData = {
     ],
     rows: [
         [
-            {
-                value: 1,
-            },
-            {
-                value: 'Amazon Data Center',
-            },
-            {
-                value: 'Sunrise Motors Inc.',
-            },
-            {
-                value: '456 Elm Street Apt. 201',
-            },
-            {
-                value: 'Seattle',
-            },
-            {
-                value: 'Washington',
-            },
-            {
-                value: '98101',
-            },
-            {
-                value: 'Pacific',
-            },
-            {
-                value: 15,
-            },
+            { value: 1 },
+            { value: 'Amazon Data Center' },
+            { value: 'Sunrise Motors Inc.' },
+            { value: '456 Elm Street Apt. 201' },
+            { value: 'Seattle' },
+            { value: 'Washington' },
+            { value: '98101' },
+            { value: 'Pacific' },
+            { value: 15 },
         ],
         [
-            {
-                value: 2,
-            },
-            {
-                value: 'Microsoft Headquarters',
-            },
-            {
-                value: 'Sunset Electronics',
-            },
-            {
-                value: '789 Oak Avenue',
-            },
-            {
-                value: 'Redmond',
-            },
-            {
-                value: 'Washington',
-            },
-            {
-                value: '98052',
-            },
-            {
-                value: 'Pacific',
-            },
-            {
-                value: 20,
-            },
+            { value: 2 },
+            { value: 'Microsoft Headquarters' },
+            { value: 'Sunset Electronics' },
+            { value: '789 Oak Avenue' },
+            { value: 'Redmond' },
+            { value: 'Washington' },
+            { value: '98052' },
+            { value: 'Pacific' },
+            { value: 20 },
         ],
         [
-            {
-                value: 3,
-            },
-            {
-                value: 'Googleplex',
-            },
-            {
-                value: 'Skyline Solutions',
-            },
-            {
-                value: '123 Maple Street',
-            },
-            {
-                value: 'Mountain View',
-            },
-            {
-                value: 'California',
-            },
-            {
-                value: '94043',
-            },
-            {
-                value: 'Eastern',
-            },
-            {
-                value: 30,
-            },
+            { value: 3 },
+            { value: 'Googleplex' },
+            { value: 'Skyline Solutions' },
+            { value: '123 Maple Street' },
+            { value: 'Mountain View' },
+            { value: 'California' },
+            { value: '94043' },
+            { value: 'Eastern' },
+            { value: 30 },
         ],
         [
-            {
-                value: 4,
-            },
-            {
-                value: 'Apple Park',
-            },
-            {
-                value: 'Orchard Technologies',
-            },
-            {
-                value: '567 Pine Road',
-            },
-            {
-                value: 'Cupertino',
-            },
-            {
-                value: 'California',
-            },
-            {
-                value: '95014',
-            },
-            {
-                value: 'Mountain',
-            },
-            {
-                value: 25,
-            },
+            { value: 4 },
+            { value: 'Apple Park' },
+            { value: 'Orchard Technologies' },
+            { value: '567 Pine Road' },
+            { value: 'Cupertino' },
+            { value: 'California' },
+            { value: '95014' },
+            { value: 'Mountain' },
+            { value: 25 },
         ],
         [
-            {
-                value: 5,
-            },
-            {
-                value: 'Facebook Campus',
-            },
-            {
-                value: 'Social Solutions',
-            },
-            {
-                value: '101 Cedar Lane',
-            },
-            {
-                value: 'Menlo Park',
-            },
-            {
-                value: 'California',
-            },
-            {
-                value: '94025',
-            },
-            {
-                value: 'Pacific',
-            },
-            {
-                value: 18,
-            },
+            { value: 5 },
+            { value: 'Facebook Campus' },
+            { value: 'Social Solutions' },
+            { value: '101 Cedar Lane' },
+            { value: 'Menlo Park' },
+            { value: 'California' },
+            { value: '94025' },
+            { value: 'Pacific' },
+            { value: 18 },
         ],
     ],
 };
@@ -186,8 +96,8 @@ const meta: Meta<TableComponent> = {
             },
         },
         tableData: {
-            control: 'select',
-            description: 'Used to set shadow level, the higher the value the more prominent the shadow is.',
+            control: 'object',
+            description: 'Table data containing columns and rows.',
         },
     },
 };

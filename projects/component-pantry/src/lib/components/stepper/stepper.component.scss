@@ -31,7 +31,7 @@
 
         &--step {
             color: $color-gray-3;
-            font-size: $sm;
+            font-size: $md;
             font-weight: 600;
         }
 
@@ -92,7 +92,7 @@
 
         &--step {
             color: $color-gray-3;
-            font-size: $sm;
+            font-size: $md;
             font-weight: 600;
         }
 
@@ -150,7 +150,7 @@
     &--item--vertical {
         align-items: end;
         display: flex;
-        gap: 20px;
+        gap: 30px;
         height: 100%;
 
         &:first-child {
@@ -307,10 +307,10 @@
         color: $color-primary;
         display: flex;
         flex-shrink: 0;
-        height: 39px;
+        height: 40px;
         justify-content: center;
         margin-right: 10px;
-        width: 39px;
+        width: 40px;
         cursor: pointer;
 
         svg {
@@ -460,7 +460,8 @@
     }
 
     &--label {
-        font-size: $md;
+        font-size: $lg;
+        font-weight: bold;
         text-wrap: nowrap;
 
         &--vertical {

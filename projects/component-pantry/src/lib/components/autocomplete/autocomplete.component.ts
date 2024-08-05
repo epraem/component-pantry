@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import {
     Component,
-    Input,
     OnInit,
-    ViewChild,
     ElementRef,
-    AfterViewInit,
     ChangeDetectorRef,
     HostListener,
+    computed,
+    effect,
+    input,
+    viewChild,
+    viewChildren,
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -20,76 +22,76 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     templateUrl: './autocomplete.component.html',
     styleUrls: ['./autocomplete.component.scss'],
 })
-export class AutocompleteComponent implements OnInit, AfterViewInit {
+export class AutocompleteComponent implements OnInit {
     /**
      * ID for the associated input element. Used for accessibility purposes.
      */
-    @Input() for: string = 'for';
+    for = input<string>('for');
 
     /**
      * Data source for the autocomplete suggestions. Expected to be an array of objects.
      */
-    @Input() autocompleteData: any[] = [];
-
-    /**
-     * Flag indicating whether to show the left icon.
-     */
-    @Input() showLeftIcon = true;
-
-    /**
-     * Flag indicating whether to show the right icon.
-     */
-    @Input() showRightIcon = true;
-
-    /**
-     * Label text for the autocomplete component. Displayed above the input field.
-     */
-    @Input() label: string = 'Default Label';
-
-    /**
-     * Placeholder text for the input field. Displayed when the input is empty.
-     */
-    @Input() placeholder: string = 'Default Placeholder';
-
-    /**
-     * Size of the input field. Accepted values are 'small', 'medium', 'large'.
-     */
-    @Input() inputSize: string = 'medium';
+    autocompleteData = input<any[]>([]);
 
     /**
      * SVG icon displayed to the left of the input field. Expected to be a valid SVG string.
      */
-    @Input() leftIconSvg: string | null = null;
+    leftIconSvg = input<string | null>(null);
 
     /**
      * SVG icon displayed to the right of the input field. Expected to be a valid SVG string.
      */
-    @Input() rightIconSvg: string | null = null;
+    rightIconSvg = input<string | null>(null);
+
+    /**
+     * Flag indicating whether to show the left icon.
+     */
+    showLeftIcon = computed(() => !!this.leftIconSvg());
+
+    /**
+     * Flag indicating whether to show the right icon.
+     */
+    showRightIcon = computed(() => !!this.rightIconSvg());
+
+    /**
+     * Label text for the autocomplete component. Displayed above the input field.
+     */
+    label = input<string>('Default Label');
+
+    /**
+     * Placeholder text for the input field. Displayed when the input is empty.
+     */
+    placeholder = input<string>('Default Placeholder');
+
+    /**
+     * Size of the input field. Accepted values are 'small', 'medium', 'large'.
+     */
+    inputSize = input<string>('medium');
 
     /**
      * Title text for the autocomplete component. Displayed as a tooltip or heading.
      */
-    @Input() title: string = 'Default Title';
+    title = input<string>('Default Title');
 
     /**
      * Reference to the dropdown wrapper element. Used to control the visibility and positioning of the dropdown.
      */
-    @ViewChild('dropdownWrapper', { static: true }) dropdownWrapper!: ElementRef<HTMLDivElement>;
+    dropdownWrapper = viewChild<ElementRef<HTMLDivElement>>('dropdownWrapper');
 
     /**
      * Reference to the search input element. Used to handle focus and input events.
      */
-    @ViewChild('searchInput', { static: false }) searchInput!: ElementRef<HTMLInputElement>;
+    searchInput = viewChild<ElementRef<HTMLInputElement>>('searchInput');
 
     /**
      * Flag indicating whether the label should be displayed.
      */
-    hasLabel: boolean = false;
+    hasLabel = computed(() => !!this.label().trim().length);
 
     /**
      * Flag indicating whether the dropdown is currently active (visible).
      */
-    isActive: boolean = false;
+    isActive = false;
 
     /**
      * Sanitized version of the left icon SVG to prevent XSS attacks.
@@ -129,15 +131,18 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     constructor(
         private sanitizer: DomSanitizer,
         private cdr: ChangeDetectorRef,
-    ) {}
+    ) {
+        // Reactive effect to sanitize SVG icons whenever they change
+        effect(() => {
+            this.sanitizeSvgIcons();
+        });
+    }
 
     ngOnInit() {
-        this.filteredData = this.autocompleteData;
-        this.hasLabel = !!this.label.trim().length;
-
+        this.filteredData = this.autocompleteData();
         this.searchSubject.pipe(debounceTime(100)).subscribe({
             next: (searchText: string) => {
-                this.filteredData = this.autocompleteData.filter((option) =>
+                this.filteredData = this.autocompleteData().filter((option) =>
                     option.name.toLowerCase().includes(searchText.toLowerCase()),
                 );
             },
@@ -151,25 +156,17 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
         });
     }
 
-    ngAfterViewInit() {
-        this.cdr.detectChanges();
-        this.attachInputEventListener();
-    }
-
-    ngOnChanges() {
-        this.updateIconVisibility(); // Call to update visibility on changes
-        this.sanitizeSvgIcons();
-    }
-
     /**
      * HostListener for detecting clicks outside the component to close the dropdown.
      * @param targetElement The element that was clicked.
      */
     @HostListener('document:click', ['$event.target'])
     public onClickOutside(targetElement: any): void {
+        const dropdownWrapper = this.dropdownWrapper();
+        const searchInput = this.searchInput();
         const clickedInside =
-            this.dropdownWrapper.nativeElement.contains(targetElement) ||
-            (this.searchInput && this.searchInput.nativeElement.contains(targetElement));
+            (dropdownWrapper && dropdownWrapper.nativeElement.contains(targetElement)) ||
+            (searchInput && searchInput.nativeElement.contains(targetElement));
 
         if (!clickedInside && this.isActive) {
             this.isActive = false;
@@ -181,9 +178,9 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
 
                 // Clear the input value after the view is updated and trigger input event.
                 setTimeout(() => {
-                    if (this.searchInput && this.searchInput.nativeElement) {
-                        this.searchInput.nativeElement.value = '';
-                        this.searchInput.nativeElement.dispatchEvent(new Event('input'));
+                    if (searchInput && searchInput.nativeElement) {
+                        searchInput.nativeElement.value = '';
+                        searchInput.nativeElement.dispatchEvent(new Event('input'));
                     }
                 });
             } else {
@@ -206,9 +203,10 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
                 this.attachInputEventListener();
 
                 setTimeout(() => {
-                    if (this.searchInput && this.searchInput.nativeElement) {
-                        this.searchInput.nativeElement.value = '';
-                        this.searchInput.nativeElement.dispatchEvent(new Event('input'));
+                    const searchInput = this.searchInput();
+                    if (searchInput && searchInput.nativeElement) {
+                        searchInput.nativeElement.value = '';
+                        searchInput.nativeElement.dispatchEvent(new Event('input'));
                     }
                 });
             } else {
@@ -226,7 +224,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
         this.showInput = false;
         this.isActive = false;
         this.toggleDropdown();
-        this.filteredData = this.autocompleteData;
+        this.filteredData = this.autocompleteData();
     }
 
     /**
@@ -235,14 +233,15 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     public clearSelection(): void {
         this.selectedOption = null;
         this.showInput = true;
-        this.filteredData = this.autocompleteData;
+        this.filteredData = this.autocompleteData();
 
         // Clear input and trigger search AFTER the view is updated
         setTimeout(() => {
             this.attachInputEventListener();
-            if (this.searchInput && this.searchInput.nativeElement) {
-                this.searchInput.nativeElement.value = '';
-                this.searchInput.nativeElement.dispatchEvent(new Event('input'));
+            const searchInput = this.searchInput();
+            if (searchInput && searchInput.nativeElement) {
+                searchInput.nativeElement.value = '';
+                searchInput.nativeElement.dispatchEvent(new Event('input'));
             }
         }, 0);
     }
@@ -251,15 +250,12 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
      * Attaches an event listener to the input field for handling input events.
      */
     private attachInputEventListener(): void {
-        if (
-            this.searchInput &&
-            this.searchInput.nativeElement &&
-            !this.searchInput.nativeElement.hasAttribute('listenerAttached')
-        ) {
-            this.searchInput.nativeElement.addEventListener('input', (event: any) => {
+        const searchInput = this.searchInput();
+        if (searchInput && searchInput.nativeElement && !searchInput.nativeElement.hasAttribute('listenerAttached')) {
+            searchInput.nativeElement.addEventListener('input', (event: any) => {
                 this.searchInputChanges$.next(event.target.value);
             });
-            this.searchInput.nativeElement.setAttribute('listenerAttached', 'true'); // Mark listener as attached
+            searchInput.nativeElement.setAttribute('listenerAttached', 'true'); // Mark listener as attached
         }
     }
 
@@ -275,27 +271,25 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
      * Toggles the visibility of the dropdown.
      */
     public toggleDropdown(): void {
-        const dropdownElement = this.dropdownWrapper.nativeElement;
-        dropdownElement.classList.toggle('active', this.isActive);
-        dropdownElement.classList.toggle('inactive', !this.isActive);
-    }
-    /**
-     * Updates the visibility of the left and right icons based on their SVG content.
-     */
-    private updateIconVisibility(): void {
-        this.showLeftIcon = !!this.leftIconSvg;
-        this.showRightIcon = !!this.rightIconSvg;
+        const dropdownElement = this.dropdownWrapper()?.nativeElement;
+        if (dropdownElement) {
+            dropdownElement.classList.toggle('active', this.isActive);
+            dropdownElement.classList.toggle('inactive', !this.isActive);
+        }
     }
 
     /**
      * Sanitizes the SVG content for the left and right icons to prevent XSS attacks.
      */
     private sanitizeSvgIcons(): void {
-        if (this.leftIconSvg) {
-            this.sanitizedLeftIconSvg = this.sanitizer.bypassSecurityTrustHtml(this.leftIconSvg);
+        const leftIconSvg = this.leftIconSvg();
+        const rightIconSvg = this.rightIconSvg();
+
+        if (leftIconSvg) {
+            this.sanitizedLeftIconSvg = this.sanitizer.bypassSecurityTrustHtml(leftIconSvg);
         }
-        if (this.rightIconSvg) {
-            this.sanitizedRightIconSvg = this.sanitizer.bypassSecurityTrustHtml(this.rightIconSvg);
+        if (rightIconSvg) {
+            this.sanitizedRightIconSvg = this.sanitizer.bypassSecurityTrustHtml(rightIconSvg);
         }
     }
 
@@ -306,7 +300,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
      */
     public getClass(): object {
         return {
-            [`input--${this.inputSize}`]: this.inputSize,
+            [`input--${this.inputSize()}`]: this.inputSize(),
         };
     }
 }

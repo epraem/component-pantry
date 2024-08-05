@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, viewChild, input, output, model, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { DAYS, DateToTimeStampParams, DayDetails, MONTHS, MonthDetails, Months, SpecificDayDetails } from './calendar';
@@ -8,410 +8,427 @@ import { DAYS, DateToTimeStampParams, DayDetails, MONTHS, MonthDetails, Months, 
     standalone: true,
     imports: [CommonModule],
     templateUrl: './calendar.component.html',
-    styleUrl: './calendar.component.scss',
+    styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent implements OnInit {
-    /**
-     * Label text for the date input component. Displayed above the input field.
-     */
-    @Input() label: string = 'Default Label';
+    /** Label for the calendar component */
+    label = input<string>('Default Label');
 
-    /**
-     * SVG icon for the label input. Expected to be a valid SVG string.
-     */
-    @Input() labelInputIcon!: string;
+    /** Icon for the label input */
+    labelInputIcon = input<string | undefined>();
 
-    /**
-     * Function to add a note. Expected to be a function or a callback.
-     */
-    @Input() addNote: any;
+    /** Function to add a note */
+    addNote = input<Function>();
 
-    /**
-     * Event emitter for the value of the date input field.
-     */
-    @Output() dateInputValue: EventEmitter<any> = new EventEmitter<any>();
+    /** Output value for the date input */
+    dateInputValue = output<any>();
 
-    /**
-     * Reference to the date input element. Used to handle focus and input events.
-     */
-    @ViewChild('dateInput') dateInput!: ElementRef;
+    /** Reference to the date input element */
+    dateInput = viewChild<ElementRef>('dateInput');
 
-    /**
-     * Current day of the month.
-     */
-    currentDay!: number;
+    /** Current day */
+    currentDay = model<number>();
 
-    /**
-     * Current month.
-     */
-    currentMonth!: any;
+    /** Current month */
+    currentMonth = model<any>();
 
-    /**
-     * Current year.
-     */
-    currentYear!: number;
+    /** Current year */
+    currentYear = model<number>(new Date().getFullYear());
 
-    /**
-     * The date object representing the current date.
-     */
+    /** Current date object */
     date = new Date();
 
-    /**
-     * Array containing details of each day in the month.
-     */
-    daysOfTheMonth: MonthDetails[] = [];
+    /** Days of the current month */
+    daysOfTheMonth = model<MonthDetails[]>([]);
 
-    /**
-     * Array containing the names of the days of the week.
-     */
+    /** Array of days in a week */
     days = DAYS;
 
-    /**
-     * Flag indicating whether the input field has an associated label.
-     */
-    hasLabel = false;
+    /** Computed property to check if the label is not default */
+    hasLabel = computed(() => this.label() !== 'Default Label');
 
-    /**
-     * Formatted date string for the header.
-     */
-    headerDate: string = '';
+    /** Header date string */
+    headerDate = model<string>('');
 
-    /**
-     * Month displayed in the header.
-     */
-    headerMonth!: number;
+    /** Header month number */
+    headerMonth = model<number>(new Date().getMonth());
 
-    /**
-     * Year displayed in the header.
-     */
-    headerYear!: number;
+    /** Header year number */
+    headerYear = model<number>(new Date().getFullYear());
 
-    /**
-     * Value of the date input field as a string.
-     */
-    inputDateValue: string = '';
+    /** Input value for the date */
+    inputDateValue = model<string>('');
 
-    /**
-     * Flag indicating whether the last selection was made.
-     */
-    lastSelection = false;
+    /** Flag for the last selection */
+    lastSelection = model<boolean>(false);
 
-    /**
-     * Array containing the names of the months.
-     */
+    /** Array of months */
     months = MONTHS;
 
-    /**
-     * Flag indicating whether the day selection view is active.
-     */
-    onShowDay = false;
+    /** Flag to show day picker */
+    onShowDay = model<boolean>(false);
+
+    /** Flag to show month picker */
+    onShowMonth = model<boolean>(false);
+
+    /** Flag to show year picker */
+    onShowYear = model<boolean>(false);
+
+    /** Sanitized icon for the label input */
+    sanitizedlabelInputIcon = model<SafeHtml | null>(null);
+
+    /** Selected date timestamp */
+    selectedDate = model<number>();
+
+    /** Selected day */
+    selectedDay = model<number>();
+
+    /** Selected month */
+    selectedMonth = model<any>();
+
+    /** Selected year */
+    selectedYear = model<number>();
+
+    /** Flag to show arrows in the UI */
+    showArrows = model<boolean>(true);
+
+    /** Flag to show month and year in the header */
+    showMonthAndYear = model<boolean>(false);
+
+    /** Flag to show years picker */
+    showYears = model<boolean>(false);
+
+    /** Today's timestamp */
+    todayTimestamp = model<number>();
+
+    /** End year for the picker */
+    yearEnd = model<number>(new Date().getFullYear() + 10);
+
+    /** Array of years for the picker */
+    years = model<number[]>([]);
+
+    /** Start year for the picker */
+    yearStart = model<number>(new Date().getFullYear());
+
+    /** Flag to check if input is active */
+    isInputActive = model<boolean>(false);
+
+    /** Flag to check if the date is invalid */
+    isDateInvalid = model<boolean>(false);
 
     /**
-     * Flag indicating whether the month selection view is active.
+     * Constructor to inject the sanitizer service
+     * @param {DomSanitizer} _sanitizer - The sanitizer service
      */
-    onShowMonth = false;
-
-    /**
-     * Flag indicating whether the year selection view is active.
-     */
-    onShowYear = false;
-
-    /**
-     * Sanitized version of the label input icon to prevent XSS attacks.
-     */
-    sanitizedlabelInputIcon: SafeHtml | null = null;
-
-    /**
-     * Currently selected date.
-     */
-    selectedDate!: number;
-
-    /**
-     * Currently selected day.
-     */
-    selectedDay!: number;
-
-    /**
-     * Currently selected month.
-     */
-    selectedMonth: any;
-
-    /**
-     * Currently selected year.
-     */
-    selectedYear!: number;
-
-    /**
-     * Flag indicating whether to show arrows for navigation.
-     */
-    showArrows = true;
-
-    /**
-     * Flag indicating whether to show the month and year selection.
-     */
-    showMonthAndYear = false;
-
-    /**
-     * Flag indicating whether to show the year selection.
-     */
-    showYears = false;
-
-    /**
-     * Timestamp representing today's date.
-     */
-    todayTimestamp!: number;
-
-    /**
-     * End year for the year selection range.
-     */
-    yearEnd!: number;
-
-    /**
-     * Array containing the years for selection.
-     */
-    years: number[] = [];
-
-    /**
-     * Start year for the year selection range.
-     */
-    yearStart!: number;
-
-    /**
-     * Flag indicating whether the input field is active.
-     */
-    isInputActive = false;
-
-    /**
-     * Flag indicating whether the selected date is invalid.
-     */
-    isDateInvalid = false;
-
     constructor(private _sanitizer: DomSanitizer) {}
 
+    /**
+     * Initialize the calendar component
+     */
     ngOnInit(): void {
         const oneDay = 60 * 60 * 24 * 1000;
         const currentMonth = this.date.getMonth();
-        this.hasLabel = this.label !== 'Default Label';
-        this.todayTimestamp = Date.now() - (Date.now() % oneDay) + new Date().getTimezoneOffset() * 1000 * 60;
-        this.currentYear = this.date.getFullYear();
-        this.currentDay = this.date.getDate();
+        const currentYear = this.date.getFullYear();
+        const currentDay = this.date.getDate();
+        const maxYear = currentYear + 100;
+        const minYear = 1900;
+
+        this.todayTimestamp.set(Date.now() - (Date.now() % oneDay) + new Date().getTimezoneOffset() * 1000 * 60);
+        this.currentYear.set(currentYear);
+        this.currentDay.set(currentDay);
+        this.headerYear.set(currentYear);
+        this.headerMonth.set(currentMonth);
+        this.yearEnd.set(maxYear); // Set max year to current year + 100
+        this.yearStart.set(minYear); // Set min year to 1900
         this.getMonthByTimestamp(currentMonth);
+        this.generateYears({ start: minYear, end: maxYear });
         this.onDayClick();
         this.sanitizeSvgIcons();
-        this.setDateHeader({ year: this.currentYear, month: currentMonth });
+        this.setInitialDate();
+
+        // Ensure the current day is selected initially
+        this.selectedDay.set(currentDay);
+        this.selectedMonth.set(currentMonth + 1); // JavaScript months are 0-based
+        this.selectedYear.set(currentYear);
+        this.selectedDate.set(this.date.getTime());
+
+        this.setDateHeader({ year: this.currentYear(), month: currentMonth });
     }
 
     /**
-     * Changes the current calendar month.
-     * @param {string} value - The direction to change the month ('prev' for previous, 'next' for next).
-     *
-     * If 'prev', decrements the month and updates the year if necessary.
-     * If 'next', increments the month and updates the year if necessary.
-     * Updates the header date and regenerates the year range accordingly.
-     *
-     * @example - Move to the previous month
-     * changeCalendarMonth('prev');
-     *
-     * @example - Move to the next month
-     * changeCalendarMonth('next');
+     * Set the initial date in the input field
+     */
+    private setInitialDate(): void {
+        const today = new Date();
+        const day = today.getDate().toString().padStart(2, '0');
+        const month = (today.getMonth() + 1).toString().padStart(2, '0');
+        const year = today.getFullYear();
+        const formattedDate = `${day}/${month}/${year}`;
+
+        const dateInputElement = this.dateInput();
+        if (dateInputElement instanceof ElementRef) {
+            dateInputElement.nativeElement.value = formattedDate;
+        }
+
+        this.selectedYear.set(year);
+        this.selectedMonth.set(Number(month));
+        this.selectedDay.set(Number(day));
+        this.selectedDate.set(today.getTime());
+    }
+
+    /**
+     * Change the calendar month
+     * @param {string} value - The value to change the month ('prev' or 'next')
      */
     public changeCalendarMonth(value: string): void {
+        const headerYear = this.headerYear();
+        const headerMonth = this.headerMonth();
+        const yearStart = this.yearStart();
+        const yearEnd = this.yearEnd();
+
+        if (headerYear === undefined || headerMonth === undefined || yearStart === undefined || yearEnd === undefined) {
+            return;
+        }
+
         if (value === 'prev') {
-            if (this.headerMonth === 0) {
-                this.headerMonth = 11;
-                this.headerYear -= 1;
+            if (headerMonth === 0) {
+                this.headerMonth.set(11);
+                this.headerYear.set(headerYear - 1);
             } else {
-                this.headerMonth -= 1;
+                this.headerMonth.set(headerMonth - 1);
             }
 
-            this.setDateHeader({ year: this.headerYear, month: this.headerMonth });
-            this.yearStart -= 29;
-            this.generateYears({ start: this.yearStart, end: this.yearStart + 29 });
+            this.setDateHeader({ year: this.headerYear()!, month: this.headerMonth()! });
+            this.yearStart.set(yearStart - 29);
+            this.generateYears({ start: this.yearStart()!, end: this.yearStart()! + 29 });
 
             return;
         }
 
-        if (this.headerMonth === 11) {
-            this.headerMonth = 0;
-            this.headerYear += 1;
+        if (headerMonth === 11) {
+            this.headerMonth.set(0);
+            this.headerYear.set(headerYear + 1);
         } else {
-            this.headerMonth += 1;
+            this.headerMonth.set(headerMonth + 1);
         }
 
-        this.setDateHeader({ year: this.headerYear, month: this.headerMonth });
-        this.yearEnd += 29;
-        this.generateYears({ start: this.yearEnd - 29, end: this.yearEnd });
+        this.setDateHeader({ year: this.headerYear()!, month: this.headerMonth()! });
+        this.yearEnd.set(yearEnd + 29);
+        this.generateYears({ start: this.yearEnd()! - 29, end: this.yearEnd()! });
     }
 
     /**
-     * Handles changes to the date input field.
-     * Updates the selected date based on the input value.
+     * Handle date input change and format input with slashes
+     * @param {Event} event - The input event
      */
-    public onDateInputChang(): void {
-        this.inputDateValue = this.dateInput.nativeElement.value;
+    public onDateInputChange(event: Event): void {
+        const inputElement = event.target as HTMLInputElement;
+        let textSoFar = inputElement.value;
 
-        // Split the date string by any of the delimiters: /, -, or space
-        const [day, month, year] = this.inputDateValue.split(/[-\/\s]/).map(Number);
+        // Remove non-numeric characters except slashes
+        textSoFar = textSoFar.replace(/[^\d\/]/g, '');
 
-        this.selectedYear = year;
-        this.selectedMonth = month;
+        // Insert slashes at the correct positions
+        if (textSoFar.length > 2 && textSoFar[2] !== '/') {
+            textSoFar = textSoFar.slice(0, 2) + '/' + textSoFar.slice(2);
+        }
+        if (textSoFar.length > 5 && textSoFar[5] !== '/') {
+            textSoFar = textSoFar.slice(0, 5) + '/' + textSoFar.slice(5);
+        }
+        // Limit the year to 4 digits
+        if (textSoFar.length > 10) {
+            textSoFar = textSoFar.slice(0, 10);
+        }
 
-        const inputDate = new Date(year, month - 1, day);
-        const inputTimestamp = inputDate.getTime();
-        this.selectedDate = inputTimestamp;
+        inputElement.value = textSoFar;
+
+        const [day, month, year] = textSoFar.split('/').map(Number);
+
+        if (year !== undefined && month !== undefined && day !== undefined) {
+            const currentYear = new Date().getFullYear();
+            const maxYear = currentYear + 100;
+            if (year <= maxYear && year >= 1900) {
+                this.selectedYear.set(year);
+                this.selectedMonth.set(month);
+
+                const inputDate = new Date(year, month - 1, day);
+                const inputTimestamp = inputDate.getTime();
+                this.selectedDate.set(inputTimestamp);
+                this.isDateInvalid.set(false);
+            } else {
+                // Handle invalid year
+                this.isDateInvalid.set(true);
+                setTimeout(() => {
+                    this.isDateInvalid.set(false);
+                }, 2000);
+            }
+        } else if (!textSoFar) {
+            this.isDateInvalid.set(true);
+        } else {
+            this.isDateInvalid.set(true);
+        }
     }
 
     /**
-     * Handles the focus event on the date input field.
-     * Sets the input field as active.
+     * Handle focus event on the input
      */
     public onFocus(): void {
-        this.isInputActive = true;
+        this.isInputActive.set(true);
     }
 
     /**
-     * Handles the blur event on the date input field.
-     * Validates the selected date and updates the state accordingly.
+     * Handle blur event on the input
      */
     public onBlur(): void {
-        this.isInputActive = false;
+        this.isInputActive.set(false);
 
-        if (this.selectedDate) {
-            this.convertTimestamp(this.selectedDate);
+        const dateInputRef = this.dateInput();
+        if (dateInputRef && !dateInputRef.nativeElement.value) {
+            this.isDateInvalid.set(true);
+            this.selectedYear.set(new Date().getFullYear());
+            this.selectedMonth.set(new Date().getMonth());
+            this.selectedDay.set(new Date().getDate());
+            this.convertTimestamp(Date.now());
+            dateInputRef.nativeElement.value = this.formatDate(new Date());
+        } else if (this.selectedDate() !== undefined) {
+            this.convertTimestamp(this.selectedDate()!);
         } else {
-            this.isDateInvalid = true;
+            this.isDateInvalid.set(true);
 
             setTimeout(() => {
-                this.isDateInvalid = false;
+                this.isDateInvalid.set(false);
             }, 2000);
         }
     }
 
     /**
-     * Toggles the display of month and year in the header.
+     * Format a date object to a string with leading zeros
+     * @param {Date} date - The date to format
+     * @returns {string} The formatted date string
+     */
+    private formatDate(date: Date): string {
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear().toString();
+        return `${day}/${month}/${year}`;
+    }
+
+    /**
+     * Handle click event on the header date
      */
     public onClickHeaderdate(): void {
-        this.showMonthAndYear = !this.showMonthAndYear;
-        this.showYears = false;
-        this.showArrows = !this.showArrows;
+        this.showMonthAndYear.set(!this.showMonthAndYear());
+        this.showYears.set(false);
+        this.showArrows.set(!this.showArrows());
     }
 
     /**
-     * Handles the click event for showing days.
-     * Sets `onShowDay` to true, and hides month and year views.
+     * Handle day click event
      */
     public onDayClick(): void {
-        this.onShowDay = true;
-        this.onShowMonth = false;
-        this.onShowYear = false;
+        this.onShowDay.set(true);
+        this.onShowMonth.set(false);
+        this.onShowYear.set(false);
     }
 
     /**
-     * Handles the click event for showing months.
-     * Sets `onShowMonth` to true, hides day and year views, and disables arrows.
+     * Handle month click event
      */
-    public onMonthClick() {
-        this.onShowMonth = true;
-        this.onShowDay = false;
-        this.onShowYear = false;
-        this.showArrows = false;
+    public onMonthClick(): void {
+        this.onShowMonth.set(true);
+        this.onShowDay.set(false);
+        this.onShowYear.set(false);
+        this.showArrows.set(false);
     }
 
     /**
-     * Handles the click event for showing years.
-     * Sets `onShowYear` to true, hides day and month views, enables year view and arrows.
-     * Generates a range of years based on the current header year, starting from 8 years before the header year to 21 years after.
+     * Handle year click event
      */
     public onYearClick(): void {
-        this.onShowYear = true;
-        this.onShowMonth = false;
-        this.onShowDay = false;
-        this.showYears = true;
-        this.showArrows = true;
+        this.onShowYear.set(true);
+        this.onShowMonth.set(false);
+        this.onShowDay.set(false);
+        this.showYears.set(true);
+        this.showArrows.set(true);
 
-        // Generate Years by Current Header
-        let showYears = this.headerYear;
-        showYears -= 8;
-        this.generateYears({ start: showYears, end: showYears + 29 });
+        let showYears = this.headerYear();
+        if (showYears !== undefined) {
+            showYears -= 8;
+            this.generateYears({ start: showYears, end: showYears + 29 });
+        }
     }
 
     /**
-     * Selects a day from the month view and updates the selected date.
-     * @param day - The details of the selected day.
+     * Handle day selection
+     * @param {MonthDetails} day - The details of the selected day
      */
     public onDaySelect(day: MonthDetails): void {
-        this.selectedDate = day.timestamp;
-        this.selectedDay = day.date;
-        this.onShowMonth = false;
-        this.onShowYear = false;
+        this.selectedDate.set(day.timestamp);
+        this.selectedDay.set(day.date);
+        this.onShowMonth.set(false);
+        this.onShowYear.set(false);
         this.convertTimestamp(day.timestamp);
     }
 
     /**
-     * Selects a month and generates the years for the header.
-     * @param month - The details of the selected month.
+     * Handle month selection
+     * @param {Months} month - The selected month
      */
     public onMonthSelected(month: Months): void {
-        this.showYears = true;
-        this.selectedMonth = month.sequence;
-        this.onShowDay = true;
-        this.onShowMonth = false;
+        this.showYears.set(true);
+        this.selectedMonth.set(month.sequence);
+        this.onShowDay.set(true);
+        this.onShowMonth.set(false);
 
-        if (!this.selectedYear || !this.selectedDay) {
-            this.setInitialDateHeaderAndTimestamp(this.currentYear, this.selectedMonth);
+        if (!this.selectedYear() || !this.selectedDay()) {
+            this.setInitialDateHeaderAndTimestamp(this.currentYear()!, this.selectedMonth()!);
         }
 
-        this.updateTimestampAndHeader(this.selectedDay, this.currentYear, this.selectedMonth);
+        this.updateTimestampAndHeader(this.selectedDay()!, this.currentYear()!, this.selectedMonth()!);
     }
 
     /**
-     * Selects a year and updates the header.
-     * @param year - The selected year.
+     * Handle year selection
+     * @param {number} year - The selected year
      */
     public onYearSelected(year: number): void {
-        this.showMonthAndYear = false;
-        this.showYears = false;
-        this.selectedYear = year;
-        this.onShowDay = true;
-        this.onShowYear = false;
+        this.showMonthAndYear.set(false);
+        this.showYears.set(false);
+        this.selectedYear.set(year);
+        this.onShowDay.set(true);
+        this.onShowYear.set(false);
 
-        if (!this.selectedDay || !this.selectedMonth) {
-            this.setInitialDateHeaderAndTimestamp(this.selectedYear, this.currentMonth);
+        if (!this.selectedDay() || !this.selectedMonth()) {
+            this.setInitialDateHeaderAndTimestamp(this.selectedYear()!, this.currentMonth()!);
         }
 
-        this.updateTimestampAndHeader(this.selectedDay, this.selectedYear, this.selectedMonth);
+        this.updateTimestampAndHeader(this.selectedDay()!, this.selectedYear()!, this.selectedMonth()!);
     }
 
     /**
-     * Sets initial date header and timestamp.
-     * @param year - The year value.
-     * @param month - The month value.
+     * Set initial date header and timestamp
+     * @param {number} year - The year to set
+     * @param {number} month - The month to set
      */
-
     private setInitialDateHeaderAndTimestamp(year: number, month: number): void {
         this.setDateHeader({ year, month });
         this.convertToTimeStamp({ year, month, day: 1 });
     }
 
     /**
-     * Updates timestamp and header.
-     * @param day - The day value.
-     * @param year - The year value.
-     * @param month - The month value.
+     * Update timestamp and header
+     * @param {number} day - The day to set
+     * @param {number} year - The year to set
+     * @param {number} month - The month to set
      */
-
     private updateTimestampAndHeader(day: number, year: number, month: number): void {
         this.convertToTimeStamp({ year, month, day });
         this.setDateHeader({ year, month });
     }
 
     /**
-     * Converts a date object to a timestamp and processes it.
-     *
-     * @param {Object} data - The date data to convert.
-     * @param {number} data.year - The year of the date.
-     * @param {number} data.month - The month of the date (0-11, where 0 is January and 11 is December).
-     * @param {number} data.day - The day of the month.
+     * Convert date to timestamp
+     * @param {DateToTimeStampParams} data - The date data to convert
      */
     private convertToTimeStamp(data: DateToTimeStampParams): void {
         const inputDate = new Date(data.year, data.month, data.day);
@@ -420,32 +437,46 @@ export class CalendarComponent implements OnInit {
     }
 
     /**
-     * Generates an array of years for selection based on the provided range.
-     * @param year - An object containing the start and end years.
+     * Generate years for the picker
+     * @param {Object} year - The start and end year
+     * @param {number} year.start - The start year
+     * @param {number} year.end - The end year
      */
     private generateYears(year: { start: number; end: number }): void {
-        this.yearStart = year.start;
-        this.yearEnd = year.end;
-        this.years = [];
+        const currentYear = new Date().getFullYear();
+        const maxYear = currentYear + 100;
+        const minYear = 1900;
 
-        for (let fetchedYears = year.start; fetchedYears <= year.end; fetchedYears++) {
-            this.years.push(fetchedYears);
+        // Ensure the start year does not go below min year and end year does not exceed max year
+        const adjustedStartYear = Math.max(year.start, minYear);
+        const adjustedEndYear = Math.min(year.end, maxYear);
+
+        this.yearStart.set(adjustedStartYear);
+        this.yearEnd.set(adjustedEndYear);
+
+        const yearsArray: number[] = [];
+        for (let fetchedYears = adjustedStartYear; fetchedYears <= adjustedEndYear; fetchedYears++) {
+            yearsArray.push(fetchedYears);
         }
+
+        this.years.set(yearsArray);
     }
 
     /**
-     * Returns the number of days in a given month of a specific year.
-     * @param data - An object containing the year and month.
-     * @returns The number of days in the month.
+     * Get the number of days in a month
+     * @param {Object} data - The year and month data
+     * @param {number} data.year - The year
+     * @param {number} data.month - The month
+     * @returns {number} The number of days in the month
      */
     private getDaysInMonth(data: { year: number; month: number }): number {
         return 40 - new Date(data.year, data.month, 40).getDate();
     }
 
     /**
-     * Retrieves details for a specific day.
-     * @param data - An object containing day details.
-     * @returns An object with details of the day.
+     * Get the details of a specific day
+     * @param {DayDetails} data - The day details data
+     * @returns {SpecificDayDetails} The specific day details
      */
     private getDayDetails(data: DayDetails): SpecificDayDetails {
         let date = data.index - data.firstDay;
@@ -473,9 +504,11 @@ export class CalendarComponent implements OnInit {
     }
 
     /**
-     * Retrieves details for all days in a specific month.
-     * @param data - An object containing the year and month.
-     * @returns An array of objects with details of each day in the month.
+     * Get the details of a month
+     * @param {Object} data - The year and month data
+     * @param {number} data.year - The year
+     * @param {number} data.month - The month
+     * @returns {MonthDetails[]} The details of the month
      */
     private getMonthDetails(data: { year: number; month: number }): MonthDetails[] {
         const year = data.year;
@@ -502,65 +535,69 @@ export class CalendarComponent implements OnInit {
             }
         }
 
-        this.daysOfTheMonth = monthArray;
+        this.daysOfTheMonth.set(monthArray);
         return monthArray;
     }
 
     /**
-     * Converts a timestamp to a date and updates the selected date fields.
-     * @param timestamp - The timestamp to be converted.
+     * Convert timestamp to date and update relevant fields
+     * @param {number} timestamp - The timestamp to convert
      */
     private convertTimestamp(timestamp: number): void {
         const date = new Date(timestamp);
         const day = date.getDate();
-        const month = date.getMonth();
+        const month = date.getMonth() + 1; // JavaScript months are 0-based
         const year = date.getFullYear();
+        const formattedDay = day.toString().padStart(2, '0');
+        const formattedMonth = month.toString().padStart(2, '0');
 
-        this.selectedYear = year;
-        this.selectedMonth = month;
-        this.selectedDay = day;
-        this.selectedDate = timestamp;
+        this.selectedYear.set(year);
+        this.selectedMonth.set(month);
+        this.selectedDay.set(day);
+        this.selectedDate.set(timestamp);
         this.dateInputValue.emit(timestamp);
 
-        if (this.selectedDate) {
-            this.dateInput.nativeElement.value = `${day}/${month + 1}/${year}`;
+        if (this.selectedDate() !== undefined && this.dateInput() !== undefined) {
+            this.dateInput()!.nativeElement.value = `${formattedDay}/${formattedMonth}/${year}`;
         }
-        this.setDateHeader({ year: year, month: month });
+        this.setDateHeader({ year: year, month: month - 1 }); // Adjust month to 0-based for setDateHeader
     }
 
     /**
-     * Retrieves the month details based on a timestamp.
-     * @param month - The month number.
+     * Get the month by its timestamp
+     * @param {number} month - The month number
      */
     private getMonthByTimestamp(month: number): void {
         const convertedMonth = this.months[Math.max(Math.min(11, month), 0)];
-        this.currentMonth = convertedMonth;
+        this.currentMonth.set(convertedMonth);
     }
 
     /**
-     * Sets the date header to display the selected month and year.
-     * @param data - An object containing the year and month.
+     * Set the date header
+     * @param {Object} data - The year and month data
+     * @param {number} data.year - The year
+     * @param {number} data.month - The month
      */
     private setDateHeader(data: { year: number; month: number }): void {
         const convertedMonth = this.months[Math.max(Math.min(11, data.month), 0)];
-        this.headerDate = `${convertedMonth.name} ${data.year}`;
-        this.headerYear = data.year;
-        this.headerMonth = data.month;
+        const day = this.selectedDay(); // Assume selectedDay is always set now
+        this.headerDate.set(`${convertedMonth.name} ${day}, ${data.year}`);
+        this.headerYear.set(data.year);
+        this.headerMonth.set(data.month);
         this.getMonthDetails({ year: data.year, month: data.month });
-        return;
     }
 
     /**
-     * Sanitizes the SVG content for the left and right icons to prevent XSS attacks.
+     * Sanitize SVG icons for the label input
      */
     private sanitizeSvgIcons(): void {
-        if (this.labelInputIcon) {
-            this.sanitizedlabelInputIcon = this._sanitizer.bypassSecurityTrustHtml(this.labelInputIcon);
+        if (this.labelInputIcon() !== undefined) {
+            this.sanitizedlabelInputIcon.set(this._sanitizer.bypassSecurityTrustHtml(this.labelInputIcon()!));
         }
     }
 
     /**
-     * Adds a note and logs a success message to the console.
+     * Add a note (stub function for future implementation)
      */
     public onAddNote(): void {
         console.log('Successfully Added Notes');
